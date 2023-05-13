@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-Route::get('home','HomeController@home');
+use App\Http\Controllers\HomeController;
+
+//Rota Controller (faz aparecer a pag)
+Route::get('/', [HomeController::class, 'home']);
