@@ -6,7 +6,8 @@
     <title>@yield('title')</title>
     <!-- Icone nas telas -->
     <link rel="icon" href="{{ url('img/icon.webp') }}">
-    <!-- Bootstrap modificavel -->
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('site/style.css') }}">
 
     <!-- Jquery -->
@@ -14,18 +15,61 @@
 
     {{-- FontAwsome/ Icons --}}
     <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
-  <div class="">
-    @yield('content')
-    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient-primary ">
-      
-    </nav>
-  </div>
+    <header class="">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/home">
+                    <img src="{{ asset('img/icon.webp') }}" title="HOME" width="30" height="24"
+                        class="d-inline-block align-top logo img-size-logo-home" alt="Laravel">
+                    Home
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <script src="{{ asset('site/jquery.js') }}"></script>
     <script src="{{ asset('site/bootstrap.js') }}"></script>
+    @yield('content')
 </body>
 
 </html>
