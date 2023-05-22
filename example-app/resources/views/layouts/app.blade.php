@@ -20,21 +20,26 @@
 
 <body>
     <header class="">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar navbar-expand-md ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/home">
+                {{-- Navbar-Brand para nome  --}}
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('img/icon.webp') }}" title="HOME" width="30" height="24"
                         class="d-inline-block align-top logo img-size-logo-home" alt="Laravel">
                     Home
                 </a>
+                {{-- Navbar-toggle para plug -in de recolhimento  --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {{-- navbar-nav navegacao completa e leve --}}
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
+                            {{-- active para um destaque na Home(indicar em q lugar vc esta) --}}
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
@@ -62,6 +67,15 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            login
+                        </li>
+                        <li class="nav-item">
+                            Sign Up
+                        </li>
+                    </ul>
+
                 </div>
             </div>
         </nav>

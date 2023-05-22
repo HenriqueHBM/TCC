@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
 //Rota Controller (faz aparecer a pag)
-Route::get('/home', [HomeController::class, 'home']);
+Route::get('/', [HomeController::class, 'home']);
