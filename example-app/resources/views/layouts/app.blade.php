@@ -20,10 +20,11 @@
 
 <body>
     <header class="">
-        <nav class="navbar navbar-expand-lg text-light bg-dark" >
+        <nav class="navbar navbar-expand-xl text-light bg-dark " >
             <div class="container-fluid">
-                {{-- Navbar-Brand para nome  --}}
+                {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light" href="/">
+                    {{-- Logo do site --}}
                     <img src="{{ asset('img/icon.webp') }}" title="HOME" width="30" height="24"
                         class="d-inline-block align-top logo img-size-logo-home me-2" alt="Laravel">
                     Home
@@ -37,24 +38,32 @@
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <form class="d-flex" role="search">
-                      <input type="text" class="ms-2 form-control border-3  border-bottom border-danger border-top-0 border-end-0 border-start-0 bg-dark me-2 rounded text-light" placeholder="Pesquisar">
+                        <input type="text"
+                            class="ms-2 me-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light"
+                            placeholder="Pesquisar">
                         <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                        <button class="btn btn-md btn-outline-info" type="submit"><i class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-md btn-outline-info" type="submit"><i
+                                class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
                     </form>
-                    
+
                 </div>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Eventos
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Meus Eventos</a></li>
-                      <li><a class="dropdown-item" href="#">Criar Evento</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Olhar Eventos</a></li>
-                    </ul>
-                  </li>
+                {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
+                <ul class="navbar-nav ">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link active dropdown-toggle text-light" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Distribuição
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
+                            <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
+                            <li>
+                                {{-- Linha separando as distribuicao --}}
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item " href="/distribuicoes">Olhar Distribuições</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item">
                         <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
                     </li>
@@ -65,7 +74,6 @@
             </div>
         </nav>
     </header>
-
     <script src="{{ asset('site/jquery.js') }}"></script>
     <script src="{{ asset('site/bootstrap.js') }}"></script>
     @yield('content')
