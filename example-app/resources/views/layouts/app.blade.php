@@ -20,7 +20,7 @@
 
 <body>
     <header class="">
-        <nav class="navbar navbar-expand-xl text-light bg-dark " >
+        <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top  " >
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light" href="/">
