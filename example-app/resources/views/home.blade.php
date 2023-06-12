@@ -44,7 +44,7 @@
                 <img src="img/McLanche.webp" class="card-img-top  ">
                 <div class="card-body">
                     <h5 class="card-title ">Mc Feliz</h5>
-                    <p class="card-text ">R$: 10.50</p>
+                    <p class="card-text ">R$: 10.70</p>
                 </div>
             </div>
             <div class="card text-center mx-2" style="width: 13rem;">
@@ -76,7 +76,7 @@
     </div>
 
     {{-- Bebidas --}}
-    <div class="container-fluid my-3 py-3 ">
+    <div class="container-fluid my-3 py-3">
         <div class="row ">
             <div class="col-12 text-left ">
                 <h3>Bebidas</h3>
