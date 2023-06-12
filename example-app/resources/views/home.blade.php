@@ -40,20 +40,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="card text-center mx-2" style="width: 13rem;">
+            @for($i =0; $i<5;$i++)
+            <div class="card col-sm-2 mx-1">
                 <img src="img/McLanche.webp" class="card-img-top  ">
                 <div class="card-body">
                     <h5 class="card-title ">Mc Feliz</h5>
-                    <p class="card-text ">R$: 10.50</p>
+                    <p class="card-text ">R$: 10.70</p>
+                    {{-- Card como link --}}
+                    <a href="distribuicoes" class="stretched-link"></a>
                 </div>
             </div>
-            <div class="card text-center mx-2" style="width: 13rem;">
-                <img src="img/vinho.png" class="card-img-top  ">
-                <div class="card-body">
-                    <h5 class="card-title ">Vinho</h5>
-                    <p class="card-text ">R$: 39.99</p>
-                </div>
-            </div>
+            @endfor
         </div>
     </div>
 
@@ -76,7 +73,7 @@
     </div>
 
     {{-- Bebidas --}}
-    <div class="container-fluid my-3 py-3 ">
+    <div class="container-fluid my-3 py-3">
         <div class="row ">
             <div class="col-12 text-left ">
                 <h3>Bebidas</h3>
