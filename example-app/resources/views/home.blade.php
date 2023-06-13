@@ -40,19 +40,37 @@
             </div>
         </div>
         <div class="row">
-            @for($i =0; $i<5;$i++)
-            <div class="card col-sm-2 mx-1">
-                <img src="img/McLanche.webp" class="card-img-top  ">
-                <div class="card-body">
-                    <h5 class="card-title ">Mc Feliz</h5>
-                    <p class="card-text ">R$: 10.70</p>
-                    {{-- Card como link --}}
-                    <a href="distribuicoes" class="stretched-link"></a>
+            @for ($i = 0; $i < 2; $i++)
+                <div class="card text-center mx-1 col-md-2 ">
+                        <img src="img/McLanche.webp" class="card-img-top ">
+                    <div class="card-body">
+                        <h5 class="card-title ">Mc Feliz</h5>
+                        <p class="card-text ">R$: 10.50</p>
+                        {{-- Card como link --}}
+                        <a href="distribuicoes" class="stretched-link"></a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        20/06/2023
+                    </div>
                 </div>
-            </div>
+                <div class="card text-center mx-1 col-md-2 ">
+                        <img src="img/vinho.png" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title ">Mc Feliz</h5>
+                        <p class="card-text ">R$: 10.50</p>
+                        {{-- Card como link --}}
+                        <a href="distribuicoes" class="stretched-link"></a>
+                    </div>
+                    <div class="card-footer text-muted">
+                        20/06/2023
+                    </div>
+                </div>
             @endfor
         </div>
     </div>
+
+
+
 
     {{-- Comidas --}}
     <div class="container-fluid my-3 py-3 ">
