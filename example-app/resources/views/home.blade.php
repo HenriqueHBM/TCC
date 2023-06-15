@@ -40,37 +40,22 @@
             </div>
         </div>
         <div class="row">
-            @for ($i = 0; $i < 2; $i++)
-                <div class="card text-center mx-1 col-md-2 ">
-                        <img src="img/McLanche.webp" class="card-img-top ">
+            @foreach ($linhas as $item)
+                <div class="card text-center mx-1 col-md-2">
+                    <img src="img/McLanche.webp" class="card-img-top ">
                     <div class="card-body">
-                        <h5 class="card-title ">Mc Feliz</h5>
-                        <p class="card-text ">R$: 10.50</p>
+                        <h5 class="card-title ">{{ $item->nome }}</h5>
+                        <p class="card-text ">{{ BRValue($item->preco) }}</p>
                         {{-- Card como link --}}
-                        <a href="distribuicoes" class="stretched-link"></a>
+                        <a href="produto/{{ $item->id }}" class="stretched-link"></a>
                     </div>
                     <div class="card-footer text-muted">
-                        20/06/2023
+                        {{ $item->dt_vencimento }}
                     </div>
                 </div>
-                <div class="card text-center mx-1 col-md-2 ">
-                        <img src="img/vinho.png" class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title ">Mc Feliz</h5>
-                        <p class="card-text ">R$: 10.50</p>
-                        {{-- Card como link --}}
-                        <a href="distribuicoes" class="stretched-link"></a>
-                    </div>
-                    <div class="card-footer text-muted">
-                        20/06/2023
-                    </div>
-                </div>
-            @endfor
+            @endforeach
         </div>
     </div>
-
-
-
 
     {{-- Comidas --}}
     <div class="container-fluid my-3 py-3 ">
