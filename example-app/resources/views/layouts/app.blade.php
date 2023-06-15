@@ -19,8 +19,8 @@
 </head>
 
 <body>
-    <header class="">
-        <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top  " >
+    <header style="margin-bottom:55px;">
+        <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top" >
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light" href="/">
@@ -29,12 +29,6 @@
                         class="d-inline-block align-top logo img-size-logo-home me-2" alt="Laravel">
                     Home
                 </a>
-                {{-- Navbar-toggle para plug -in de recolhimento  --}}
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <form class="d-flex" role="search">
@@ -43,7 +37,8 @@
                             placeholder="Pesquisar">
                         <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
                         <button class="btn btn-md btn-outline-info" type="submit"><i
-                                class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                                class="fa-sharp fa-solid fa-magnifying-glass"></i>
+                        </button>
                     </form>
 
                 </div>
