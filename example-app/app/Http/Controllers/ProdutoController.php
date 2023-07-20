@@ -9,7 +9,7 @@ class ProdutoController extends Controller
 {
     public function produto($id)
     {
-        $linha = tbProduto::findOrFail($id);
+        $linha = tbProduto::where('id_produto',$id)->first();
         return view('/produto', compact('linha'));
     }
 }

@@ -2,6 +2,7 @@
 @section('title', 'Produto')
 @section('content')
 
+
 <main role="main" >
     <div class="container " >
         <table class="table">
@@ -13,7 +14,7 @@
                 <th>Vencimento</th>
             </thead>
             <tbody>
-                <td>{{ $linha->nome }}</td>
+                <td>{{ $linha->produto }}</td>
                 <td>{{ $linha->preco }}</td>
                 <td>{{ $linha->descricao }}</td>
                 <td>{{ $linha->created_at }}</td>

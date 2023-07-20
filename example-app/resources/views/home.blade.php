@@ -62,13 +62,13 @@
                                 <img src="img/preto.jpg" class="card-img-top h-100">
                             </div>
                             <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->nome }}</h5>
+                                <h5 class="card-title ">{{ $item->produto }}</h5>
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
-                                <a href="produto/{{ $item->id }}" class="stretched-link"></a>
+                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                             </div>
                             <div class="card-footer text-muted ">
-                                {{ $item->data_vencimento }}
+                                {{ $item->dt_vencimento }}
                             </div>
                         </div>
                     @endforeach
@@ -96,7 +96,7 @@
                                 <h5 class="card-title ">{{ $item->nome }}</h5>
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
-                                <a href="produto/{{ $item->id }}" class="stretched-link"></a>
+                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                             </div>
                             <div class="card-footer text-muted ">
                                 {{ $item->dt_vencimento }}
