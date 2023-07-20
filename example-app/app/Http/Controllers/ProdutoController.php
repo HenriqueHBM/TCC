@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
-    public function produto(Request $r)
+    public function produto($id)
     {
-        $linhas = tbProduto::get();
-        return view('/produto', compact('linhas'));
+        $linha = tbProduto::where('id_produto',$id)->first();
+        return view('/produto', compact('linha'));
     }
 }
