@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class tbProduto extends Model
 {
     use HasFactory;
-    protected $table = 'produtos';
-    public $timestamps = false;
+    protected $table = 'tb_produtos';
+    public $timestamps = true;
 }

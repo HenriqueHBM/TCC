@@ -68,7 +68,7 @@
                                 <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                             </div>
                             <div class="card-footer text-muted ">
-                                {{ $item->dt_vencimento }}
+                                {{ $item->data_vencimento }}
                             </div>
                         </div>
                     @endforeach
