@@ -1,4 +1,4 @@
-create table tb_produtos(
+create table produtos(
 id_produto int auto_increment primary key,
 produto varchar(255) not null,
 preco float not null,
