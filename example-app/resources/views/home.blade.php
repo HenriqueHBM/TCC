@@ -59,7 +59,8 @@
                     @foreach ($linhas as $item)
                         <div class="card text-center mx-1 col-md-2 p-0 ">
                             <div style="height: 220px;">
-                                <img src="img/preto.jpg" class="card-img-top h-100">
+                                {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                <img src="{{ asset('img_folders/'.$item->imagens->first()->imagem) }}" class="card-img-top h-100">
                             </div>
                             <div class="card-body ">
                                 <h5 class="card-title ">{{ $item->produto }}</h5>
@@ -93,13 +94,13 @@
                                 <img src="img/preto.jpg" class="card-img-top h-100">
                             </div>
                             <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->nome }}</h5>
+                                <h5 class="card-title ">{{ $item->produto }}</h5>
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
                                 <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                             </div>
                             <div class="card-footer text-muted ">
-                                {{ $item->dt_vencimento }}
+                                {{ $item->data_vencimento }}
                             </div>
                         </div>
                     @endforeach
@@ -123,13 +124,13 @@
                                 <img src="img/preto.jpg" class="card-img-top h-100">
                             </div>
                             <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->nome }}</h5>
+                                <h5 class="card-title ">{{ $item->produto }}</h5>
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
                                 <a href="produto/{{ $item->id }}" class="stretched-link"></a>
                             </div>
                             <div class="card-footer text-muted ">
-                                {{ $item->dt_vencimento }}
+                                {{ $item->data_vencimento }}
                             </div>
                         </div>
                     @endforeach
