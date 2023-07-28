@@ -1,11 +1,13 @@
 create table tb_produtos(
 id_produto int auto_increment primary key,
 produto varchar(255) not null,
-preco float not null
+preco float not null,
 data_vencimento date not null,
 codigo text not null,
-created_at date not null,
-updated_at date not null,
+created_at date ,
+updated_at date ,
+deleted_at date,
 descricao text not null,
-tipo_alimentacao varchar(100) not null
+tipo_alimentacao varchar(100) not null,
+imagem varchar(255) not null
 )

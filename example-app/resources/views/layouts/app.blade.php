@@ -33,7 +33,7 @@
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <form class="d-flex" role="search">
                         <input type="text"
-                            class="ms-2 me-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light"
+                            class="ms-2 me-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light tirar_bordas"
                             placeholder="Pesquisar">
                         <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
                         <button class="btn btn-md btn-outline-info" type="submit"><i

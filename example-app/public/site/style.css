@@ -10768,3 +10768,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.tirar_bordas:focus{
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
