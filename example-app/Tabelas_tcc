@@ -8,6 +8,12 @@ created_at date ,
 updated_at date ,
 deleted_at date,
 descricao text not null,
-tipo_alimentacao varchar(100) not null,
-imagem varchar(255) not null
+tipo_alimentacao varchar(100) not null
+)
+
+create table produtos_imagens(
+id_imagem int auto_increment primary key,
+id_produto int,
+imagem varchar(255) not null,
+foreign key (id_produto) references produtos(id_produto)
 )
