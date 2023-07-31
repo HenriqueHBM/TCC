@@ -12,7 +12,7 @@
         <div class="carousel-inner">
             {{-- deixar 1º banner ativo --}}
             <div class="carousel-item active">
-                {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px--}}
+                {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px --}}
                 <img src=img/img01.jpg class=" img-fluid w-100">
                 {{-- carroseul-caption para adicionar legendas --}}
                 <div class="carousel-caption">
@@ -44,7 +44,6 @@
             <span class="carousel-control-next-icon"></span>
         </button>
     </div>
-
     {{-- Cards --}}
     {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
     <div class="container position-absolute start-50 translate-middle-x ">
@@ -59,22 +58,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    @foreach ($linhas as $item)
-                        <div class="card text-center mx-1 col-sm-2 p-0 " >
-                            <div style="height: 200px;">
-                                {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                    class="card-img-top h-100">
+                        @foreach ($linhas as $item)
+                            <div class="card text-center mx-1 col-sm-2 p-0 ">
+                                <div class="card-head">
+                                    <div style="height: 200px;">
+                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                            class="card-img-top h-100">
+                                    </div>
+                                </div>
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{ $item->produto }}</h5>
+                                    {{-- card-text para textos --}}
+                                    <p class="card-text ">R$: {{ $item->preco }}</p>
+                                    {{-- Card como link --}}
+                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                </div>
                             </div>
-                            <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                {{-- card-text para textos --}}
-                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                {{-- Card como link --}}
-                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                            </div>
-                        </div>
-                    @endforeach
+                        @endforeach
                 </div>
             </div>
         </div>
@@ -91,7 +92,7 @@
                 <div class="row">
                     @foreach ($linhas as $item)
                         @if ($item->tipo_alimentacao != 'Bebida')
-                            <div class="card text-center mx-1 col-md-2 p-0 ">
+                            <div class="card text-center mx-1 col-sm-2 p-0 ">
                                 <div style="height: 200px;">
                                     {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
                                     <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
@@ -122,7 +123,7 @@
                 <div class="row">
                     @foreach ($linhas as $item)
                         @if ($item->tipo_alimentacao != 'Comida')
-                            <div class="card text-center mx-1 col-md-2 p-0">
+                            <div class="card text-center mx-1 col-sm-2 p-0">
                                 <div style="height: 200px;">
                                     {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
                                     <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
@@ -142,4 +143,6 @@
         </div>
     </div>
     {{-- Fim Cards --}}
+
+    {{--ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
 @endsection

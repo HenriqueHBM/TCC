@@ -19,19 +19,18 @@
 </head>
 
 <body class="bg-light">
-    <header style="margin-bottom:55px;">
-        <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top" >
+    <header>
+        <nav class="navbar navbar-expand-lg text-light bg-dark ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
-                <a class="navbar-brand text-light" href="/">
+                <a class="navbar-brand text-light " href="/">
                     {{-- Logo do site --}}
                     <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
-                        class="img-size-logo-home me-2 logo">
+                        class="img-size-logo-home me-2 logo ">
                     Home
                 </a>
-                {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <form class="d-flex w-50" role="search">
+                <div class="w-50 justify-content-start">
+                    <form class="d-flex" role="search">
                         {{-- mx(margin left e right),  --}}
                         <input type="text"
                             class="mx-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light w-100 tirar_bordas"
@@ -41,32 +40,41 @@
                                 class="fa-sharp fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>
-
                 </div>
-                {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
-                <ul class="navbar-nav ">
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link active dropdown-toggle text-light" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Distribuição
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
-                            <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
-                            <li>
-                                {{-- Linha separando as distribuicao --}}
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item " href="/distribuicoes">Olhar Distribuições</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light" aria-current="page">Cadastrar</a>
-                    </li>
-                </ul>
+                {{-- toggle(mudar de estado == on/off) , bs-target(de onde deve vir a informacao/pedido)--}}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+                    {{-- span para surgir botao quando diminuir tamanho da tela --}}
+                    <span><i class="fa-solid fa-bars text-light "></i></span>
+                </button>
+                {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao, jsutify-content( para deixar itens alinhados a direita) --}}
+                <div class="collapse navbar-collapse justify-content-end"
+                    id="navbarSupportedContent">
+                    {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
+                    <ul class="navbar-nav ">
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link active dropdown-toggle text-light" href="#" role="button"
+                                data-bs-toggle="dropdown">
+                                Distribuição
+                            </a>
+                            <ul class="dropdown-menu w-25">
+                                <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
+                                <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
+                                <li>
+                                    {{-- Linha separando as distribuicao --}}
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item " href="/distribuicoes">Olhar Distribuições</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link text-light" aria-current="page">Cadastrar</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
     </header>
