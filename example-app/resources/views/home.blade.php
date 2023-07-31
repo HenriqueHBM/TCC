@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Home')
+@section('title', 'Tudo a Vida')
 @section('content')
     {{-- Carrouse de Imagens --}}
     <div id="carouselSite" class="carousel slide" data-bs-ride="carousel">
@@ -46,30 +46,31 @@
     </div>
 
     {{-- Cards --}}
+    {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
+    <div class="container position-absolute start-50 translate-middle-x ">
         {{-- Geral --}}
-        <div class="container-fluid my-4">
+        <div class=" my-4 p-3 bg-white rounded">
             <div class="ms-2">
                 <div class="row">
                     <div class="col-12 text-left ">
-                        <i class="fa-solid fa-utensils d-inline fs-4"> Geral</i>
-                        <hr>
+                        {{-- fs(fontSize),  --}}
+                        <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
+                        <hr class="mt-0 ">
                     </div>
                 </div>
                 <div class="row">
                     @foreach ($linhas as $item)
-                        <div class="card text-center mx-1 col-md-2 p-0 ">
-                            <div style="height: 220px;">
+                        <div class="card text-center mx-1 col-sm-2 p-0">
+                            <div style="height: 200px;">
                                 {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                <img src="{{ asset('img_folders/'.$item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                    class="card-img-top h-100">
                             </div>
                             <div class="card-body ">
                                 <h5 class="card-title ">{{ $item->produto }}</h5>
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
                                 <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                            </div>
-                            <div class="card-footer text-muted ">
-                                {{ $item->data_vencimento }}
                             </div>
                         </div>
                     @endforeach
@@ -78,65 +79,66 @@
         </div>
 
         {{-- Comidas --}}
-        <div class="container-fluid my-3 py-3 ">
+        <div class="my-4 p-3 bg-white rounded">
             <div class="ms-2">
-
                 <div class="row">
                     <div class="col-12 text-left">
                         <i class="fa-solid fa-bowl-rice fs-4"> Comidas</i>
-                        <hr>
+                        <hr class="mt-0">
                     </div>
                 </div>
-                <div class="row ">
-                    @foreach ($linhas->where('tipo_alimentacao', 'Comida') as $item)
-                        <div class="card text-center mx-1 col-md-2 p-0 ">
-                            <div style="height: 220px;">
-                                <img src="img/preto.jpg" class="card-img-top h-100">
+                <div class="row">
+                    @foreach ($linhas as $item)
+                        @if ($item->tipo_alimentacao != 'Bebida')
+                            <div class="card text-center mx-1 col-md-2 p-0 ">
+                                <div style="height: 200px;">
+                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                        class="card-img-top h-100">
+                                </div>
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{ $item->produto }}</h5>
+                                    <p class="card-text ">R$: {{ $item->preco }}</p>
+                                    {{-- Card como link --}}
+                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                </div>
                             </div>
-                            <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                {{-- Card como link --}}
-                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                            </div>
-                            <div class="card-footer text-muted ">
-                                {{ $item->data_vencimento }}
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </div>
 
         {{-- Bebidas --}}
-        <div class="container-fluid my-3 py-3">
+        <div class="my-4 p-3 bg-white rounded ">
             <div class="ms-2">
                 <div class="row">
-                    <div class="col-12 text-left ">
-                        <i class="fa-solid fa-champagne-glasses fs-4 "> Bebidas</i>
-                        <hr>
+                    <div class="col-12 text-left">
+                        <i class="fa-solid fa-bowl-rice fs-4">Bebidas</i>
+                        <hr class="mt-0">
                     </div>
                 </div>
-                <div class="row ">
-                    @foreach ($linhas->where('tipo_alimentacao', 'Bebida') as $item)
-                        <div class="card text-center mx-1 col-md-2 p-0 ">
-                            <div style="height: 220px;">
-                                <img src="img/preto.jpg" class="card-img-top h-100">
+                <div class="row">
+                    @foreach ($linhas as $item)
+                        @if ($item->tipo_alimentacao != 'Comida')
+                            <div class="card text-center mx-1 col-md-2 p-0">
+                                <div style="height: 200px;">
+                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                        class="card-img-top h-100">
+                                </div>
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{ $item->produto }}</h5>
+                                    <p class="card-text ">R$: {{ $item->preco }}</p>
+                                    {{-- Card como link --}}
+                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                </div>
                             </div>
-                            <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                {{-- Card como link --}}
-                                <a href="produto/{{ $item->id }}" class="stretched-link"></a>
-                            </div>
-                            <div class="card-footer text-muted ">
-                                {{ $item->data_vencimento }}
-                            </div>
-                        </div>
+                        @endif
                     @endforeach
                 </div>
             </div>
         </div>
-
+    </div>
     {{-- Fim Cards --}}
 @endsection
