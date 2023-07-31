@@ -18,25 +18,26 @@
 
 </head>
 
-<body>
+<body class="bg-light">
     <header style="margin-bottom:55px;">
         <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top" >
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light" href="/">
                     {{-- Logo do site --}}
-                    <img src="{{ asset('img/icon.webp') }}" title="HOME" width="30" height="24"
-                        class="d-inline-block align-top logo img-size-logo-home me-2" alt="Laravel">
+                    <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
+                        class="img-size-logo-home me-2 logo">
                     Home
                 </a>
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <form class="d-flex" role="search">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <form class="d-flex w-50" role="search">
+                        {{-- mx(margin left e right),  --}}
                         <input type="text"
-                            class="ms-2 me-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light tirar_bordas"
+                            class="mx-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light w-100 tirar_bordas"
                             placeholder="Pesquisar">
                         <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                        <button class="btn btn-md btn-outline-info" type="submit"><i
+                        <button class="btn btn-md btn-outline-light border-0" type="submit"><i
                                 class="fa-sharp fa-solid fa-magnifying-glass"></i>
                         </button>
                     </form>

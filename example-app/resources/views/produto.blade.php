@@ -18,7 +18,7 @@
                 <td>{{ $linha->preco }}</td>
                 <td>{{ $linha->descricao }}</td>
                 <td>{{ $linha->created_at }}</td>
-                <td>{{ $linha->dt_vencimento }}</td>
+                <td>{{ $linha->data_vencimento }}</td>
             </tbody>
         </table>
     </div>
