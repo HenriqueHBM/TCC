@@ -4,7 +4,7 @@
     {{-- Carrouse de Imagens --}}
     <div id="carouselSite" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
-            {{-- Navegacao em barras --}}
+            {{-- Navegacao em barras, #carouselSite passa ao id em que se refere, e slide-to, um valor ao referindo --}}
             <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="0" class="active"></button>
             <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="1"></button>
             <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="2"></button>
@@ -12,7 +12,7 @@
         <div class="carousel-inner">
             {{-- deixar 1º banner ativo --}}
             <div class="carousel-item active">
-                {{-- img-fluid(aplica max-width e max-height) --}}
+                {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px--}}
                 <img src=img/img01.jpg class=" img-fluid w-100">
                 {{-- carroseul-caption para adicionar legendas --}}
                 <div class="carousel-caption">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="row">
                     @foreach ($linhas as $item)
-                        <div class="card text-center mx-1 col-sm-2 p-0">
+                        <div class="card text-center mx-1 col-sm-2 p-0 " >
                             <div style="height: 200px;">
                                 {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
                                 <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
@@ -68,6 +68,7 @@
                             </div>
                             <div class="card-body ">
                                 <h5 class="card-title ">{{ $item->produto }}</h5>
+                                {{-- card-text para textos --}}
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
                                 {{-- Card como link --}}
                                 <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
