@@ -13,7 +13,7 @@
             {{-- deixar 1º banner ativo --}}
             <div class="carousel-item active">
                 {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px --}}
-                <img src=img/img01.jpg class=" img-fluid w-100">
+                <img src="img/img01.jpg" class=" img-fluid w-100">
                 {{-- carroseul-caption para adicionar legendas --}}
                 <div class="carousel-caption">
                     <h5>Procure Ofertas Facilmente</h5>
@@ -58,24 +58,24 @@
                     </div>
                 </div>
                 <div class="row">
-                        @foreach ($linhas as $item)
-                            <div class="card text-center mx-1 col-sm-2 p-0 ">
-                                <div class="card-head">
-                                    <div style="height: 200px;">
-                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                            class="card-img-top h-100">
-                                    </div>
-                                </div>
-                                <div class="card-body ">
-                                    <h5 class="card-title ">{{ $item->produto }}</h5>
-                                    {{-- card-text para textos --}}
-                                    <p class="card-text ">R$: {{ $item->preco }}</p>
-                                    {{-- Card como link --}}
-                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                    @foreach ($linhas as $item)
+                        <div class="card text-center mx-1 col-sm-2 p-0 ">
+                            <div class="card-head">
+                                <div style="height: 200px;">
+                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                        class="card-img-top h-100">
                                 </div>
                             </div>
-                        @endforeach
+                            <div class="card-body ">
+                                <h5 class="card-title ">{{ $item->produto }}</h5>
+                                {{-- card-text para textos --}}
+                                <p class="card-text ">R$: {{ $item->preco }}</p>
+                                {{-- Card como link --}}
+                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -141,8 +141,59 @@
                 </div>
             </div>
         </div>
-    </div>
-    {{-- Fim Cards --}}
 
-    {{--ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
-@endsection
+        <div class="my-4 p-3 bg-white rounded ">
+            <div id="carouselCards" class="carousel slide ">
+                <div hidden>{{ $x = 0 }}</div>
+                <div class="carousel-inner ">
+                    @foreach ($linhas as $item)
+                        @if ($x == 0)
+                            <div class="carousel-item active ">
+                                ativo
+                            @else
+                                <div class="carousel-item ">
+                                    not ativo
+                        @endif
+                        <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
+                            <div class="card-head">
+                                <div style="height: 200px;">
+                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                        class="card-img-top h-100">
+                                </div>
+                            </div>
+                            <div class="card-body ">
+                                <h5 class="card-title ">{{ $item->produto }}</h5>
+                                <p class="card-text ">R$: {{ $item->preco }}</p>
+                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                            </div>
+                        </div>
+                        <div hidden>{{ $x++ }}</div>
+                    </div>
+                    @endforeach
+                </div>
+                <button class="carousel-control-prev bg-dark" type='button' data-bs-target="#carouselCards"
+                    data-bs-slide="prev">
+                    <span arial-hidden='true'><i class="fa-solid fa-angles-left"></i></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselCards"
+                    data-bs-slide="next">
+                    <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+
+        </div>
+
+
+
+
+        {{-- Fim Cards --}}
+
+        {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
+
+
+
+    @endsection
