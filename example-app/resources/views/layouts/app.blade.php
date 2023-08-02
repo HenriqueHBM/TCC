@@ -57,7 +57,7 @@
                                 data-bs-toggle="dropdown">
                                 Distribuição
                             </a>
-                            <ul class="dropdown-menu w-25">
+                            <ul class="dropdown-menu ">
                                 <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
                                 <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
                                 <li>

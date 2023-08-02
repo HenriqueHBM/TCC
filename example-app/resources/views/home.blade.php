@@ -142,58 +142,65 @@
             </div>
         </div>
 
+
         <div class="my-4 p-3 bg-white rounded ">
             <div id="carouselCards" class="carousel slide ">
                 <div hidden>{{ $x = 0 }}</div>
                 <div class="carousel-inner ">
-                    @foreach ($linhas as $item)
-                        @if ($x == 0)
+
+                    <div hidden> {{ $div = count($linhas) / 5 }}</div>
+                    @for ($i = 0; $i < $div; $i++)
+                        @if ($i == 0)
                             <div class="carousel-item active ">
-                                ativo
-                            @else
-                                <div class="carousel-item ">
-                                    not ativo
+                        @else
+                            <div class='carousel-item'>
                         @endif
-                        <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
-                            <div class="card-head">
-                                <div style="height: 200px;">
-                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                        class="card-img-top h-100">
-                                </div>
-                            </div>
-                            <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                            </div>
-                        </div>
-                        <div hidden>{{ $x++ }}</div>
+                        
                     </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev bg-dark" type='button' data-bs-target="#carouselCards"
-                    data-bs-slide="prev">
-                    <span arial-hidden='true'><i class="fa-solid fa-angles-left"></i></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselCards"
-                    data-bs-slide="next">
-                    <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+                {{-- <div class="carousel-item">
+                            @foreach ($linhas as $item)
+                                <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
+                                    <div class="card-head">
+                                        <div style="height: 200px;">
+                                            <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
+                                                class="card-img-top h-100">
+                                        </div>
+                                    </div>
+                                    <div class="card-body ">
+                                        <h5 class="card-title ">{{ $item->produto }}</h5>
+                                        <p class="card-text ">R$: {{ $item->preco }}</p>
+                                        <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                    </div>
+                                </div>
+                                <div hidden>{{ $x++ }}</div>
+                            @endforeach
+                        </div> --}}
+                @endfor
             </div>
-
-
-
+            <button class="carousel-control-prev bg-dark" type='button' data-bs-target="#carouselCards"
+                data-bs-slide="prev">
+                <span arial-hidden='true'><i class="fa-solid fa-angles-left"></i></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselCards"
+                data-bs-slide="next">
+                <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
 
 
-
-        {{-- Fim Cards --}}
-
-        {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
+    </div>
 
 
 
-    @endsection
+
+    {{-- Fim Cards --}}
+
+    {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
+
+
+
+@endsection
