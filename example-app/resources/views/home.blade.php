@@ -147,16 +147,18 @@
             <div id="carouselCards" class="carousel slide ">
                 <div hidden>{{ $x = 0 }}</div>
                 <div class="carousel-inner ">
-
+                    <div class="carousel-item active ">aa</div>
                     <div hidden> {{ $div = count($linhas) / 5 }}</div>
                     @for ($i = 0; $i < $div; $i++)
-                        @if ($i == 0)
-                            <div class="carousel-item active ">
-                        @else
-                            <div class='carousel-item'>
-                        @endif
                         
+                    @foreach ($val as $col)
+                    <div class='carousel-item'>
+                        @foreach ($col as $bah)
+                            {{ $bah }}
+                        @endforeach
                     </div>
+                        
+                    @endforeach
 
                 {{-- <div class="carousel-item">
                             @foreach ($linhas as $item)
@@ -190,7 +192,7 @@
             </button>
         </div>
 
-
+            {{-- {{ print_r($val) }} --}}
 
     </div>
 

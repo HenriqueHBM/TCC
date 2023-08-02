@@ -11,7 +11,13 @@ class HomeController extends Controller
     public function home()
     {
         $linhas = tbProduto::get();
-        return view('home',compact('linhas'));
+        $i = 0;
+        foreach($linhas as $linha){
+            $val[$i] = $linha->produto;
+            $i++;
+        }
+        $val = array_chunk($val,5);
+        return view('home',compact('linhas','val'));
     }
 
 }
