@@ -48,11 +48,10 @@
     {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
     <div class="container position-absolute start-50 translate-middle-x ">
         {{-- Geral --}}
-        <div class=" my-4 p-3 bg-white rounded">
+        {{--<div class=" my-4 p-3 bg-white rounded">
             <div class="ms-2">
                 <div class="row">
                     <div class="col-12 text-left ">
-                        {{-- fs(fontSize),  --}}
                         <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
                         <hr class="mt-0 ">
                     </div>
@@ -62,146 +61,79 @@
                         <div class="card text-center mx-1 col-sm-2 p-0 ">
                             <div class="card-head">
                                 <div style="height: 200px;">
-                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
                                     <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
                                         class="card-img-top h-100">
                                 </div>
                             </div>
                             <div class="card-body ">
                                 <h5 class="card-title ">{{ $item->produto }}</h5>
-                                {{-- card-text para textos --}}
                                 <p class="card-text ">R$: {{ $item->preco }}</p>
-                                {{-- Card como link --}}
                                 <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                             </div>
                         </div>
                     @endforeach
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        {{-- Comidas --}}
-        <div class="my-4 p-3 bg-white rounded">
-            <div class="ms-2">
-                <div class="row">
-                    <div class="col-12 text-left">
-                        <i class="fa-solid fa-bowl-rice fs-4"> Comidas</i>
-                        <hr class="mt-0">
+        @foreach ($tipos_prod as $separador)
+            <div class="my-4 p-3 bg-white rounded ">
+                <div class="ms-2">
+                    <div class="row">
+                        <div class="col-12 text-left ">
+                            <i class="fa-solid fa-utensils d-inline fs-4 "> {{$separador->tipo}}</i>
+                            <hr class="mt-0 ">
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    @foreach ($linhas as $item)
-                        @if ($item->tipo_alimentacao != 'Bebida')
-                            <div class="card text-center mx-1 col-sm-2 p-0 ">
-                                <div style="height: 200px;">
-                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                        class="card-img-top h-100">
-                                </div>
-                                <div class="card-body ">
-                                    <h5 class="card-title ">{{ $item->produto }}</h5>
-                                    <p class="card-text ">R$: {{ $item->preco }}</p>
-                                    {{-- Card como link --}}
-                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-        {{-- Bebidas --}}
-        <div class="my-4 p-3 bg-white rounded ">
-            <div class="ms-2">
-                <div class="row">
-                    <div class="col-12 text-left">
-                        <i class="fa-solid fa-bowl-rice fs-4">Bebidas</i>
-                        <hr class="mt-0">
-                    </div>
-                </div>
-                <div class="row">
-                    @foreach ($linhas as $item)
-                        @if ($item->tipo_alimentacao != 'Comida')
-                            <div class="card text-center mx-1 col-sm-2 p-0">
-                                <div style="height: 200px;">
-                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                        class="card-img-top h-100">
-                                </div>
-                                <div class="card-body ">
-                                    <h5 class="card-title ">{{ $item->produto }}</h5>
-                                    <p class="card-text ">R$: {{ $item->preco }}</p>
-                                    {{-- Card como link --}}
-                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                </div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            </div>
-        </div>
-
-
-        <div class="my-4 p-3 bg-white rounded ">
-            <div id="carouselCards" class="carousel slide ">
-                <div hidden>{{ $x = 0 }}</div>
-                <div class="carousel-inner ">
-                    <div class="carousel-item active ">aa</div>
-                    <div hidden> {{ $div = count($linhas) / 5 }}</div>
-                    @for ($i = 0; $i < $div; $i++)
-                        
-                    @foreach ($val as $col)
-                    <div class='carousel-item'>
-                        @foreach ($col as $bah)
-                            {{ $bah }}
-                        @endforeach
-                    </div>
-                        
-                    @endforeach
-
-                {{-- <div class="carousel-item">
-                            @foreach ($linhas as $item)
-                                <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
-                                    <div class="card-head">
-                                        <div style="height: 200px;">
-                                            <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                                class="card-img-top h-100">
+                    <div id="carouselCards{{$separador->tipo}}" class="carousel slide ">
+                        <div class="carousel-inner ">
+                            <div class='carousel-item active'>ab</div>
+                                @foreach ($produtos as $produto)
+                                        <div class='carousel-item'>
+                                    @foreach ($produto as $item)
+                                        <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
+                                            <div class="card-head">
+                                                <div style="height: 200px;">
+                                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                                </div>
+                                            </div>
+                                            <div class="card-body ">
+                                                <h5 class="card-title ">{{ $item->produto }}</h5>
+                                                {{-- card-text para textos --}}
+                                                <p class="card-text ">R$: {{ $item->preco }}</p>
+                                                {{-- Card como link --}}
+                                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                            </div>
                                         </div>
+                                    @endforeach
                                     </div>
-                                    <div class="card-body ">
-                                        <h5 class="card-title ">{{ $item->produto }}</h5>
-                                        <p class="card-text ">R$: {{ $item->preco }}</p>
-                                        <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                    </div>
-                                </div>
-                                <div hidden>{{ $x++ }}</div>
-                            @endforeach
-                        </div> --}}
-                @endfor
+                                @endforeach
+                        </div>
+                        <button class="carousel-control-prev bg-dark h-25" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
+                            data-bs-slide="prev">
+                        <div class="border border-solid-info w-25 rounded-circle"> 
+                                <span arial-hidden='true'><i class="fa-solid fa-angles-left w-25 "></i></span>
+                                <span class="visually-hidden">Previous</span>
+                            </div>
+                        </button>
+                        <button class="carousel-control-next bg-dark h-25" type="button" data-bs-target="#carouselCards{{$separador->tipo}}"
+                            data-bs-slide="next">
+                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <button class="carousel-control-prev bg-dark" type='button' data-bs-target="#carouselCards"
-                data-bs-slide="prev">
-                <span arial-hidden='true'><i class="fa-solid fa-angles-left"></i></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next bg-dark" type="button" data-bs-target="#carouselCards"
-                data-bs-slide="next">
-                <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-
-            {{-- {{ print_r($val) }} --}}
+        @endforeach
+        {{-- {{ print_r($produtos) }} prod --}}
 
     </div>
 
 
-
-
     {{-- Fim Cards --}}
 
-    {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, validade longa, lugares/vendedores bem avaliados  --}}
+    {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, produtosidadeprodnga, lugares/vendedores bem avaliados  --}}
 
 
 

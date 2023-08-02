@@ -12,6 +12,7 @@
                 <th>Descrição</th>
                 <th>Postado em</th>
                 <th>Vencimento</th>
+                <th></th>
             </thead>
             <tbody>
                 <td>{{ $linha->produto }}</td>
@@ -19,6 +20,7 @@
                 <td>{{ $linha->descricao }}</td>
                 <td>{{ $linha->created_at }}</td>
                 <td>{{ $linha->data_vencimento }}</td>
+                <td>{{$linha->tipo_produto->tipo}}</td>
             </tbody>
         </table>
     </div>
