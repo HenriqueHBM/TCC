@@ -1,3 +1,9 @@
+create table tipos_produtos(
+id_tipos_produtos int primary key auto_increment,
+tipo varchar(200) not null,
+created_at date null
+)
+
 create table produtos(
 id_produto int auto_increment primary key,
 produto varchar(255) not null,
@@ -9,12 +15,13 @@ created_at date ,
 updated_at date ,
 deleted_at date,
 descricao text not null,
-tipo_alimentacao varchar(100) not null
+id_tipos_produtos int not null,
+foreign key (id_tipos_produtos) references tipos_produtos(id_tipos_produtos)
 )
 
 create table produtos_imagens(
 id_imagem int auto_increment primary key,
-id_produto int,
+id_produto int not null,
 imagem varchar(255) not null,
 foreign key (id_produto) references produtos(id_produto)
 )
