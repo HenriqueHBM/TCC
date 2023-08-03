@@ -1,7 +1,8 @@
 create table tipos_produtos(
 id_tipos_produtos int primary key auto_increment,
 tipo varchar(200) not null,
-created_at date null
+created_at date null,
+icone varchar(255) not null
 )
 
 create table produtos(

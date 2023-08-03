@@ -48,80 +48,117 @@
     {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
     <div class="container position-absolute start-50 translate-middle-x ">
         {{-- Geral --}}
-        {{--<div class=" my-4 p-3 bg-white rounded">
-            <div class="ms-2">
+        <div class="my-4 p-3 bg-white rounded ">
+            <div class="ms-3">
                 <div class="row">
                     <div class="col-12 text-left ">
                         <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
                         <hr class="mt-0 ">
                     </div>
                 </div>
-                <div class="row">
-                    @foreach ($linhas as $item)
-                        <div class="card text-center mx-1 col-sm-2 p-0 ">
-                            <div class="card-head">
-                                <div style="height: 200px;">
-                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}"
-                                        class="card-img-top h-100">
+                <div id="carouselCards" class="carousel slide ">
+                    <div class="carousel-inner ms-5">
+                        
+                            @foreach ($produtos as $produto)
+                                @if ($loop->first)
+                                    <div class='carousel-item active'>
+                                @else
+                                    <div class='carousel-item'>
+                                @endif
+                                @foreach ($produto as $item)
+                                    <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
+                                        <div class="card-head">
+                                            <div style="height: 200px;">
+                                                {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                                <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                            </div>
+                                        </div>
+                                        <div class="card-body ">
+                                            <h5 class="card-title ">{{ $item->produto }}</h5>
+                                            {{-- card-text para textos --}}
+                                            <p class="card-text ">R$: {{ $item->preco }}</p>
+                                            {{-- Card como link --}}
+                                            <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 </div>
-                            </div>
-                            <div class="card-body ">
-                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                            </div>
+                            @endforeach
+                    </div>
+                    <button class="carousel-control-prev h-50 top-50 translate-middle ms-5" type='button' data-bs-target="#carouselCards"
+                        data-bs-slide="prev">
+                        <div class=" w-25 h-100 rounded-5 bg-light "> 
+                            <span arial-hidden='true'><i class="fa-solid fa-angles-left  text-info position-absolute top-50  translate-middle" ></i></span>
+                            <span class="visually-hidden">Previous</span>
                         </div>
-                    @endforeach
+                    </button>
+                    <button class="carousel-control-next h-50 top-50 translate-middle-y " type="button" data-bs-target="#carouselCards"
+                        data-bs-slide="next">
+                        <div class="w-25 h-100 rounded-5 bg-light">
+                            <span arial-hidden='true'><i class="fa-solid fa-angles-right  text-info position-absolute top-50  translate-middle" ></i></span>
+                            <span class="visually-hidden">Next</span>
+                        </div>
+                    </button>
                 </div>
             </div>
-        </div> --}}
+        </div>
 
+        {{-- Separando Por Categorias --}}
         @foreach ($tipos_prod as $separador)
             <div class="my-4 p-3 bg-white rounded ">
-                <div class="ms-2">
+                <div class="ms-3">
                     <div class="row">
                         <div class="col-12 text-left ">
-                            <i class="fa-solid fa-utensils d-inline fs-4 "> {{$separador->tipo}}</i>
+                            <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
                             <hr class="mt-0 ">
                         </div>
                     </div>
                     <div id="carouselCards{{$separador->tipo}}" class="carousel slide ">
-                        <div class="carousel-inner ">
-                            <div class='carousel-item active'>ab</div>
+                        <div class="carousel-inner ms-5">
+                            
                                 @foreach ($produtos as $produto)
+                                    @if ($loop->first)
+                                        <div class='carousel-item active'>
+                                    @else
                                         <div class='carousel-item'>
+                                    @endif
                                     @foreach ($produto as $item)
-                                        <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
-                                            <div class="card-head">
-                                                <div style="height: 200px;">
-                                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                                    <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                        @if ($item->id_tipos_produtos == $separador->id_tipos_produtos )
+                                            <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
+                                                <div class="card-head">
+                                                    <div style="height: 200px;">
+                                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                                    </div>
+                                                </div>
+                                                <div class="card-body ">
+                                                    <h5 class="card-title ">{{ $item->produto }}</h5>
+                                                    {{-- card-text para textos --}}
+                                                    <p class="card-text ">R$: {{ $item->preco }}</p>
+                                                    {{-- Card como link --}}
+                                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                                                 </div>
                                             </div>
-                                            <div class="card-body ">
-                                                <h5 class="card-title ">{{ $item->produto }}</h5>
-                                                {{-- card-text para textos --}}
-                                                <p class="card-text ">R$: {{ $item->preco }}</p>
-                                                {{-- Card como link --}}
-                                                <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                            </div>
-                                        </div>
+                                        @endif
                                     @endforeach
                                     </div>
                                 @endforeach
                         </div>
-                        <button class="carousel-control-prev bg-dark h-25" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
+                        <button class="carousel-control-prev h-50 top-50 translate-middle ms-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
                             data-bs-slide="prev">
-                        <div class="border border-solid-info w-25 rounded-circle"> 
-                                <span arial-hidden='true'><i class="fa-solid fa-angles-left w-25 "></i></span>
+                            <div class=" w-25 h-100 rounded-5 bg-light "> 
+                                <span arial-hidden='true'><i class="fa-solid fa-angles-left  text-info position-absolute top-50  translate-middle" ></i></span>
                                 <span class="visually-hidden">Previous</span>
                             </div>
                         </button>
-                        <button class="carousel-control-next bg-dark h-25" type="button" data-bs-target="#carouselCards{{$separador->tipo}}"
+                        <button class="carousel-control-next h-50 top-50 translate-middle-y " type="button" data-bs-target="#carouselCards{{$separador->tipo}}"
                             data-bs-slide="next">
-                            <span aria-hidden="true"><i class="fa-solid fa-angles-right"></i></span>
-                            <span class="visually-hidden">Next</span>
+                            <div class="w-25 h-100 rounded-5 bg-light">
+                                <span arial-hidden='true'><i class="fa-solid fa-angles-right  text-info position-absolute top-50  translate-middle" ></i></span>
+                                <span class="visually-hidden">Next</span>
+                            </div>
                         </button>
+                        
                     </div>
                 </div>
             </div>
