@@ -48,24 +48,73 @@
     {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
     <div class="container position-absolute start-50 translate-middle-x ">
         {{-- Geral --}}
-        <div class="my-4 p-3 bg-white rounded ">
-            <div class="ms-3">
+        <div class="my-4 p-4 bg-white rounded">
+            <div class="row">
+                <div class="col-12 text-left ms-3">
+                    <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
+                    <hr class="mt-0 me-3">
+                </div>
+            </div>
+            <div class="row text-center">
+                <div id="carouselCards" class="carousel ">
+                    @foreach ($produtos as $produto)
+                        @if ($loop->first)
+                            <div class='carousel-item active'>
+                        @else
+                            <div class='carousel-item'>
+                        @endif
+                        @foreach ($produto as $item)
+                            <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
+                                <div class="card-head">
+                                    <div style="height: 200px;">
+                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                    </div>
+                                </div>
+                                <div class="card-body ">
+                                    <h5 class="card-title ">{{ $item->produto }}</h5>
+                                    {{-- card-text para textos --}}
+                                    <p class="card-text ">R$: {{ $item->preco }}</p>
+                                    {{-- Card como link --}}
+                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
+                                </div>
+                            </div>
+                        @endforeach
+                        </div>
+                    @endforeach
+                        <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards"
+                            data-bs-slide="prev">
+                                <span arial-hidden='true'><i class="fa-solid fa-angles-left text-info fs-4" ></i></span>
+                                <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next h-100 top-50 position-absolute top-50 start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards"
+                            data-bs-slide="next">
+                            <span arial-hidden='true'><i class="fa-solid fa-angles-right text-info fs-4" ></i></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                </div>
+            </div>
+        </div>
+
+        {{-- Separando Por Categorias --}}
+        @foreach ($tipos_prod as $separador)
+            <div class="my-4 p-4 bg-white rounded">
                 <div class="row">
-                    <div class="col-12 text-left ">
-                        <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
-                        <hr class="mt-0 ">
+                    <div class="col-12 text-left ms-3">
+                        <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
+                        <hr class="mt-0 me-3">
                     </div>
                 </div>
-                <div id="carouselCards" class="carousel slide ">
-                    <div class="carousel-inner ms-5">
-                        
-                            @foreach ($produtos as $produto)
-                                @if ($loop->first)
-                                    <div class='carousel-item active'>
-                                @else
-                                    <div class='carousel-item'>
-                                @endif
-                                @foreach ($produto as $item)
+                <div class="row text-center">
+                    <div id="carouselCards{{$separador->tipo}}" class="carousel ">
+                        @foreach ($produtos as $produto)
+                            @if ($loop->first)
+                                <div class='carousel-item active'>
+                            @else
+                                <div class='carousel-item'>
+                            @endif
+                            @foreach ($produto as $item)
+                                @if ($item->id_tipos_produtos == $separador->id_tipos_produtos )
                                     <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
                                         <div class="card-head">
                                             <div style="height: 200px;">
@@ -81,84 +130,20 @@
                                             <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
                                         </div>
                                     </div>
-                                @endforeach
-                                </div>
+                                @endif
                             @endforeach
-                    </div>
-                    <button class="carousel-control-prev h-50 top-50 translate-middle ms-5" type='button' data-bs-target="#carouselCards"
-                        data-bs-slide="prev">
-                        <div class=" w-25 h-100 rounded-5 bg-light "> 
-                            <span arial-hidden='true'><i class="fa-solid fa-angles-left  text-info position-absolute top-50  translate-middle" ></i></span>
-                            <span class="visually-hidden">Previous</span>
-                        </div>
-                    </button>
-                    <button class="carousel-control-next h-50 top-50 translate-middle-y " type="button" data-bs-target="#carouselCards"
-                        data-bs-slide="next">
-                        <div class="w-25 h-100 rounded-5 bg-light">
-                            <span arial-hidden='true'><i class="fa-solid fa-angles-right  text-info position-absolute top-50  translate-middle" ></i></span>
-                            <span class="visually-hidden">Next</span>
-                        </div>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        {{-- Separando Por Categorias --}}
-        @foreach ($tipos_prod as $separador)
-            <div class="my-4 p-3 bg-white rounded ">
-                <div class="ms-3">
-                    <div class="row">
-                        <div class="col-12 text-left ">
-                            <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
-                            <hr class="mt-0 ">
-                        </div>
-                    </div>
-                    <div id="carouselCards{{$separador->tipo}}" class="carousel slide ">
-                        <div class="carousel-inner ms-5">
-                            
-                                @foreach ($produtos as $produto)
-                                    @if ($loop->first)
-                                        <div class='carousel-item active'>
-                                    @else
-                                        <div class='carousel-item'>
-                                    @endif
-                                    @foreach ($produto as $item)
-                                        @if ($item->id_tipos_produtos == $separador->id_tipos_produtos )
-                                            <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
-                                                <div class="card-head">
-                                                    <div style="height: 200px;">
-                                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
-                                                    </div>
-                                                </div>
-                                                <div class="card-body ">
-                                                    <h5 class="card-title ">{{ $item->produto }}</h5>
-                                                    {{-- card-text para textos --}}
-                                                    <p class="card-text ">R$: {{ $item->preco }}</p>
-                                                    {{-- Card como link --}}
-                                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                    </div>
-                                @endforeach
-                        </div>
-                        <button class="carousel-control-prev h-50 top-50 translate-middle ms-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
-                            data-bs-slide="prev">
-                            <div class=" w-25 h-100 rounded-5 bg-light "> 
-                                <span arial-hidden='true'><i class="fa-solid fa-angles-left  text-info position-absolute top-50  translate-middle" ></i></span>
-                                <span class="visually-hidden">Previous</span>
                             </div>
-                        </button>
-                        <button class="carousel-control-next h-50 top-50 translate-middle-y " type="button" data-bs-target="#carouselCards{{$separador->tipo}}"
-                            data-bs-slide="next">
-                            <div class="w-25 h-100 rounded-5 bg-light">
-                                <span arial-hidden='true'><i class="fa-solid fa-angles-right  text-info position-absolute top-50  translate-middle" ></i></span>
+                        @endforeach
+                            <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
+                                data-bs-slide="prev">
+                                    <span arial-hidden='true'><i class="fa-solid fa-angles-left text-info fs-4" ></i></span>
+                                    <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next h-100 top-50 position-absolute top-50 start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
+                                data-bs-slide="next">
+                                <span arial-hidden='true'><i class="fa-solid fa-angles-right text-info fs-4" ></i></span>
                                 <span class="visually-hidden">Next</span>
-                            </div>
-                        </button>
-                        
+                            </button>
                     </div>
                 </div>
             </div>
@@ -169,9 +154,6 @@
 
 
     {{-- Fim Cards --}}
-
-    {{-- ScrollSpy(Bootstrap), Da pra criar: recem colocados, produtosidadeprodnga, lugares/vendedores bem avaliados  --}}
-
 
 
 @endsection
