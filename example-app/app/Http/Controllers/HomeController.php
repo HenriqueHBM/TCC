@@ -19,8 +19,23 @@ class HomeController extends Controller
             $i++;
         }
         $produtos = (array_chunk($produtos,5));
-        
-        return view('home',compact('linhas','produtos','tipos_prod'));
+
+        $tipos = TiposProduto::get();
+
+        $i = 0;
+        foreach($tipos as $tipo){
+            $array[$i] = $linhas->where('id_tipos_produtos', $tipo->id_tipos_produtos);
+            $i++;
+        }
+
+        $x = 0;
+        foreach($array as $arr){
+            $divisao[$x] = $arr;
+            $x++;
+        }
+
+        $divisao = array_chunk($divisao,5);
+        return view('home',compact('linhas','divisao', 'produtos','tipos_prod'));
     }
 
 }
