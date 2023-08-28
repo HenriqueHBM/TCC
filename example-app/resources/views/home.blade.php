@@ -111,7 +111,7 @@
             @foreach ($tipos_prod as $separador)
                 <div class="my-4 p-4 bg-white rounded">
                     <div class="row">
-                        <div class="col-12 text-left ms-3">
+                        <div class="col-12 text-left ms-3 fs-4">
                             <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
                             <hr class="mt-0 me-3">
                         </div>
