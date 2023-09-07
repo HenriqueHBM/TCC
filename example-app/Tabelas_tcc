@@ -5,10 +5,10 @@ id_tipos_produtos int primary key auto_increment,
 tipo varchar(200) not null,
 created_at date not null,
 icone varchar(255) not null
-)
-insert into tipos_produtos(tipo, icone)
+);
+insert into tipos_produtos(tipo, created_at,icone)
 values('Comida', '2023-08-05', 'fa-solid fa-burger'),
-('Bebida', '2023-08-05', 'fa-solid fa-wine-glass')
+('Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
 
 create table produtos(
 id_produto int auto_increment primary key,
@@ -23,21 +23,21 @@ deleted_at date,
 descricao text not null,
 id_tipos_produtos int not null,
 foreign key (id_tipos_produtos) references tipos_produtos(id_tipos_produtos)
-)
+);
 
-insert into produtos(produto, preco, qtde , data_vencimento, codigo, creted_at, descricao, id_tipos_produtos)
+insert into produtos(produto, preco, qtde , data_vencimento, codigo, created_at, descricao, id_tipos_produtos)
 values ('Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', 'Vinho de boa qualidade', 2),
-('MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', 'MC Feliz que dura bastante tempo', 1)
+('MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', 'MC Feliz que dura bastante tempo', 1);
 
 create table imagens_produtos(
 id_imagem int auto_increment primary key,
 id_produto int not null,
 imagem varchar(255) not null,
-created_at not null,
-deleted_at null,
+created_at date not null,
+deleted_at date null,
 foreign key (id_produto) references produtos(id_produto)
-)
+);
 
 insert into imagens_produtos (id_produto, imagem, creted_at )
 values (1, 'preto.jpg'),
-(2, 'McLanche.webp')
+(2, 'McLanche.webp');
