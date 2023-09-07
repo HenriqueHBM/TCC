@@ -66,9 +66,9 @@
                         @foreach ($produtos as $produto)
                             @if ($loop->first)
                             {{-- bs-interval(intervalo de transicao) --}}
-                                <div class='carousel-item active' data-bs-interval="30000">
+                                <div class='carousel-item active'>
                             @else
-                                <div class='carousel-item' data-bs-interval="30000">
+                                <div class='carousel-item'>
                             @endif
                             @foreach ($produto as $item)
                             {{-- Criando card, mx = margin(left/right), p = padding, d = display --}}
@@ -109,42 +109,39 @@
 
             {{-- Separando Por Categorias --}}
             @foreach ($tipos_prod as $separador)
-                <div class="my-4 p-4 bg-white rounded">
-                    <div class="row">
-                        <div class="col-12 text-left ms-3">
-                            <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
-                            <hr class="mt-0 me-3">
-                        </div>
+            <div class="my-4 p-4 bg-white rounded">
+                <div class="row">
+                    <div class="col-12 text-left ms-3 fs-4">
+                        <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
+                        <hr class="mt-0 me-3">
                     </div>
-                    <div class="row text-center">
-                        <div id="carouselCards{{$separador->tipo}}" class="carousel ">
-                            <div class="carousel-inner">
-                                @foreach ($produtos as $produto)
-                                    @if ($loop->first)
-                                        <div class='carousel-item active'>
-                                    @else
-                                        <div class='carousel-item'>
-                                    @endif
-                                    @foreach ($produto as $item)
-                                        @if ($item->id_tipos_produtos == $separador->id_tipos_produtos )
-                                            <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
-                                                <div class="card-head">
-                                                    <div style="height: 200px;">
-                                                        {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                                        <img src="{{ asset('img_folders/' . $item->imagens->first()->imagem) }}" class="card-img-top h-100">
-                                                    </div>
+                </div>
+                <div class="row text-center">
+                    <div id="carouselCards{{$separador->tipo}}" class="carousel ">
+                        <div class="carousel-inner">
+                            <div hidden>{{$x = 0}}</div>
+                            @if ($x <= 5)
+                                <div class="carousel-item active">
+                            @else
+                                <div class="carousel-item">
+                            @endif
+                                @foreach ($linhas->where('id_tipos_produtos', $separador->id_tipos_produtos) as $linha)
+                                    <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
+                                        <div class="card-head">
+                                                <div style="height: 200px;">
+                                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
+                                                    <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
                                                 </div>
-                                                <div class="card-body ">
-                                                    <h5 class="card-title ">{{ $item->produto }}</h5>
-                                                    {{-- card-text para textos --}}
-                                                    <p class="card-text ">R$: {{ $item->preco }}</p>
-                                                    {{-- Card como link --}}
-                                                    <a href="produto/{{ $item->id_produto }}" class="stretched-link"></a>
-                                                </div>
+                                            <div class="card-body ">
+                                                <h5 class="card-title ">{{ $linha->produto }}</h5>
+                                                {{-- card-text para textos --}}
+                                                <p class="card-text ">R$: {{ $linha->preco }}</p>
+                                                {{-- Card como link --}}
+                                                <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a>
                                             </div>
-                                        @endif
-                                    @endforeach
+                                        </div>
                                     </div>
+                                    <div hidden>{{$x++}}</div>
                                 @endforeach
                                 </div>
                             <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
