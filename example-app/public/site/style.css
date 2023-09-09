@@ -10772,3 +10772,7 @@ textarea.form-control-lg {
   box-shadow: 0 0 0 0;
   outline: 0;
 }
+
+.cards-wrapper{
+ display:flex; 
+}

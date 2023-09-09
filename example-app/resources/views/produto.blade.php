@@ -12,7 +12,7 @@
                 <th>Descrição</th>
                 <th>Postado em</th>
                 <th>Vencimento</th>
-                <th></th>
+                <th>Categoria</th>
             </thead>
             <tbody>
                 <td>{{ $linha->produto }}</td>

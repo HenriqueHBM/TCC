@@ -117,34 +117,45 @@
                     </div>
                 </div>
                 <div class="row text-center">
-                    <div id="carouselCards{{$separador->tipo}}" class="carousel ">
+                    <div id="carouselCards{{$separador->tipo}}" class="carousel slide" >
                         <div class="carousel-inner">
-                            <div hidden>{{$x = 0}}</div>
-                            @if ($x <= 5)
+                            <span hidden>{{$x=0}}</span>
+                            @foreach ($linhas->where('id_tipos_produtos', $separador->id_tipos_produtos) as $item)
+                                @if ($x <= 4)
                                 <div class="carousel-item active">
-                            @else
-                                <div class="carousel-item">
-                            @endif
-                                @foreach ($linhas->where('id_tipos_produtos', $separador->id_tipos_produtos) as $linha)
-                                    <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block ">
-                                        <div class="card-head">
-                                                <div style="height: 200px;">
-                                                    {{-- src="{{ asset('anexos_os/' . $anexo->arquivo) }}" --}}
-                                                    <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                    <div class="cards-wrapper">
+                                        @while ($x<=4 )
+                                            <div class="card" style="width: 18rem;">
+                                                {{$linhas[$x]}}
+                                                <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                <a href="#" class="btn btn-primary">Go somewhere</a>
                                                 </div>
-                                            <div class="card-body ">
-                                                <h5 class="card-title ">{{ $linha->produto }}</h5>
-                                                {{-- card-text para textos --}}
-                                                <p class="card-text ">R$: {{ $linha->preco }}</p>
-                                                {{-- Card como link --}}
-                                                <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a>
+                                            </div>
+                                            <span hidden>{{$x++}}</span>
+                                        @endwhile
+                                    </div>
+                                </div>
+                                @else
+                                    <div class="carousel-item">
+                                        <div class="cards-wrapper">
+                                            <div class="card" style="width: 18rem;">
+                                                <div class="card-body">
+                                                <h5 class="card-title">Card title</h5>
+                                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div hidden>{{$x++}}</div>
-                                @endforeach
-                                </div>
-                            <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
+                                @endif
+                               
+                            @endforeach
+                            
+
+                        </div>
+                        <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}"
                                 data-bs-slide="prev">
                                     <span arial-hidden='true'><i class="fa-solid fa-angles-left text-info fs-4" ></i></span>
                                     <span class="visually-hidden">Previous</span>
@@ -154,7 +165,6 @@
                                 <span arial-hidden='true'><i class="fa-solid fa-angles-right text-info fs-4" ></i></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
-                        </div>
                     </div>
                 </div>
             @endforeach
