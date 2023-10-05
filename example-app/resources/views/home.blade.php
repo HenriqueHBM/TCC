@@ -58,14 +58,17 @@
                     <div class="col-12 text-left ms-3 fs-4">
                         {{-- fs = font-size --}}
                         <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
-                        <hr class="mt-0 me-3">
+                        <hr class="mt-0 ">
                     </div>
                 </div>
                 <div class="row text-center">
                     <div id="carouselCards" class="carousel slide">
                         <div class="carousel-inner">
+                            {{-- contador comecando em zero --}}
                             <span hidden>{{$x = 0}}</span>
+                            {{-- percorendo cada linha do banco --}}
                             @foreach ($produtos as $linha)
+                            {{-- caso $x/5 e o resto for 0, esses 5 cards serao os ativos, e o resto itens --}}
                                 @if ($x % 5 == 0)
                                     @if ($x == 0)
                                         <div class="carousel-item active">
@@ -73,14 +76,20 @@
                                         <div class="carousel-item">
                                     @endif
                                 @endif
-                                <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
+                                {{-- definindo como um card, margin-left-right, colunas small e  botando em horizontal--}}
+                                <div class="card mx-1 col-sm-2 d-inline-block">
+                                    {{-- cabecalho do card --}}
                                     <div class="card-head">
                                         <div style="height: 200px;">
                                             <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
                                         </div>
+                                        {{-- corpo do card --}}
                                         <div class="card-body">
+                                            {{-- titulo do card --}}
                                             <h5 class="card-title">{{ $linha->produto }}</h5>
+                                            {{-- texto/descricao no card --}}
                                             <p class="card-text">R$: {{ $linha->preco }}</p>
+                                            {{-- transformando o card inteiro como um link para o produto --}}
                                             <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a>
                                         </div>
                                     </div>
@@ -112,13 +121,12 @@
                     <div class="row">
                         <div class="col-12 text-left ms-3 fs-4">
                             <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
-                            <hr class="mt-0 me-3">
+                            <hr class="mt-0 ">
                         </div>
                     </div>
                     <div class="row text-center">
                         <div id="carouselCards{{$separador->tipo}}" class="carousel slide">
                             <div class="carousel-inner">
-                                
                                 <span hidden>{{$x = 0}}</span>
                                 @foreach ($separador->produtos as $linha)
                                     @if ($x % 5 == 0)
@@ -128,7 +136,7 @@
                                             <div class="carousel-item">
                                         @endif
                                     @endif
-                                    <div class="card text-center mx-1 col-sm-2 p-0 d-inline-block">
+                                    <div class="card mx-1 col-sm-2 d-inline-block">
                                         <div class="card-head">
                                             <div style="height: 200px;">
                                                 <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
