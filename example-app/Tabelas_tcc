@@ -29,7 +29,7 @@ insert into produtos(produto, preco, qtde , data_vencimento, codigo, created_at,
 values ('Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', 'Vinho de boa qualidade', 2),
 ('MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', 'MC Feliz que dura bastante tempo', 1);
 
-create table imagens_produtos(
+create table produtos_imagens(
 id_imagem int auto_increment primary key,
 id_produto int not null,
 imagem varchar(255) not null,
@@ -38,6 +38,8 @@ deleted_at date null,
 foreign key (id_produto) references produtos(id_produto)
 );
 
-insert into imagens_produtos (id_produto, imagem, created_at )
+insert into produtos_imagens (id_produto, imagem, created_at )
 values (1, 'preto.jpg', '2023-08-02'),
 (2, 'McLanche.webp', '2023-08-02');
+
+alter table imagens_produtos rename produtos_imagens
