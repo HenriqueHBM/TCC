@@ -51,6 +51,9 @@
         <div class="container position-absolute start-50 translate-middle-x ">
             {{-- Geral --}}
             {{-- my = margin(top/bottom), rounded(redondar bordas) --}}
+            <div class="my-2">
+
+            
             <div class="my-4 p-4 bg-white rounded">
                 {{-- row(linha) --}}
                 <div class="row">
@@ -114,9 +117,10 @@
                     </div>
                 </div>
             </div>
-
+        </div>
             {{-- Separando Por Categorias --}}
             @foreach ($tipos_prod as $separador)
+            <div class="my-2">
                 <div class="my-4 p-4 bg-white rounded">
                     <div class="row">
                         <div class="col-12 text-left ms-3 fs-4">
@@ -166,6 +170,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
 
