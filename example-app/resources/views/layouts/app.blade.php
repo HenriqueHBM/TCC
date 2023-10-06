@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-light">
+<body style="background-color:rgb(233, 233, 233)">
     <header>
         <nav class="navbar navbar-expand-lg text-light bg-dark ">
             <div class="container-fluid">
@@ -82,5 +82,8 @@
     <script src="{{ asset('site/bootstrap.js') }}"></script>
     @yield('content')
 </body>
+<footer>
+    Bom Dia Footer &copy;
+</footer>
 
 </html>
