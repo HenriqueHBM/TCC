@@ -3,7 +3,7 @@
 @section('content')
 
 
-<main role="main" >
+<main>
     <div class="container " >
         <table class="table">
             <thead>

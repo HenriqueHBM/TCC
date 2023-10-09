@@ -105,12 +105,12 @@
                                 </div>
                                 <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-info fs-4" ></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4" ></i></span>
                                         <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next h-100 top-50 position-absolute top-50 start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="next">
-                                    <span arial-hidden='true'><i class="fa-solid fa-angles-right text-info fs-4" ></i></span>
+                                    <span arial-hidden='true'><i class="fa-solid fa-angles-right text-warning fs-4" ></i></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
@@ -118,8 +118,8 @@
                     </div>
                 </div>
 
-                {{-- Separando Por Categorias --}}
-                @foreach ($tipos_prod as $separador)
+                {{-- Separando Por Categorias e as 5 primeiras --}}
+                @foreach ($tipos_prod->where('id_tipos_produtos', '<=', 5) as $separador)
                     <div class="my-2">
                         <div class="my-4 p-4 bg-white rounded">
                             <div class="row">
@@ -160,11 +160,11 @@
                                         @endforeach
                                     </div>
                                     <button class="carousel-control-prev top-50 position-absolute start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}" data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-info fs-4"></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4"></i></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next top-50 position-absolute start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}" data-bs-slide="next">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-right text-info fs-4"></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-right text-warning fs-4"></i></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
