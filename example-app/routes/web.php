@@ -9,6 +9,7 @@ use App\Http\Controllers\ProdutoController;
 
 //Rota Controller (faz aparecer a pag. inicial), Ex: [Rota::get == pegando(/rotaURL, [Controller::class, funcao])]
 Route::get('/', [HomeController::class, 'home']);
+Route::get('/home', [HomeController::class, 'home']);
 
 // Rota par as entregas
 Route::get('/minhas_entregas', [MinhasEntregasController::class, 'minhas_entregas']); 

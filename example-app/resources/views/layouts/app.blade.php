@@ -41,15 +41,14 @@
                         </button>
                     </form>
                 </div>
-                {{-- toggle(mudar de estado == on/off) , bs-target(de onde deve vir a informacao/pedido)--}}
+                {{-- toggle(mudar de estado == on/off) , bs-target(de onde deve vir a informacao/pedido) --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
                     {{-- span para surgir botao quando diminuir tamanho da tela --}}
                     <span><i class="fa-solid fa-bars text-light "></i></span>
                 </button>
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao, jsutify-content( para deixar itens alinhados a direita) --}}
-                <div class="collapse navbar-collapse justify-content-end"
-                    id="navbarSupportedContent">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
                     <ul class="navbar-nav ">
                         <li class="nav-item dropdown ">
@@ -78,12 +77,56 @@
             </div>
         </nav>
     </header>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- all other page content -->
+            @yield('content')
+        </div>
+        {{-- style="bottom: 0; width: 100%;"> --}}
+        {{-- position-absolute top-100 w-100 --}}
+        <footer class="footer bg-dark text-center text-white " id="footer">
+            <div class="container p-4">
+                <section class="mb-4 ">
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-google"></i></a>
+
+                    <!-- Instagram -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-instagram"></i></a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-linkedin-in"></i></a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-github"></i></a>
+                </section>
+                <section class="mb-4">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium purus nec sapien rhoncus
+                        laoreet.
+                        Etiam sed nulla a nisl varius elementum id sit amet est. Nullam aliquet felis nec libero porta
+                        accumsan laoreet et metus.
+                        In nec arcu eu nunc tristique dictum. Fusce sit amet quam quis tellus semper commodo. Quisque
+                        dictum
+                        ut quam tincidunt rutrum.
+                        Phasellus vulputate pellentesque arcu quis semper. Fusce vitae sagittis erat, placerat
+                        consectetur
+                        purus.
+                    </p>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                &copy;Bom Dia Footer
+                <a class="text-white" href="/">www.tudoavida.com.br</a>
+            </div>
+        </footer>
+
+    </div>
     <script src="{{ asset('site/jquery.js') }}"></script>
     <script src="{{ asset('site/bootstrap.js') }}"></script>
-    @yield('content')
 </body>
-<footer>
-    Bom Dia Footer &copy;
-</footer>
+
 
 </html>
