@@ -10776,3 +10776,19 @@ textarea.form-control-lg {
 .cards-wrapper{
  display:flex; 
 }
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 275px;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 275px;            /* Footer height */
+}
