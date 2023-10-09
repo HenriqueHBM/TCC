@@ -19,8 +19,8 @@
 </head>
 
 <body style="background-color:rgb(233, 233, 233)">
-    <header>
-        <nav class="navbar navbar-expand-lg text-light bg-dark ">
+    <header class="p-2 bg-danger">
+        <nav class="navbar navbar-expand-lg text-light ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light " href="/">
@@ -30,12 +30,11 @@
                     Home
                 </a>
                 <div class="w-50 justify-content-start">
-                    <form class="d-flex" role="search">
+                    <form class="d-flex" role="search" method="get" action="/distribuicoes">
                         {{-- mx(margin left e right),  --}}
                         <input type="text"
-                            class="mx-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light w-100 tirar_bordas"
-                            placeholder="Pesquisar">
-                        <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
+                            class="mx-2 p-2 w-100 border border-0 rounded-pill tirar_bordas"
+                            placeholder="Pesquisar" id="search" name="search">
                         <button class="btn btn-md btn-outline-light border-0" type="submit"><i
                                 class="fa-sharp fa-solid fa-magnifying-glass"></i>
                         </button>
@@ -70,7 +69,7 @@
                             <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-light" aria-current="page">Cadastrar</a>
+                            <a href="#" class="nav-link text-light" aria-current="page">Cadastrar-se</a>
                         </li>
                     </ul>
                 </div>
@@ -84,7 +83,7 @@
         </div>
         {{-- style="bottom: 0; width: 100%;"> --}}
         {{-- position-absolute top-100 w-100 --}}
-        <footer class="footer bg-dark text-center text-white " id="footer">
+        <footer class="footer bg-danger text-center text-white" id="footer">
             <div class="container p-4">
                 <section class="mb-4 ">
                     <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
