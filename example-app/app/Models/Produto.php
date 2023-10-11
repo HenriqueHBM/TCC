@@ -10,6 +10,8 @@ class Produto extends Model
     use HasFactory;
     protected $table = 'produtos';
     public $timestamps = true;
+    // atributos alterado para formato de data
+    protected $dates = ['data_vencimento'];
 
     public function imagens() {
         return $this->hasMany(ProdutosImagem::class, 'id_produto', 'id_produto');
