@@ -56,7 +56,7 @@
                                 Distribuição
                             </a>
                             <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
+                                <li><a class="dropdown-item " href="/minhas_entregas">Minhas Entregas</a></li>
                                 <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
                                 <li>
                                     {{-- Linha separando as distribuicao --}}
