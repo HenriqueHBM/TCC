@@ -79,11 +79,12 @@
                                             @endif
                                         @endif
                                         {{-- definindo como um card, margin-left-right, colunas small e  botando em horizontal--}}
-                                        <div class="card mx-1 col-sm-2 d-inline-block">
+                                        <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
                                             {{-- cabecalho do card --}}
                                             <div class="card-head">
-                                                <div style="height: 200px;">
-                                                    <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                                <div class="card_img">
+                                                    <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" href="produto/{{ $linha->id_produto }}" class="card-img-top h-100 card_zoom">
+                                                    {{-- <a href="produto/{{ $linha->id_produto }}"></a> --}}
                                                 </div>
                                                 {{-- corpo do card --}}
                                                 <div class="card-body">
@@ -92,7 +93,7 @@
                                                     {{-- texto/descricao no card --}}
                                                     <p class="card-text">R$: {{ $linha->preco }}</p>
                                                     {{-- transformando o card inteiro como um link para o produto --}}
-                                                    <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a>
+                                                    {{-- <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -140,15 +141,15 @@
                                                     <div class="carousel-item">
                                                 @endif
                                             @endif
-                                            <div class="card mx-1 col-sm-2 d-inline-block">
+                                            <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
                                                 <div class="card-head">
-                                                    <div style="height: 200px;">
-                                                        <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100">
+                                                    <div class="card_img">
+                                                        <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100 card_zoom">
                                                     </div>
                                                     <div class="card-body">
                                                         <h5 class="card-title">{{ $linha->produto }}</h5>
                                                         <p class="card-text">R$: {{ $linha->preco }}</p>
-                                                        <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a>
+                                                        {{-- <a href="produto/{{ $linha->id_produto }}" class="stretched-link"></a> --}}
                                                     </div>
                                                 </div>
                                             </div>
