@@ -10792,3 +10792,24 @@ textarea.form-control-lg {
   width: 100%;
   height: 270px;            /* Footer height */
 }
+
+.card_img{
+  height: 200px;
+  overflow: hidden;
+}
+.card_zoom{
+  width: 100%;
+  height: 100%;
+  transition: transform .2s;
+}
+.card_zoom:hover{
+  transform: scale(1.1);
+}
+
+.cards-shadow {
+  transition: 0.3s;
+}
+
+.cards-shadow:hover {
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
