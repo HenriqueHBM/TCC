@@ -19,7 +19,7 @@
 </head>
 
 <body style="background-color:rgb(233, 233, 233)">
-    <header class="p-2 bg-danger">
+    <header class="p-2 bg-danger" >
         <nav class="navbar navbar-expand-lg text-light ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
@@ -98,7 +98,7 @@
                             class="fab fa-linkedin-in"></i></a>
 
                     <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/HenriqueHBM/TCC" role="button"><i
                             class="fab fa-github"></i></a>
                 </section>
                 <section class="mb-4">
