@@ -47,7 +47,6 @@
     {{-- Fim Carousel de Imagens --}}
 
     {{-- Cards --}}
-        {{-- Ao adicionar .translate-middle-x, os elementos podem ser posicionados apenas na direção horizontal. --}}
         <main>
             <div class="container">
                 {{-- Geral --}}
@@ -63,6 +62,7 @@
                                 <hr class="mt-0 ">
                             </div>
                         </div>
+                        {{-- row => linha e text-center == texto centralizado --}}
                         <div class="row text-center">
                             <div id="carouselCards" class="carousel slide">
                                 <div class="carousel-inner">
@@ -97,13 +97,14 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        
+                                        {{-- span hidden == contador --}}
                                         <span hidden>{{$x++}}</span>
                                         @if ($x % 5 == 0)
                                             </div>
                                         @endif
                                     @endforeach
                                 </div>
+                                {{-- Bottos para mudar de carrousel, h-100(altura), top(margin top), star(margin left) ,ps(padding left/start), data-bs-target(a quem se refere, ou espera acao) --}}
                                 <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="prev">
                                         <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4" ></i></span>
@@ -176,8 +177,5 @@
                 @endforeach
             </div>
         </main>
-
     {{-- Fim Cards --}}
-
-
 @endsection

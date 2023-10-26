@@ -3,10 +3,9 @@
 @section('content')
 
     <main>
-        <div class="container " >
+        <div class="container mt-4" >
             {{-- {{ $search }} --}}
             <table class="table">
-                
                 <thead>
                     <th>Nome</th>
                     <th>Preço</th>
@@ -24,7 +23,6 @@
                             <td>{{ $produto->created_at }}</td>
                             <td>{{ $produto->data_vencimento }}</td>
                             <td>{{$produto->tipo_produto->tipo}}</td>
-
                         </tr>
                     @endforeach
                 </tbody>
