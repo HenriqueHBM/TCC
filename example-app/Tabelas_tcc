@@ -1,48 +1,113 @@
---- ( 'ID' para foreign keys, colocar primeiro);
+--- ( colocar primeiro "ID" para foreign e primary keys);
 
 create table produtos_categorias(
-id_categoria int primary key auto_increment,
+id_categoria int auto_increment primary key not null,
 tipo varchar(200) not null,
 created_at date not null,
 icone varchar(255) not null
 );
-insert into produtos_categorias(tipo, created_at,icone)
-values('Comida', '2023-08-05', 'fa-solid fa-burger'),
-('Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
+
+create table pagamentos(
+    id_pagamento int auto_increment primary key not null,
+    tipo_pag varchar(255) not null,
+    desconto int not null,
+    created_at datetime not null,
+    updated_at datetime not null,
+    deleted_at datetime 
+);
+
+create table ceps(
+    id_cep int auto_increment primary key not null,
+    cep varchar(10) not null,
+    cidade varchar(255)
+);
 
 create table produtos(
-id_produto int auto_increment primary key,
+id_produto int auto_increment primary key not null,
 produto varchar(255) not null,
 preco float not null,
 qtde int not null,
 data_vencimento date not null,
 codigo text not null,
 created_at date ,
-updated_at date ,
+updated_at date not null,
 deleted_at date,
 descricao text not null,
 id_categoria int not null,
 foreign key (id_categoria) references produtos_categorias(id_categoria)
 );
 
+create table produtos_imagens(
+id_imagem int auto_increment primary key not null,
+id_produto int not null,
+imagem varchar(255) not null,
+created_at date ,
+deleted_at date ,
+foreign key (id_produto) references produtos(id_produto)
+);
+
+
+create table enderecos(
+    id_endereco int auto_increment primary key not null,
+    rua varchar(255) not null,
+    numero_residencia int not null,
+    id_cep int not null,
+    bairro varchar(255) not null,
+    complemento varchar (255) null,
+    foreign key (id_cep) references ceps(id_cep)
+);
+
+create table usuarios(
+    id_usuario int auto_increment primary key not null,
+    nome varchar(255) not null,
+    data_nascimento date not null,
+    telefone varchar(20) ,
+    email varchar(255) not null,
+    cpf varchar(14) not null,
+    data_cadastro datetime not null,
+    status_login boolean,
+    id_endereco int,
+    foreign key (id_endereco) references enderecos(id_endereco)
+);
+
+create table compras(
+    id_compra auto_increment primary key not null,
+    id_vendedor int,
+    id_usuario int,
+    id_produto int,
+    id_pagamento int,
+    created_at datetime not null,
+    qtde int not null,
+    km int not null,
+    valor_frete decimal(10,2) not null,
+    valor_total decimal(10,2) not null,
+    foreign key (id_vendedor) references usuarios(id_usuario),
+    foreign key (id_usuario) references usuarios(id_usuario),
+    foreign key (id_produto) references produtos(id_produto),
+    foreign key (id_pagamento) references pagamentos(id_pagamento)
+);
+
+insert into ceps(id_cep, cep, cidade)
+values(1,85884-000, 'Medianeira/PR'),
+(2, 01153-000, 'São Paulo/SP'),
+(3, 85892-000, 'Santa Helena/PR');
+
+insert into produtos_imagens (id_imagem, id_produto, imagem, created_at )
+values (1, 1, 'preto.jpg', '2023-08-02'),
+(2,2, 'McLanche.webp', '2023-08-02'),
+(3,3, 'pizza.jpg', '2023-10-18');
+
+insert into pagamentos (id_pagamento, tipo_pag, desconto, created_at, updated_at )
+values (1, 'Pix', 4, '2023-10-03', '2023-10-03'),
+(2, 'Cartão', 2, '2023-08-21','2023-08-21'),
+(3, 'Dinheiro', 3, '2023-08-21','2023-08-21');
+
+insert into produtos_categorias(tipo, created_at,icone)
+values('Comida', '2023-08-05', 'fa-solid fa-burger'),
+('Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
+
+
 insert into produtos(produto, preco, qtde , data_vencimento, codigo, created_at, descricao, id_categoria)
 values ('Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', 'Vinho de boa qualidade', 2),
 ('MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', 'MC Feliz que dura bastante tempo', 1),
 ('Pizza Familia', 70, 1, '2023-10-20', 'Pizza de Pepperoni tamanho familia', 1);
-
-create table produtos_imagens(
-id_imagem int auto_increment primary key,
-id_produto int not null,
-imagem varchar(255) not null,
-created_at date not null,
-deleted_at date null,
-foreign key (id_produto) references produtos(id_produto)
-);
-
-insert into produtos_imagens (id_produto, imagem, created_at )
-values (1, 'preto.jpg', '2023-08-02'),
-(2, 'McLanche.webp', '2023-08-02'),
-(3, 'pizza.jpg', '2023-10-18');
-
--- caso de conflito com o nome antigo
-alter table imagens_produtos rename produtos_imagens
