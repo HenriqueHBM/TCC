@@ -11,7 +11,7 @@ create table pagamentos(
     id_pagamento int auto_increment primary key not null,
     tipo_pag varchar(255) not null,
     desconto int not null,
-    created_at datetime not null,
+    created_at datetime ,
     updated_at datetime not null,
     deleted_at datetime 
 );
@@ -102,12 +102,18 @@ values (1, 'Pix', 4, '2023-10-03', '2023-10-03'),
 (2, 'Cartão', 2, '2023-08-21','2023-08-21'),
 (3, 'Dinheiro', 3, '2023-08-21','2023-08-21');
 
-insert into produtos_categorias(tipo, created_at,icone)
-values('Comida', '2023-08-05', 'fa-solid fa-burger'),
-('Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
+insert into produtos_categorias(id_categoria, tipo, created_at,icone)
+values(1, 'Comida', '2023-08-05', 'fa-solid fa-burger'),
+(2, 'Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
 
 
-insert into produtos(produto, preco, qtde , data_vencimento, codigo, created_at, descricao, id_categoria)
-values ('Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', 'Vinho de boa qualidade', 2),
-('MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', 'MC Feliz que dura bastante tempo', 1),
-('Pizza Familia', 70, 1, '2023-10-20', 'Pizza de Pepperoni tamanho familia', 1);
+insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria)
+values (1, 'Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', '2023-08-05', 'Vinho de boa qualidade', 2),
+(2, 'MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', '2023-08-05', 'MC Feliz que dura bastante tempo', 1),
+(3, 'Pizza Familia', 70, 1, '2023-10-20', 234627,'2023-08-05', '2023-08-05', 'Pizza de Pepperoni tamanho familia', 1);
+
+insert into enderecos(id_endereco, id_cep, rua, numero_residencia, complemento, bairro)
+values (1, 1, 'Josefina','1569', 'Casa', 'Joses' ),
+(2, 2, 'Palmeiras', '7902', 'Predio Apartamento: 22', 'Carvalhos' ),
+(3, 3, 'São Jose', '2357', 'Casa', 'Itaipu');
+
