@@ -15,7 +15,6 @@
 
     {{-- FontAwsome/ Icons --}}
     <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body style="background-color:rgb(233, 233, 233)">
@@ -33,8 +32,8 @@
                     <form class="d-flex" role="search" method="get" action="/distribuicoes">
                         {{-- mx(margin left e right),  --}}
                         <input type="text"
-                            class="mx-2 p-2 w-100 border border-0 rounded-pill tirar_bordas"
-                            placeholder="Pesquisar" id="search" name="search">
+                            class="mx-2 py-2 px-3 w-100 border border-0 rounded-pill tirar_bordas "
+                            placeholder="Pesquisar..." id="search" name="search">
                         <button class="btn btn-md btn-outline-light border-0" type="submit"><i
                                 class="fa-sharp fa-solid fa-magnifying-glass"></i>
                         </button>

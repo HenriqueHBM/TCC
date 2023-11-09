@@ -1,14 +1,14 @@
 --- ( colocar primeiro "ID" para foreign e primary keys);
 
 create table produtos_categorias(
-id_categoria int auto_increment primary key not null,
+id_categoria int auto_increment primary key ,
 tipo varchar(200) not null,
 created_at date not null,
 icone varchar(255) not null
 );
 
 create table pagamentos(
-    id_pagamento int auto_increment primary key not null,
+    id_pagamento int auto_increment primary key ,
     tipo_pag varchar(255) not null,
     desconto int not null,
     created_at datetime ,
@@ -17,13 +17,13 @@ create table pagamentos(
 );
 
 create table ceps(
-    id_cep int auto_increment primary key not null,
+    id_cep int auto_increment primary key ,
     cep varchar(10) not null,
     cidade varchar(255)
 );
 
 create table produtos(
-id_produto int auto_increment primary key not null,
+id_produto int auto_increment primary key ,
 produto varchar(255) not null,
 preco float not null,
 qtde int not null,
@@ -38,7 +38,7 @@ foreign key (id_categoria) references produtos_categorias(id_categoria)
 );
 
 create table produtos_imagens(
-id_imagem int auto_increment primary key not null,
+id_imagem int auto_increment primary key ,
 id_produto int not null,
 imagem varchar(255) not null,
 created_at date ,
@@ -48,7 +48,7 @@ foreign key (id_produto) references produtos(id_produto)
 
 
 create table enderecos(
-    id_endereco int auto_increment primary key not null,
+    id_endereco int auto_increment primary key ,
     rua varchar(255) not null,
     numero_residencia int not null,
     id_cep int not null,
@@ -58,7 +58,7 @@ create table enderecos(
 );
 
 create table usuarios(
-    id_usuario int auto_increment primary key not null,
+    id_usuario int auto_increment primary key ,
     nome varchar(255) not null,
     data_nascimento date not null,
     telefone varchar(20) ,
@@ -71,7 +71,7 @@ create table usuarios(
 );
 
 create table compras(
-    id_compra auto_increment primary key not null,
+    id_compra int auto_increment primary key,
     id_vendedor int,
     id_usuario int,
     id_produto int,
@@ -92,6 +92,17 @@ values(1,85884-000, 'Medianeira/PR'),
 (2, 01153-000, 'São Paulo/SP'),
 (3, 85892-000, 'Santa Helena/PR');
 
+
+
+insert into produtos_categorias(id_categoria, tipo, created_at,icone)
+values(1, 'Comida', '2023-08-05', 'fa-solid fa-burger'),
+(2, 'Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
+
+insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria)
+values (1, 'Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', '2023-08-05', 'Vinho de boa qualidade', 2),
+(2, 'MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', '2023-08-05', 'MC Feliz que dura bastante tempo', 1),
+(3, 'Pizza Familia', 70, 1, '2023-10-20', 234627,'2023-08-05', '2023-08-05', 'Pizza de Pepperoni tamanho familia', 1);
+
 insert into produtos_imagens (id_imagem, id_produto, imagem, created_at )
 values (1, 1, 'preto.jpg', '2023-08-02'),
 (2,2, 'McLanche.webp', '2023-08-02'),
@@ -102,18 +113,12 @@ values (1, 'Pix', 4, '2023-10-03', '2023-10-03'),
 (2, 'Cartão', 2, '2023-08-21','2023-08-21'),
 (3, 'Dinheiro', 3, '2023-08-21','2023-08-21');
 
-insert into produtos_categorias(id_categoria, tipo, created_at,icone)
-values(1, 'Comida', '2023-08-05', 'fa-solid fa-burger'),
-(2, 'Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
-
-
-insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria)
-values (1, 'Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', '2023-08-05', 'Vinho de boa qualidade', 2),
-(2, 'MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', '2023-08-05', 'MC Feliz que dura bastante tempo', 1),
-(3, 'Pizza Familia', 70, 1, '2023-10-20', 234627,'2023-08-05', '2023-08-05', 'Pizza de Pepperoni tamanho familia', 1);
-
 insert into enderecos(id_endereco, id_cep, rua, numero_residencia, complemento, bairro)
 values (1, 1, 'Josefina','1569', 'Casa', 'Joses' ),
 (2, 2, 'Palmeiras', '7902', 'Predio Apartamento: 22', 'Carvalhos' ),
 (3, 3, 'São Jose', '2357', 'Casa', 'Itaipu');
 
+insert into usuarios (nome, data_nascimento, telefone, email, cpf, data_cadastro, status_login, id_endereco)
+values ('Carlos', '2000-02-17', '(00)00000-0000', 'carlimdomorro@gmail.com', 346236423743, '2023-10-05', 1, 1),
+('Maria', '2003-11-21', '(00)00000-0000', 'marialinda@gmail.com', 2374577824653, '2023-09-12', 1, 2),
+('Bruno', '1996-03-14', '(00)00000-0000', 'bruno@gmail.com', 423462722346, '2023-08-26', 0, 3);
