@@ -126,12 +126,12 @@
                         <div class="my-4 p-4 bg-white rounded">
                             <div class="row">
                                 <div class="col-12 text-left ms-3 fs-4">
-                                    <i class="{{ $separador->icone }}"> {{$separador->tipo}}</i>
+                                    <i class="{{ $separador->icone }}"> {{$separador->categoria}}</i>
                                     <hr class="mt-0 ">
                                 </div>
                             </div>
                             <div class="row text-center">
-                                <div id="carouselCards{{$separador->tipo}}" class="carousel slide">
+                                <div id="carouselCards{{$separador->categoria}}" class="carousel slide">
                                     <div class="carousel-inner">
                                         <span hidden>{{$x = 0}}</span>
                                         @foreach ($separador->produtos as $linha)
@@ -162,11 +162,11 @@
                                             @endif
                                         @endforeach
                                     </div>
-                                    <button class="carousel-control-prev top-50 position-absolute start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}" data-bs-slide="prev">
+                                    <button class="carousel-control-prev top-50 position-absolute start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="prev">
                                         <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4"></i></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
-                                    <button class="carousel-control-next top-50 position-absolute start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->tipo}}" data-bs-slide="next">
+                                    <button class="carousel-control-next top-50 position-absolute start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="next">
                                         <span arial-hidden='true'><i class="fa-solid fa-angles-right text-warning fs-4"></i></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
