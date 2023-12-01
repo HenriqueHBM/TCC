@@ -22,7 +22,7 @@
                     <td>{{ $linha->descricao }}</td>
                     <td>{{ data_format($linha->created_at) }}</td>
                     <td>{{ data_format($linha->data_vencimento) }}</td>
-                    <td>{{$linha->tipo_produto->tipo}}</td>
+                    <td>{{$linha->tipo_produto->categoria}}</td>
                 </tr>
             </tbody>
         </table>

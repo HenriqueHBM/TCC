@@ -22,7 +22,7 @@
                             <td>{{ $produto->descricao }}</td>
                             <td>{{ $produto->created_at }}</td>
                             <td>{{ $produto->data_vencimento }}</td>
-                            <td>{{$produto->tipo_produto->tipo}}</td>
+                            <td>{{$produto->tipo_produto->categoria}}</td>
                         </tr>
                     @endforeach
                 </tbody>
