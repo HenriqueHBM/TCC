@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function home()
     {
         $produtos = Produto::get();
-        $tipos_prod = ProdutosCategoria::get();
+        $tipos_prod = ProdutosCategoria::limit(7)->get();
         return view('home',compact('produtos','tipos_prod'));
     }
 

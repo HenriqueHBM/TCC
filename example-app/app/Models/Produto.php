@@ -20,4 +20,8 @@ class Produto extends Model
     public function tipo_produto(){
         return $this->belongsTo(ProdutosCategoria::class, 'id_categoria', 'id_categoria');
     }
+
+    public function vendedor(){
+        return $this->belongsTo(Usuario::class, 'id_vendedor', 'id_usuario');
+    }
 }

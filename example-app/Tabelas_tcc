@@ -19,7 +19,8 @@ create table pagamentos(
 create table ceps(
     id_cep int auto_increment primary key ,
     cep varchar(10) not null,
-    cidade varchar(255)
+    cidade varchar(255),
+    sigla varchar(20) not null
 );
 
 create table produtos(
@@ -89,10 +90,10 @@ create table compras(
     foreign key (id_pagamento) references pagamentos(id_pagamento)
 );
 
-insert into ceps(id_cep, cep, cidade)
-values(1,'85884-000', 'Medianeira/PR'),
-(2, '01153-000', 'São Paulo/SP'),
-(3,' 85892-000', 'Santa Helena/PR');
+insert into ceps(id_cep, cep, cidade, sigla)
+values(1,'85884-000', 'Medianeira', 'PR'),
+(2, '01153-000', 'São Paulo', 'SP'),
+(3,' 85892-000', 'Santa Helena', 'PR');
 
 insert into enderecos(id_endereco, id_cep, rua, numero_residencia, complemento, bairro)
 values (1, 1, 'Josefina','1569', 'Casa', 'Joses' ),
