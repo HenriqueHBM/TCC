@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tudo a Vida')
+@section('title', 'ForLife')
 @section('content')
     {{-- Carousel de Imagens --}}
         <div id="carouselSite" class="carousel slide" data-bs-ride="carousel">
@@ -64,12 +64,13 @@
                         </div>
                         {{-- row => linha e text-center == texto centralizado --}}
                         <div class="row text-center">
+                            {{-- Cards --}}
                             <div id="carouselCards" class="carousel slide">
                                 <div class="carousel-inner">
                                     {{-- contador comecando em zero --}}
                                     <span hidden>{{$x = 0}}</span>
                                     {{-- percorendo cada linha do banco --}}
-                                    @foreach ($produtos as $linha)
+                                    @foreach ($produtos as $produto)
                                     {{-- caso $x/5 e o resto for 0, esses 5 cards serao os ativos, e o resto itens --}}
                                         @if ($x % 5 == 0)
                                             @if ($x == 0)
@@ -79,20 +80,28 @@
                                             @endif
                                         @endif
                                         {{-- definindo como um card, margin-left-right, colunas small e  botando em horizontal--}}
-                                        <a href="produto/{{ $linha->id_produto }}" >
+                                        <a href="produto/{{ $produto->id_produto }}" >
+                                            {{-- cards-shadow: css para adc sombra --}}
                                             <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
                                                 {{-- cabecalho do card --}}
                                                 <div class="card-head">
                                                     <div class="card_img">
-                                                        <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" href="produto/{{ $linha->id_produto }}" class="card-img-top h-100 card_zoom">
+                                                        <img src="{{ asset('img_folders/' . $produto->imagens->first()->imagem) }}" href="produto/{{ $produto->id_produto }}" class="card-img-top h-100 card_zoom">
                                                     </div>
                                                     {{-- corpo do card --}}
                                                     <div class="card-body">
                                                         {{-- titulo do card --}}
-                                                        <h5 class="card-title text-dark">{{ $linha->produto }}</h5>
+                                                        <h5 class="card-title text-dark">{{ $produto->produto }}</h5>
                                                         {{-- texto/descricao no card --}}
-                                                        <p class="card-text text-dark">R$: {{ $linha->preco }}</p>
+                                                        <p class="card-text text-dark">R$: {{ $produto->preco }}</p>
                                                         {{-- transformando o card inteiro como um link para o produto --}}
+                                                    </div>
+                                                    {{-- Card footer, secondary(cinza) font_sm(css pro tamanho da fonte) --}}
+                                                    <div class="card-footer text-secondary font_sm ">
+                                                        <i class="fa-solid fa-location-dot"></i>
+                                                        {{ $produto->vendedor->endereco->ceps->cidade}}
+                                                        -
+                                                        {{ $produto->vendedor->endereco->ceps->sigla }}
                                                     </div>
                                                 </div>
                                             </div>
@@ -134,7 +143,7 @@
                                 <div id="carouselCards{{$separador->categoria}}" class="carousel slide">
                                     <div class="carousel-inner">
                                         <span hidden>{{$x = 0}}</span>
-                                        @foreach ($separador->produtos as $linha)
+                                        @foreach ($separador->produtos as $produto)
                                             @if ($x % 5 == 0)
                                                 @if ($x == 0)
                                                     <div class="carousel-item active">
@@ -142,15 +151,15 @@
                                                     <div class="carousel-item">
                                                 @endif
                                             @endif
-                                            <a href="produto/{{ $linha->id_produto }}">
+                                            <a href="produto/{{ $produto->id_produto }}">
                                                 <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
                                                     <div class="card-head">
                                                         <div class="card_img">
-                                                            <img src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="card-img-top h-100 card_zoom">
+                                                            <img src="{{ asset('img_folders/' . $produto->imagens->first()->imagem) }}" class="card-img-top h-100 card_zoom">
                                                         </div>
                                                         <div class="card-body">
-                                                            <h5 class="card-title text-dark">{{ $linha->produto }}</h5>
-                                                            <p class="card-text text-dark">R$: {{ $linha->preco }}</p>
+                                                            <h5 class="card-title text-dark">{{ $produto->produto }}</h5>
+                                                            <p class="card-text text-dark">R$: {{ $produto->preco }}</p>
                                                         </div>
                                                     </div>
                                                 </div>

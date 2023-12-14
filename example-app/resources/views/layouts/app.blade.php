@@ -117,7 +117,7 @@
             </div>
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
                 &copy;Bom Dia Footer
-                <a class="text-white" href="/">www.tudoavida.com.br</a>
+                <a class="text-white" href="/">www.forlife.com.br</a>
             </div>
         </footer>
 
