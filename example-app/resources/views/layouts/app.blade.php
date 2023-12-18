@@ -17,8 +17,8 @@
     <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
 </head>
 
-<body style="background-color:rgb(233, 233, 233)">
-    <header class="p-2 bg-danger" >
+<body style="background-color: #E7D7C1">
+    <header class="p-2 fundo-red" >
         <nav class="navbar navbar-expand-lg text-light ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
@@ -82,7 +82,7 @@
         </div>
         {{-- style="bottom: 0; width: 100%;"> --}}
         {{-- position-absolute top-100 w-100 --}}
-        <footer class="footer bg-danger text-center text-white" id="footer">
+        <footer class="footer fundo-brown text-center text-white" id="footer">
             <div class="container p-4">
                 <section class="mb-4 ">
                     <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i

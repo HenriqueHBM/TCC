@@ -2,14 +2,16 @@
 @section('title', 'ForLife')
 @section('content')
     {{-- Carousel de Imagens --}}
-        <div id="carouselSite" class="carousel slide" data-bs-ride="carousel">
+    {{-- container, justify...(coloca o conteudo centralizado), mt-4(margin-top) --}}
+    <div class="container justify-content-center mt-4 ">
+        <div id="carouselSite" class="carousel slide " data-bs-ride="carousel">
             <div class="carousel-indicators">
                 {{-- Navegacao em barras, #carouselSite passa ao id em que se refere, e slide-to, um valor ao referindo --}}
                 <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="0" class="active"></button>
                 <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="1"></button>
                 <button type="button" data-bs-target="#carouselSite" data-bs-slide-to="2"></button>
             </div>
-            <div class="carousel-inner">
+            <div class="carousel-inner rounded">
                 {{-- deixar 1º banner ativo --}}
                 <div class="carousel-item active">
                     {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px --}}
@@ -44,6 +46,7 @@
                 <span class="carousel-control-next-icon"></span>
             </button>
         </div>
+    </div>
     {{-- Fim Carousel de Imagens --}}
 
     {{-- Cards --}}
@@ -52,7 +55,7 @@
                 {{-- Geral --}}
                 {{-- my = margin(top/bottom), rounded(redondar bordas) --}}
                 <div class="my-2">
-                    <div class="my-4 p-4 bg-white rounded">
+                    <div class="my-4 p-4 rounded" style="background-color:rgb(255, 246, 246) ">
                         {{-- row(linha) --}}
                         <div class="row">
                             {{-- col(coluna), ms = margin(left) --}}
@@ -116,12 +119,12 @@
                                 {{-- Bottos para mudar de carrousel, h-100(altura), top(margin top), star(margin left) ,ps(padding left/start), data-bs-target(a quem se refere, ou espera acao) --}}
                                 <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4" ></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left  fs-4" style="color: #A78A7F" ></i></span>
                                         <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next h-100 top-50 position-absolute top-50 start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="next">
-                                    <span arial-hidden='true'><i class="fa-solid fa-angles-right text-warning fs-4" ></i></span>
+                                    <span arial-hidden='true'><i class="fa-solid fa-angles-right  fs-4" style="color: #A78A7F " ></i></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
@@ -132,7 +135,7 @@
                 {{-- Separando Por Categorias e as 5 primeiras --}}
                 @foreach ($tipos_prod->where('id_tipos_produtos', '<=', 5) as $separador)
                     <div class="my-2">
-                        <div class="my-4 p-4 bg-white rounded">
+                        <div class="my-4 p-4 rounded" style="background-color:rgb(255, 246, 246) ">
                             <div class="row">
                                 <div class="col-12 text-left ms-3 fs-4">
                                     <i class="{{ $separador->icone }}"> {{$separador->categoria}}</i>
@@ -172,11 +175,11 @@
                                         @endforeach
                                     </div>
                                     <button class="carousel-control-prev top-50 position-absolute start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left text-warning fs-4"></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left  fs-4" style="color: #A78A7F" ></i></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next top-50 position-absolute start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="next">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-right text-warning fs-4"></i></span>
+                                        <span arial-hidden='true'><i class="fa-solid fa-angles-right  fs-4" style="color: #A78A7F" ></i></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>
