@@ -10768,6 +10768,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+.tirar_bordas{
+  border: none;
+}
 .tirar_bordas:focus{
   outline: 0;
 }
@@ -10821,7 +10825,6 @@ textarea.form-control-lg {
 .fundo-red{
   background-color: #8c1c13;
 }
-
 
 .fundo-brown{
   background-color: #735751;

@@ -18,59 +18,48 @@
 </head>
 
 <body style="background-color: #E7D7C1">
-    <header class="p-2 fundo-red" >
-        <nav class="navbar navbar-expand-lg text-light ">
+    <header class="p-2 fundo-red">
+
+        <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light " href="/">
                     {{-- Logo do site --}}
                     <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
-                        class="img-size-logo-home me-2 logo ">
+                        class="me-2  ">
                     Home
                 </a>
-                <div class="w-50 justify-content-start">
-                    <form class="d-flex" role="search" method="get" action="/distribuicoes">
-                        {{-- mx(margin left e right),  --}}
-                        <input type="text"
-                            class="mx-2 py-2 px-3 w-100 border border-0 rounded-pill tirar_bordas "
-                            placeholder="Pesquisar..." id="search" name="search">
-                        <button class="btn btn-md btn-outline-light border-0" type="submit"><i
-                                class="fa-sharp fa-solid fa-magnifying-glass"></i>
-                        </button>
-                    </form>
-                </div>
-                {{-- toggle(mudar de estado == on/off) , bs-target(de onde deve vir a informacao/pedido) --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
-                    {{-- span para surgir botao quando diminuir tamanho da tela --}}
-                    <span><i class="fa-solid fa-bars text-light "></i></span>
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span><i class="fa-solid fa-bars text-light"></i></span>
                 </button>
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao, jsutify-content( para deixar itens alinhados a direita) --}}
-                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                    {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
-                    <ul class="navbar-nav ">
-                        <li class="nav-item dropdown ">
-                            <a class="nav-link active dropdown-toggle text-light" href="#" role="button"
-                                data-bs-toggle="dropdown">
-                                Distribuição
-                            </a>
-                            <ul class="dropdown-menu ">
-                                <li><a class="dropdown-item " href="/minhas_entregas">Minhas Entregas</a></li>
-                                <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
-                                <li>
-                                    {{-- Linha separando as distribuicao --}}
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item " href="/distribuicoes">Olhar Distribuições</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link text-light" aria-current="page">Cadastrar-se</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse justify-content-between " id="navbarSupportedContent">
+
+                    <div class="navbar-nav ">
+                        <a href="/minhas_entregas" class="nav-link text-light">Entregas</a>
+                        <a href="/criar_distribuicao" class="nav-link text-light">Criar Distribuição</a>
+                    </div>
+
+                    {{-- Campo de Pesquisa --}}
+                    <div class="navbar-nav w-50 d-flex">
+                        <form class=" flex-fill " role="search" method="get" action="/distribuicoes">
+                            <div class="form-row">
+                                <input type="text" class=" p-2 rounded-pill tirar_bordas w-75"
+                                    placeholder="Pesquisar..." id="search" name="search">
+
+                                <button class="btn btn-md btn-outline-light border-0" type="submit">
+                                    <i class="fa-sharp fa-solid fa-magnifying-glass "></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="navbar-nav">
+                        <a href="" class="nav-link text-light">Entrar</a>
+                        <a href="" class="nav-link text-light">Cadastrar-se</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -97,8 +86,8 @@
                             class="fab fa-linkedin-in"></i></a>
 
                     <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/HenriqueHBM/TCC" role="button"><i
-                            class="fab fa-github"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/HenriqueHBM/TCC"
+                        role="button"><i class="fab fa-github"></i></a>
                 </section>
                 <section class="mb-4">
                     <p>
