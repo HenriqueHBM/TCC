@@ -1,0 +1,41 @@
+  <div class="row mt-4">
+                <x-label :value="_('Endereço:')" />
+            </div>
+
+            <div class="row mt-4 ">
+                {{-- Numero Residencia --}}
+                <div class="col-md-6">
+                    <x-label for="numero_residencia" :value="__('Número Residencial')" />
+
+                    <x-input id="numero_residencia" class="block mt-1 w-full" type="text" name="numero_residencia" :value="old('numero_residencia')"
+                        required />
+                </div>
+                {{-- CEP --}}
+                <div class="col-md-6">
+                    <x-label for="cep" :value="__('CEP')" />
+
+                    <x-input id="cep" class="block mt-1 w-full" type="text" name="cep" :value="old('cep')"
+                        required />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <x-label for="rua" :value="__('Rua')" />
+
+                    <x-input id="rua" class="block mt-1 w-full" type="text" name="rua" :value="old('rua')"
+                        required />
+                </div>
+                <div class="col-md-6">
+                    <x-label for="bairro" :value="__('Bairro')" />
+
+                    <x-input id="bairro" class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')"
+                        required />
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <x-label for="complemento" :value="__('Complemento')" />
+
+                    <x-input id="complemento" class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" />
+                </div>
+            </div>
