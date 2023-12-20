@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="pt-br" data-bs-theme="dark">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
+    <meta charset="UTF-8" />
     {{-- titulo da pag --}}
     <title>@yield('title')</title>
     <!-- Icone nas telas -->
@@ -38,8 +39,10 @@
                 <div class="collapse navbar-collapse justify-content-between " id="navbarSupportedContent">
 
                     <div class="navbar-nav ">
-                        <a href="/minhas_entregas" class="nav-link text-light">Entregas</a>
-                        <a href="/criar_distribuicao" class="nav-link text-light">Criar Distribuição</a>
+                        <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
+                        @auth
+                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        @endauth
                     </div>
 
                     {{-- Campo de Pesquisa --}}
@@ -57,8 +60,17 @@
                     </div>
 
                     <div class="navbar-nav">
-                        <a href="" class="nav-link text-light">Entrar</a>
-                        <a href="" class="nav-link text-light">Cadastrar-se</a>
+                        @auth
+                            <a href="/minhas_entregas" class="nav-link text-light">Minhas Entregas</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <a href="/logout" class="nav-link text-light" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
+                            </form>
+                        @endauth
+                        @guest
+                            <a href="/login" class="nav-link text-light">Entrar</a>
+                            <a href="/register" class="nav-link text-light">Cadastrar-se</a>
+                        @endguest
                     </div>
                 </div>
             </div>
