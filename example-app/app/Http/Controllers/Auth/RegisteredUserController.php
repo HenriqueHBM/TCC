@@ -41,7 +41,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'telefone' => 'required',
             'data_nascimento' => ['required', 'date'],
-            'cpf' => ['required', 'unique:usuarios'],
+            'cpf' => ['required', 'unique:usuarios','min:11' ,'max:11'],
         ]);
 
         
@@ -51,7 +51,6 @@ class RegisteredUserController extends Controller
             'telefone' => $request->telefone,
             'email' => $request->email,
             'cpf' => $request->cpf,
-            'data_cadastro' => Carbon::now(),
             'status_login' => 1,
             'password' => Hash::make($request->password),
         ]);
