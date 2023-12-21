@@ -39,8 +39,8 @@
                     <x-label for="telefone" :value="__('Telefone')" />
 
                     <x-input id="telefone" class="block mt-1 w-full" type="tel" name="telefone" :value="old('telefone')"
-                        required pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
-                        placeholder='(00) 00000-0000' />
+                        required
+                        placeholder='(DD) 00000-0000' />
                 </div>
 
                 {{-- Data Nascimento --}}
