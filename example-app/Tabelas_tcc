@@ -67,7 +67,6 @@ create table usuarios(
     telefone varchar(20) ,
     email varchar(255) not null,
     cpf varchar(14) not null,
-    data_cadastro datetime not null,
     status_login boolean,
     id_endereco int,
     password varchar(255) not null,
@@ -103,10 +102,10 @@ values (1, 1, 'Josefina','1569', 'Casa', 'Joses' ),
 (2, 2, 'Palmeiras', '7902', 'Predio Apartamento: 22', 'Carvalhos' ),
 (3, 3, 'São Jose', '2357', 'Casa', 'Itaipu');
 
-insert into usuarios (nome, data_nascimento, telefone, email, cpf, data_cadastro, status_login, id_endereco, password)
-values ('Carlos', '2000-02-17', '(00)00000-0000', 'carlimdomorro@gmail.com', 346236423743, '2023-10-05', 1, 1, '12345678'),
-('Maria', '2003-11-21', '(00)00000-0000', 'marialinda@gmail.com', 2374577824653, '2023-09-12', 1, 2, 'marialinda123'),
-('Bruno', '1996-03-14', '(00)00000-0000', 'bruno@gmail.com', 423462722346, '2023-08-26', 0, 3, 'bruno1722');
+insert into usuarios (nome, data_nascimento, telefone, email, cpf, status_login, id_endereco, password)
+values ('Carlos', '2000-02-17', '(00)00000-0000', 'carlimdomorro@gmail.com', 346236423743,  1, 1, '12345678'),
+('Maria', '2003-11-21', '(00)00000-0000', 'marialinda@gmail.com', 2374577824653, 1, 2, 'marialinda123'),
+('Bruno', '1996-03-14', '(00)00000-0000', 'bruno@gmail.com', 423462722346,  0, 3, 'bruno1722');
 
 insert into produtos_categorias(id_categoria, categoria, created_at,icone)
 values(1, 'Comida', '2023-08-05', 'fa-solid fa-burger'),
