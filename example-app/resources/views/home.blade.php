@@ -164,6 +164,12 @@
                                                             <h5 class="card-title text-dark">{{ $produto->produto }}</h5>
                                                             <p class="card-text text-dark">R$: {{ $produto->preco }}</p>
                                                         </div>
+                                                        <div class="card-footer text-secondary font_sm ">
+                                                        <i class="fa-solid fa-location-dot"></i>
+                                                        {{ $produto->vendedor->endereco->ceps->cidade}}
+                                                        -
+                                                        {{ $produto->vendedor->endereco->ceps->sigla }}
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </a>
