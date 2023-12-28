@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="pt-br">
+<html lang="pt-BR" data-bs-theme="dark">
 
 <head>
+    <meta charset="UTF-8" />
     {{-- titulo da pag --}}
     <title>@yield('title')</title>
     <!-- Icone nas telas -->
@@ -15,68 +16,113 @@
 
     {{-- FontAwsome/ Icons --}}
     <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
-
 </head>
 
-<body>
-    <header class="">
-        <nav class="navbar navbar-expand-xl text-light bg-dark fixed-top  " >
+<body style="background-color: #E7D7C1">
+    <header class="p-2 fundo-red">
+
+        <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">
                 {{-- Navbar-Brand para nome do projeto --}}
-                <a class="navbar-brand text-light" href="/">
+                <a class="navbar-brand text-light " href="/">
                     {{-- Logo do site --}}
-                    <img src="{{ asset('img/icon.webp') }}" title="HOME" width="30" height="24"
-                        class="d-inline-block align-top logo img-size-logo-home me-2" alt="Laravel">
+                    <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
+                        class="me-2  ">
                     Home
                 </a>
-                {{-- Navbar-toggle para plug -in de recolhimento  --}}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span><i class="fa-solid fa-bars text-light"></i></span>
                 </button>
-                {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao --}}
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <form class="d-flex" role="search">
-                        <input type="text"
-                            class="ms-2 me-2 border-bottom-3 border-danger border-top-0 border-end-0 border-start-0 bg-dark text-light"
-                            placeholder="Pesquisar">
-                        <!-- <input class="form-control btn btn-sm btn-light  me-2" type="search" placeholder="Search" aria-label="Search"> -->
-                        <button class="btn btn-md btn-outline-info" type="submit"><i
-                                class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
-                    </form>
+                {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao, jsutify-content( para deixar itens alinhados a direita) --}}
+                <div class="collapse navbar-collapse justify-content-between " id="navbarSupportedContent">
 
+                    <div class="navbar-nav ">
+                        <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
+                        @auth
+                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        @endauth
+                    </div>
+
+                    {{-- Campo de Pesquisa --}}
+                    <div class="navbar-nav w-50 d-flex">
+                        <form class=" flex-fill " role="search" method="get" action="/distribuicoes">
+                            <div class="form-row">
+                                <input type="text" class=" p-2 rounded-pill tirar_bordas w-75"
+                                    placeholder="Pesquisar..." id="search" name="search">
+
+                                <button class="btn btn-md btn-outline-light border-0" type="submit">
+                                    <i class="fa-sharp fa-solid fa-magnifying-glass "></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="navbar-nav">
+                        @auth
+                            <a href="/minhas_entregas" class="nav-link text-light">Minhas Entregas</a>
+                            <form action="/logout" method="post">
+                                @csrf
+                                <a href="/logout" class="nav-link text-light" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
+                            </form>
+                        @endauth
+                        @guest
+                            <a href="/login" class="nav-link text-light">Entrar</a>
+                            <a href="/register" class="nav-link text-light">Cadastrar-se</a>
+                        @endguest
+                    </div>
                 </div>
-                {{-- Navbar-nav para navegação leve(menus suspensos)  --}}
-                <ul class="navbar-nav ">
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link active dropdown-toggle text-light" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Distribuição
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item " href="minhas_entregas">Minhas Entregas</a></li>
-                            <li><a class="dropdown-item " href="/criar_distribuicao">Criar Distribuição</a></li>
-                            <li>
-                                {{-- Linha separando as distribuicao --}}
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item " href="/distribuicoes">Olhar Distribuições</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light" aria-current="page">Entrar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link text-light" aria-current="page">Cadastrar</a>
-                    </li>
-                </ul>
             </div>
         </nav>
     </header>
+    <div id="page-container">
+        <div id="content-wrap">
+            <!-- all other page content -->
+            @yield('content')
+        </div>
+        {{-- style="bottom: 0; width: 100%;"> --}}
+        {{-- position-absolute top-100 w-100 --}}
+        <footer class="footer fundo-brown text-center text-white" id="footer">
+            <div class="container p-4">
+                <section class="mb-4 ">
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-google"></i></a>
+
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
+                            class="fab fa-linkedin-in"></i></a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/HenriqueHBM/TCC"
+                        role="button"><i class="fab fa-github"></i></a>
+                </section>
+                <section class="mb-4">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium purus nec sapien rhoncus
+                        laoreet.
+                        Etiam sed nulla a nisl varius elementum id sit amet est. Nullam aliquet felis nec libero porta
+                        accumsan laoreet et metus.
+                        In nec arcu eu nunc tristique dictum. Fusce sit amet quam quis tellus semper commodo. Quisque
+                        dictum
+                        ut quam tincidunt rutrum.
+                        Phasellus vulputate pellentesque arcu quis semper. Fusce vitae sagittis erat, placerat
+                        consectetur
+                        purus.
+                    </p>
+                </section>
+            </div>
+            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                &copy;Bom Dia Footer
+                <a class="text-white" href="/">www.forlife.com.br</a>
+            </div>
+        </footer>
+
+    </div>
     <script src="{{ asset('site/jquery.js') }}"></script>
     <script src="{{ asset('site/bootstrap.js') }}"></script>
-    @yield('content')
 </body>
+
 
 </html>
