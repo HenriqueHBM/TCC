@@ -97,9 +97,7 @@
                     <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
                             class="fab fa-linkedin-in"></i></a>
 
-                    <!-- Github -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/HenriqueHBM/TCC"
-                        role="button"><i class="fab fa-github"></i></a>
+                    
                 </section>
                 <section class="mb-4">
                     <p>
