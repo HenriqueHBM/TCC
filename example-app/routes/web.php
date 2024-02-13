@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MinhasEntregasController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\CadastrarEnderecoController;
 
 //Rota Controller (faz aparecer a pag. inicial), Ex: [Rota::get == pegando(/rotaURL, [Controller::class, funcao])]
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -27,4 +28,8 @@ Route::middleware(['auth'])->group(function(){
     // Rota para criar as distribuições
     Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao']);
 
+ 
 });
+
+Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
+Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
