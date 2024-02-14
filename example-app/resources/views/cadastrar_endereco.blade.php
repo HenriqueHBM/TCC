@@ -1,9 +1,4 @@
-
-@extends("layouts.app")
-@section("tittle", "Cadastrar Endereço")
-@section("content")
-
-
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
@@ -24,24 +19,27 @@
 
             <!-- Número Residência -->
             <div class = "row">
-                    <!-- Cep -->
-                <div class ="col col-md-6" >
+                <!-- Cep -->
+                <div class ="col col-md-6 mt-2">
                     <x-label for="cep" :value="__('CEP')" />
 
                     <select name="cep" id="cep" class = "form-select" name='cep'>
-                        
+
                         <option value="">Nenhum</option>
-                            @foreach($ceps as $cep)
-                                <option value="{{$cep->id_cep}}" >{{$cep->cep}} - {{$cep->cidade}} - {{$cep->sigla}}</option>
-                            @endforeach 
+                        @foreach ($ceps as $cep)
+                            <option value="{{ $cep->id_cep }}">{{ $cep->sigla }} {{ $cep->cidade }} - {{ $cep->cep }} 
+                                
+                            </option>
+                        @endforeach
                     </select>
                 </div>
 
-                <div class ="col col-md-6" >
-                    
+                <div class ="col col-md-6">
+
                     <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
 
-                    <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text" name="num_residencia" :value="old('num_residencia')" required  />
+                    <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
+                        name="num_residencia" :value="old('num_residencia')" required />
                 </div>
             </div>
 
@@ -49,53 +47,54 @@
             <div class = "mt-4">
                 <x-label for="rua" :value="__('RUA')" />
 
-                <x-input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua" :value="old('rua')" required autofocus />
+                <x-input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua"
+                    :value="old('rua')" required autofocus />
             </div>
 
             <!-- Bairro -->
             <div class = "mt-4">
                 <x-label for="bairro" :value="__('BAIRRO')" />
 
-                <x-input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required autofocus />
+                <x-input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro"
+                    :value="old('bairro')" required autofocus />
             </div>
-        
+
             <!-- Complemento -->
             <div class = "mt-4">
                 <x-label for="complemento" :value="__('COMPLEMENTO')" />
 
-                <x-input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" autofocus />
+                <x-input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento"
+                    :value="old('complemento')" autofocus />
             </div>
-            
+
             <div class = "row mt-4 justify-content-center">
                 <div class = "text-center">
                     <button id = "register" type = "button" class = "btn bg-success text-white">REGISTRAR</button>
                 </div>
-            </div>  
-            
+            </div>
+
         </form>
     </x-auth-card>
 </x-guest-layout>
 <script>
-    $(document).on("click", "#register", function(){
+    $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
-            type: "POST", 
+            type: "POST",
             url: "cadastrar_endereco/save_register",
             data: formData,
-            cache:false,
-            contentType:false,
-            processData:false,
-            success:function(data){
-                if(data.error){
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data.error) {
                     setTimeout(() => {
                         alert('Vish');
                     }, 2000);
-                }else{
+                } else {
                     alert('Parabens');
                 }
             }
         })
-    }) 
-
+    })
 </script>
-@endsection
