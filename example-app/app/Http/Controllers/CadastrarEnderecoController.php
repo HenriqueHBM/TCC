@@ -42,3 +42,4 @@ class CadastrarEnderecoController extends Controller
         
     }
 }
+
