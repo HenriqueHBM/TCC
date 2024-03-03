@@ -29,22 +29,23 @@
                     
 
                     <div class ="col col-md-6" >
-                        <x-label for="cep" :value="__('CEP')" />
-                        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.css" />
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-                        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.js"></script>
-
+                    
                         
-                        <select id= "cep" data-live-search="true" class="selectpicker" style="margin-top: 10px;" size=400px>
-    
+                        <x-label for="cep" :value="__('CEP')" />
+                        
+
+                        <input class="form-control" list="browsers" id="browser">
+                        <datalist id="browsers">
                             <option value="">Nenhum</option>
-                                @foreach($ceps as $cep)
-                                    <option value="{{$cep->id_cep}}" >{{$cep->cep}} - {{$cep->cidade}} - {{$cep->sigla}}</option>
-                                @endforeach 
-                        </select>
+                            @foreach($ceps->sortBy('cidade') as $cep) 
+                                <option value="{{$cep->cep}}" > {{$cep->cidade}} - {{$cep->sigla}}</option>
+                            @endforeach
+                        </datalist>
+                        
+                    
                     </div>    
+                    
+                    
                 <div class ="col col-md-6" >
                     
                     <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
