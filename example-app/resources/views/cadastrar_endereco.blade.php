@@ -15,27 +15,20 @@
 
         <form id ="save_register" method="POST">
             @csrf
-
-
             <!-- Número Residência -->
-            <div class = "row">
+            <div class = "row ">
                 <!-- Cep -->
                 <div class ="col col-md-6 mt-2">
                     <x-label for="cep" :value="__('CEP')" />
-
-                    <select name="cep" id="cep" class = "form-select" name='cep'>
-
+                    <input class="form-control" list="browsers" id="browser">
+                    <datalist id="browsers form-control-md">
                         <option value="">Nenhum</option>
-                        @foreach ($ceps as $cep)
-                            <option value="{{ $cep->id_cep }}">{{ $cep->sigla }} {{ $cep->cidade }} - {{ $cep->cep }} 
-                                
-                            </option>
+                        @foreach ($ceps->sortBy('cidade') as $cep)
+                            <option value="{{ $cep->cep }}"> {{ $cep->cidade }} - {{ $cep->sigla }}</option>
                         @endforeach
-                    </select>
+                    </datalist>
                 </div>
-
                 <div class ="col col-md-6">
-
                     <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
 
                     <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
