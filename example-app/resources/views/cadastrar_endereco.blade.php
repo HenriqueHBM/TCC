@@ -19,7 +19,7 @@
             <div class = "row ">
                 <!-- Cep -->
                 <div class ="col col-md-6 mt-2">
-                    <x-label for="cep" :value="__('CEP')" />
+                    <label for="cep" >CEP</label> <!-- Exemplo de como é para fazer --> 
                     <input class="form-control" list="browsers" id="browser">
                     <datalist id="browsers form-control-md">
                         <option value="">Nenhum</option>
