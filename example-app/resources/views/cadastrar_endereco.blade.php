@@ -4,19 +4,19 @@
 @section("content")
 
 
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
+<guest-layout>
+    <auth-card>
+        <slot name="logo">
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
-        </x-slot>
+        </slot>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form id ="save_register" method="POST">
             @csrf
@@ -31,7 +31,7 @@
                     <div class ="col col-md-6" >
                     
                         
-                        <x-label for="cep" :value="__('CEP')" />
+                        <label for="cep" :value="__('CEP')" />
                         
 
                         <input class="form-control" list="browsers" id="browser">
@@ -48,32 +48,32 @@
                     
                 <div class ="col col-md-6" >
                     
-                    <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
+                    <label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
 
-                    <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text" name="num_residencia" :value="old('num_residencia')" required  />
+                    <input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text" name="num_residencia" :value="old('num_residencia')" required  />
                 </div>
             </div>
             
                     
             <!-- Rua -->
             <div class = "mt-4">
-                <x-label for="rua" :value="__('RUA')" />
+                <label for="rua" :value="__('RUA')" />
 
-                <x-input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua" :value="old('rua')" required autofocus />
+                <input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua" :value="old('rua')" required autofocus />
             </div>
 
             <!-- Bairro -->
             <div class = "mt-4">
-                <x-label for="bairro" :value="__('BAIRRO')" />
+                <label for="bairro" :value="__('BAIRRO')" />
 
-                <x-input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required autofocus />
+                <input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required autofocus />
             </div>
         
             <!-- Complemento -->
             <div class = "mt-4">
-                <x-label for="complemento" :value="__('COMPLEMENTO')" />
+                <label for="complemento" :value="__('COMPLEMENTO')" />
 
-                <x-input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" autofocus />
+                <input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" autofocus />
             </div>
             
             <div class = "row mt-4 justify-content-center">
@@ -83,8 +83,8 @@
             </div>  
             
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </auth-card>
+</guest-layout>
 <script>
     $(document).on("click", "#register", function(){
         var formData = new FormData($("#save_register")[0]);
