@@ -1,111 +1,93 @@
-
-@extends("layouts.app")
-@section("tittle", "Cadastrar Endereço")
-@section("content")
-
-
-<guest-layout>
-    <auth-card>
-        <slot name="logo">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<x-guest-layout>
+    <x-auth-card>
+        <x-slot name="logo">
             <a href="/">
-                <application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
-        </slot>
+        </x-slot>
 
         <!-- Session Status -->
-        <auth-session-status class="mb-4" :status="session('status')" />
+        <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
-        <auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <form id ="save_register" method="POST">
             @csrf
-
-
             <!-- Número Residência -->
-            <div class = "row">
+            <div class = "row ">
+                <!-- Cep -->
+                <div class ="col col-md-6">
+                    <label for="cep" >CEP</label> <!-- Exemplo de como é para fazer --> 
+                    <x-input class="block w-full" list="browsers" id="browser" type="text"/>
+                    <datalist id="browsers">
+                        <option value="">Nenhum</option>
+                        @foreach ($ceps->sortBy('cidade') as $cep)
+                            <option value="{{ $cep->cep }}"> {{ $cep->cidade }} - {{ $cep->sigla }}</option>
+                        @endforeach
+                    </datalist>
+                </div>
+                <div class ="col col-md-6">
+                    <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
 
-                    <!-- Cep -->
-                    
-
-                    <div class ="col col-md-6" >
-                    
-                        
-                        <label for="cep" :value="__('CEP')" />
-                        
-
-                        <input class="form-control" list="browsers" id="browser">
-                        <datalist id="browsers">
-                            <option value="">Nenhum</option>
-                            @foreach($ceps->sortBy('cidade') as $cep) 
-                                <option value="{{$cep->cep}}" > {{$cep->cidade}} - {{$cep->sigla}}</option>
-                            @endforeach
-                        </datalist>
-                        
-                    
-                    </div>    
-                    
-                    
-                <div class ="col col-md-6" >
-                    
-                    <label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
-
-                    <input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text" name="num_residencia" :value="old('num_residencia')" required  />
+                    <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
+                        name="num_residencia" :value="old('num_residencia')" required />
                 </div>
             </div>
-            
-                    
+
             <!-- Rua -->
             <div class = "mt-4">
-                <label for="rua" :value="__('RUA')" />
+                <x-label for="rua" :value="__('RUA')" />
 
-                <input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua" :value="old('rua')" required autofocus />
+                <x-input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua"
+                    :value="old('rua')" required autofocus />
             </div>
 
             <!-- Bairro -->
             <div class = "mt-4">
-                <label for="bairro" :value="__('BAIRRO')" />
+                <x-label for="bairro" :value="__('BAIRRO')" />
 
-                <input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro" :value="old('bairro')" required autofocus />
+                <x-input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro"
+                    :value="old('bairro')" required autofocus />
             </div>
-        
+
             <!-- Complemento -->
             <div class = "mt-4">
-                <label for="complemento" :value="__('COMPLEMENTO')" />
+                <x-label for="complemento" :value="__('COMPLEMENTO')" />
 
-                <input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" autofocus />
+                <x-input id="complemento" name='rua' class="block mt-1 w-full" type="text" name="complemento"
+                    :value="old('complemento')" autofocus />
             </div>
-            
+
             <div class = "row mt-4 justify-content-center">
                 <div class = "text-center">
                     <button id = "register" type = "button" class = "btn bg-success text-white">REGISTRAR</button>
                 </div>
-            </div>  
-            
+            </div>
+
         </form>
-    </auth-card>
-</guest-layout>
+    </x-auth-card>
+</x-guest-layout>
 <script>
-    $(document).on("click", "#register", function(){
+    $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
-            type: "POST", 
+            type: "POST",
             url: "cadastrar_endereco/save_register",
             data: formData,
-            cache:false,
-            contentType:false,
-            processData:false,
-            success:function(data){
-                if(data.error){
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data.error) {
                     setTimeout(() => {
                         alert('Vish');
                     }, 2000);
-                }else{
+                } else {
                     alert('Parabens');
                 }
             }
         })
-    }) 
-
+    })
 </script>
-@endsection
