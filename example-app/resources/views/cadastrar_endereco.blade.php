@@ -1,17 +1,20 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
 <x-guest-layout>
     <x-auth-card>
+        
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
             </a>
         </x-slot>
-
+        
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        
 
         <form id ="save_register" method="POST">
             @csrf
@@ -70,7 +73,7 @@
     </x-auth-card>
 </x-guest-layout>
 <script>
-    $(document).on("click", "#register", function() {
+        $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
             type: "POST",
@@ -80,14 +83,20 @@
             contentType: false,
             processData: false,
             success: function(data) {
+                // Verifica se a resposta do servidor contém um erro
                 if (data.error) {
-                    setTimeout(() => {
-                        alert('Vish');
-                    }, 2000);
+                    // Exibe uma mensagem de erro para o usuário
+                    alert('Erro: ' + data.error);
                 } else {
-                    alert('Parabens');
+                    // Se não houver erro, exibe uma mensagem de sucesso
+                    alert('Parabéns: ' + data.success);
                 }
+            },
+            error: function(xhr, status, error) {
+                // Caso ocorra algum erro durante a requisição AJAX
+                alert("Ocorreu um erro durante a requisição: " + status + ", " + error);
             }
-        })
-    })
+        });
+        });
+    
 </script>
