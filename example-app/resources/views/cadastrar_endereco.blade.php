@@ -65,14 +65,20 @@
 
             <div class = "row mt-4 justify-content-center">
                 <div class = "text-center">
+                    <button id = "home" type = "button" class = "btn bg-success text-white"> ⏎ VOLTAR</button>
                     <button id = "register" type = "button" class = "btn bg-success text-white">REGISTRAR</button>
                 </div>
             </div>
 
+            
         </form>
     </x-auth-card>
 </x-guest-layout>
+
 <script>
+        $(document).on("click", "#home", function() {
+        var formData_ = new FormData($("#back_home")[0]);})
+
         $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
