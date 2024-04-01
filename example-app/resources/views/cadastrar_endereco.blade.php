@@ -1,7 +1,10 @@
+@extends('layouts.app')
+@section('title', 'ForLife')
+@section('content')
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-<x-guest-layout>
-    <x-auth-card>
+<guest-layout>
+    <auth-card>
         
         <x-slot name="logo">
             <a href="/">
@@ -32,7 +35,7 @@
                     </datalist>
                 </div>
                 <div class ="col col-md-6">
-                    <x-label for="num_residencia" :value="__('NÚMERO DE RESIDÊNCIA')" />
+                    <x-label for="num_residencia" :value="__('NÚMERO DA RESIDÊNCIA')" />
 
                     <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
                         name="num_residencia" :value="old('num_residencia')" required />
@@ -65,20 +68,19 @@
 
             <div class = "row mt-4 justify-content-center">
                 <div class = "text-center">
-                    <button id = "home" type = "button" class = "btn bg-success text-white"> ⏎ VOLTAR</button>
+                    <a href = "{{ route('register') }}"> <button id = "home" type = "button" class = "btn bg-success text-white"> ⏎ VOLTAR</button></a>
+
                     <button id = "register" type = "button" class = "btn bg-success text-white">REGISTRAR</button>
                 </div>
             </div>
 
             
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </auth-card>
+</guest-layout>
 
 <script>
-        $(document).on("click", "#home", function() {
-        var formData_ = new FormData($("#back_home")[0]);})
-
+        
         $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
@@ -96,11 +98,14 @@
                 } else {
                     // Se não houver erro, exibe uma mensagem de sucesso
                     alert('Parabéns: ' + data.success);
+                    
+                    
                 }
             },
             error: function(xhr, status, error) {
                 // Caso ocorra algum erro durante a requisição AJAX
                 alert("Ocorreu um erro durante a requisição: " + status + ", " + error);
+                
             }
         });
         });
