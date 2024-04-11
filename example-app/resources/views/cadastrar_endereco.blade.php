@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 @section('title', 'ForLife')
 @section('content')
@@ -5,7 +6,6 @@
 
 <guest-layout>
     <auth-card>
-        
         <x-slot name="logo">
             <a href="/">
                 <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
@@ -24,10 +24,12 @@
             <!-- Número Residência -->
             <div class = "row ">
                 <!-- Cep -->
+
                 <div class ="col col-md-6">
                     <label for="cep" >CEP</label> <!-- Exemplo de como é para fazer --> 
                     <x-input class="block w-full" list="browsers" id="browser" type="text"/>
                     <datalist id="browsers">
+
                         <option value="">Nenhum</option>
                         @foreach ($ceps->sortBy('cidade') as $cep)
                             <option value="{{ $cep->cep }}"> {{ $cep->cidade }} - {{ $cep->sigla }}</option>
@@ -35,7 +37,9 @@
                     </datalist>
                 </div>
                 <div class ="col col-md-6">
+
                     <x-label for="num_residencia" :value="__('NÚMERO DA RESIDÊNCIA')" />
+
 
                     <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
                         name="num_residencia" :value="old('num_residencia')" required />
@@ -74,14 +78,16 @@
                 </div>
             </div>
 
-            
+
         </form>
     </auth-card>
 </guest-layout>
 
 <script>
+
         
         $(document).on("click", "#register", function() {
+
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
             type: "POST",
@@ -91,6 +97,7 @@
             contentType: false,
             processData: false,
             success: function(data) {
+
                 // Verifica se a resposta do servidor contém um erro
                 if (data.error) {
                     // Exibe uma mensagem de erro para o usuário
@@ -100,6 +107,7 @@
                     alert('Parabéns: ' + data.success);
                     
                     
+
                 }
             },
             error: function(xhr, status, error) {
