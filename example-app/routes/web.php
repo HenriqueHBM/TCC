@@ -27,9 +27,10 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/minhas_entregas', [MinhasEntregasController::class, 'minhas_entregas']); 
     // Rota para criar as distribuições
     Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao']);
+    // Rota para cadastrar o endereço
+    Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
 
- 
 });
 
-Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
+
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);

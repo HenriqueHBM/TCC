@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use App\Models\Cep;
 use App\Models\Endereco;
 use Illuminate\Support\Facades\Response;
@@ -38,8 +39,7 @@ class CadastrarEnderecoController extends Controller
             $dados->bairro = $request->bairro;
             $dados->complemento = $request->complemento;
             $dados->save();
-
-        
     }
+    
 }
 
