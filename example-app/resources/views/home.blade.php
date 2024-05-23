@@ -61,7 +61,8 @@
                             {{-- col(coluna), ms = margin(left) --}}
                             <div class="col-12 text-left ms-3 fs-4">
                                 {{-- fs = font-size --}}
-                                <i class="fa-solid fa-utensils d-inline fs-4 "> Geral</i>
+                                <img src="{{ asset('./icons/prato.png') }}" alt="Geral" width="40" height="40">
+                                Geral
                                 <hr class="mt-0 ">
                             </div>
                         </div>
@@ -119,12 +120,12 @@
                                 {{-- Bottos para mudar de carrousel, h-100(altura), top(margin top), star(margin left) ,ps(padding left/start), data-bs-target(a quem se refere, ou espera acao) --}}
                                 <button class="carousel-control-prev h-100 top-50 position-absolute top-50 start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left  fs-4" style="color: #A78A7F" ></i></span>
+                                        <span arial-hidden='true'><img src="{{ asset('./icons/flecha-esquerda.png' )}}" alt="Seta Esquerda" width="20" height="20"></span>
                                         <span class="visually-hidden">Previous</span>
                                 </button>
                                 <button class="carousel-control-next h-100 top-50 position-absolute top-50 start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards"
                                     data-bs-slide="next">
-                                    <span arial-hidden='true'><i class="fa-solid fa-angles-right  fs-4" style="color: #A78A7F " ></i></span>
+                                    <span arial-hidden='true'><img src="{{ asset('./icons/flecha-direita.png' )}}" alt="Seta Esquerda" width="20" height="20"></span>
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
@@ -138,7 +139,8 @@
                         <div class="my-4 p-4 rounded" style="background-color:rgb(255, 246, 246) ">
                             <div class="row">
                                 <div class="col-12 text-left ms-3 fs-4">
-                                    <i class="{{ $separador->icone }}"> {{$separador->categoria}}</i>
+                                    <img src="{{ asset('./icons/'. $separador->icone) }}" alt="{{ $separador->categoria }}" width="40" height="40">
+                                    {{ $separador->categoria }}
                                     <hr class="mt-0 ">
                                 </div>
                             </div>
@@ -181,11 +183,11 @@
                                         @endforeach
                                     </div>
                                     <button class="carousel-control-prev top-50 position-absolute start-0 translate-middle ps-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="prev">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-left  fs-4" style="color: #A78A7F" ></i></span>
+                                        <span arial-hidden='true'><img src="{{ asset('./icons/flecha-esquerda.png' )}}" alt="Seta Esquerda" width="20" height="20"></span>
                                         <span class="visually-hidden">Previous</span>
                                     </button>
                                     <button class="carousel-control-next top-50 position-absolute start-100 translate-middle pe-5" type='button' data-bs-target="#carouselCards{{$separador->categoria}}" data-bs-slide="next">
-                                        <span arial-hidden='true'><i class="fa-solid fa-angles-right  fs-4" style="color: #A78A7F" ></i></span>
+                                        <span arial-hidden='true'><img src="{{ asset('./icons/flecha-direita.png' )}}" alt="Seta Esquerda" width="20" height="20"></span>
                                         <span class="visually-hidden">Next</span>
                                     </button>
                                 </div>

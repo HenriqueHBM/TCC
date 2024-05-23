@@ -27,7 +27,7 @@
                 <a class="navbar-brand text-light " href="/">
                     {{-- Logo do site --}}
                     <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
-                        class="me-2  ">
+                        class="me-2  " alt="Logo">
                     Home
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -40,6 +40,7 @@
 
                     <div class="navbar-nav ">
                         <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
+                        <a href="/eventos" class="nav-link text-light">Eventos</a>
                         @auth
                             <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
                         @endauth
@@ -86,16 +87,19 @@
         <footer class="footer fundo-brown text-center text-white" id="footer">
             <div class="container p-4">
                 <section class="mb-4 ">
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-google"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                        <img src="{{ asset('./icons/google.png' )}}" alt="Goggle" width="20" height="20">
+                    </a>
 
                     <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                        <img src="{{ asset('./icons/instagram.png' )}}" alt="Goggle" width="20" height="20">
+                    </a>
 
                     <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i
-                            class="fab fa-linkedin-in"></i></a>
+                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                        <img src="{{ asset('./icons/linkedin.png' )}}" alt="Goggle" width="20" height="20">
+                    </a>
 
                     
                 </section>
