@@ -77,7 +77,7 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
-
+@endsection
 <script>
         
         $(document).on("click", "#register", function() {
