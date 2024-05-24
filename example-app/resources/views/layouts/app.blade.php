@@ -14,7 +14,7 @@
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
-    {{-- FontAwsome/ Icons --}}
+    {{-- FontAwsome/ Icons  Deixar de usar --}}
     <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
 </head>
 
