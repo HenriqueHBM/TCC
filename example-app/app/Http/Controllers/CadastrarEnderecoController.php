@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Cep;
 use App\Models\Endereco;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,9 +16,15 @@ class CadastrarEnderecoController extends Controller
     public function cadastrar_endereco()
     {
 
-        $ceps = Cep::get();
+        // Caso o usuario nao tenha o endereco cadastrado, ir para a tela
+        if(!Auth::user()->id_endereco){
+            $ceps = Cep::get();
+    
+            return view("cadastrar_endereco", compact("ceps"));
 
-        return view("cadastrar_endereco", compact("ceps"));
+        }
+        //Caso ja tenha, retorna para a tela antiga;
+        return redirect()->back();
     }
     public function save_register(Request $request)
     {
