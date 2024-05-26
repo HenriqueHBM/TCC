@@ -6,7 +6,7 @@
     {{-- titulo da pag --}}
     <title>@yield('title')</title>
     <!-- Icone nas telas -->
-    <link rel="icon" href="{{ url('img/icon.webp') }}">
+    <link rel="icon" href="{{ asset('img/logoForLife.png') }}">
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{ asset('site/style.css') }}">
@@ -15,7 +15,12 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 
     {{-- FontAwsome/ Icons  Deixar de usar --}}
-    <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script>
+    {{-- <script src="https://kit.fontawesome.com/b1621cc4d4.js" crossorigin="anonymous"></script> --}}
+
+    {{-- Fonte dos Textos --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 </head>
 
 <body style="background-color: #E7D7C1">
@@ -26,7 +31,7 @@
                 {{-- Navbar-Brand para nome do projeto --}}
                 <a class="navbar-brand text-light " href="/">
                     {{-- Logo do site --}}
-                    <img src="{{ asset('img/icon.webp') }}" title="Voltar ao Início" width="30" height="24"
+                    <img src="{{ asset('img/logoForLife.png') }}" title="Voltar ao Início" width="40" height="40"
                         class="me-2  " alt="Logo">
                     Home
                 </a>

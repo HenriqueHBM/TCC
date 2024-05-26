@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Cep extends Model
 {
     use HasFactory;
+    public $primaryKey = "id_cep";
 }

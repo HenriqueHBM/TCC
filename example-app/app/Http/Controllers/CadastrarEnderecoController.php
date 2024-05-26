@@ -37,7 +37,7 @@ class CadastrarEnderecoController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return Response::json([array('error' => $request->getMessageBah()->toArray())]);
+            return Response::json([array('error' => $validator->getMessageBag()->toArray())]);
         
         }
             $dados = new Endereco();

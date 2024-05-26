@@ -10829,3 +10829,11 @@ textarea.form-control-lg {
 .fundo-brown{
   background-color: #735751;
 }
+
+
+header, body{
+  font-family:  "Bree Serif", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+}

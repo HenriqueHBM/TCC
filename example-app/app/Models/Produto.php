@@ -9,6 +9,7 @@ class Produto extends Model
 {
     use HasFactory;
     protected $table = 'produtos';
+    public $primaryKey = "id_produto";
     public $timestamps = true;
     // atributos alterado para formato de data
     protected $dates = ['data_vencimento'];
@@ -22,6 +23,6 @@ class Produto extends Model
     }
 
     public function vendedor(){
-        return $this->belongsTo(Usuario::class, 'id_vendedor', 'id_usuario');
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
     }
 }
