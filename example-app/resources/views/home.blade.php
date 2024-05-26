@@ -15,22 +15,13 @@
                 {{-- deixar 1º banner ativo --}}
                 <div class="carousel-item active">
                     {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px --}}
-                    <img src="img/img01.jpg" class=" img-fluid w-100">
-                    {{-- carroseul-caption para adicionar legendas --}}
-                    <div class="carousel-caption">
-                        <h5>Procure Ofertas Facilmente</h5>
-                        <p>E espere o pedido em sua casa</p>
-                    </div>
+                    <img src="{{ asset('img_folders/banner02.jpeg') }}" class=" img-fluid w-100" alt="Banner ForLife">
                 </div>
                 <div class="carousel-item">
-                    <img src="img/img02.jpg" class=" img-fluid w-100">
-                    <div class="carousel-caption">
-                        <h5>Preços acessiveis</h5>
-                        <p>E nada estragado</p>
-                    </div>
+                    <img src="{{ asset('img_folders/banner01.jpeg') }}" class="img-fluid w-100" alt="Banner ForLife">
                 </div>
                 <div class="carousel-item">
-                    <img src="img/img03.jpeg" class=" img-fluid w-100">
+                    <img src="img/img03.jpeg" class=" img-fluid w-100" alt="Banner ForLife">
                     <div class="carousel-caption">
                         <h5>Tudo em um só lugar</h5>
                         <p>Rapido e fácil</p>

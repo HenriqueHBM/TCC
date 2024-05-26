@@ -92,6 +92,67 @@ create table compras(
     foreign key (id_pagamento) references pagamentos(id_pagamento)
 );
 
+CREATE TABLE `eventos` (
+    `id_evento` int AUTO_INCREMENT,
+    `data` date DEFAULT NULL,
+    `horario_inicio` time DEFAULT NULL,
+    `horario_fim` time DEFAULT NULL,
+    `id_usuario` int NOT NULL,
+    `id_endereco` int NOT NULL,
+    `descricao` varchar(255) NOT NULL,
+    `imagem` varchar(255) DEFAULT NULL,
+    `created_at` date DEFAULT NULL,
+    `updated_at` date DEFAULT NULL,
+    `deleted_at` date DEFAULT NULL,
+    `titulo_evento` varchar(100) DEFAULT NULL,
+    PRIMARY KEY (`id_evento`),
+    KEY `id_usuario` (`id_usuario`),
+    KEY `id_endereco` (`id_endereco`),
+    CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+    CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`)
+) 
+
+create table produtos_eventos(
+id_produto_evento int key auto_increment,
+id_evento int not null,
+id_produto int not null,
+foreign key (id_evento) references eventos(id_evento),
+foreign key (id_produto) references produtos(id_produto)
+)
+
+
+create table area_atuacaos(
+id_area_atuacao int primary key not null auto_increment,
+area varchar(255) not null,
+descricao varchar(255)
+);
+
+create table empresas(
+id_empresa int primary key not null auto_increment,
+nome varchar(255) not null,
+cnpj varchar(255) not null,
+id_area_atuacao int not null,
+id_endereco int,
+descricao varchar(255) not null,
+created_at datetime,
+updated_at datetime,
+deleted_at datetime,
+foreign key (id_area_atuacao) references area_atuacaos(id_area_atuacao),
+foreign key (id_endereco) references enderecos(id_endereco)
+);
+
+alter table usuarios add column deleted_at date;
+
+alter table usuarios add column id_empresa int ;
+
+ALTER TABLE usuarios  ADD CONSTRAINT id_fk_empresa
+FOREIGN KEY(id_empresa) REFERENCES empresas(id_empresa);
+
+alter table produtos change column id_vendedor id_usuario int ;
+
+alter table enderecos add column updated_at date;
+alter table enderecos add column created_at date;
+
 insert into ceps(id_cep, cep, cidade, sigla)
 values(1,'85884-000', 'Medianeira', 'PR'),
 (2, '01153-000', 'São Paulo', 'SP'),
