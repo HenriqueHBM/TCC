@@ -7,6 +7,7 @@ use App\Models\Endereco;
 use App\Models\Evento;
 use App\Models\Produto;
 use App\Models\ProdutosEvento;
+use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -84,5 +85,9 @@ class EventosController extends Controller
                 }
             }
         }
+    }
+    public function visualizar_evento(Request $request, $id){
+        $evento = Evento::findOrFail($id);
+        return view('visualizar_evento', compact("evento"));
     }
 }
