@@ -67,7 +67,7 @@ class EventosController extends Controller
                 $uniq = uniqid();
 
                 // criando um nome para o arquivo, pegando o nome do arquivo, adicionando valor unico e a extenxao original do arquivo
-                $nomeArquivo = 'ID'. $r->imagem->getClientOriginalName(). $uniq.''.$r->imagem->getClientOriginalExtension();
+                $nomeArquivo = 'ID'. $r->imagem->getClientOriginalName(). $uniq.'.'.$r->imagem->getClientOriginalExtension();
                 Storage::disk('public')->put('banners_eventos/'.$nomeArquivo, file_get_contents($r->imagem));
                 $evento->imagem = $nomeArquivo;
             }else{

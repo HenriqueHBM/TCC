@@ -46,6 +46,8 @@ class CadastrarEnderecoController extends Controller
             $dados->bairro = $request->bairro;
             $dados->complemento = $request->complemento;
             $dados->save();
+
+            return redirect()->back();
     }
     
 }
