@@ -18,7 +18,7 @@
                     <div class="card mb-3 w-100">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('storage/banners_eventos/' . $evento->imagem) }}"
+                                <img src="{{ asset('img_folders/' . $evento->imagem) }}"
                                     class="img-fluid rounded-start h-100" alt="Banner Evento">
                             </div>
                             <div class="col-md-8">
@@ -32,7 +32,7 @@
                                     </p>
                                     <p class="card-text">
                                         <small class="text-body-secondary">
-                                            Última Atualização: {{ data_format($evento->updated_at) }}
+                                            Última Atualização: {{ ($evento->updated_at) }}
                                         </small>
                                     </p>
                                     <a href="eventos/visualizar_evento/{{ $evento->id_evento }}" class="stretched-link"></a>
