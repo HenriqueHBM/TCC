@@ -59,6 +59,7 @@
                                     placeholder="Pesquisar..." id="search" name="search">
 
                                 <button class="btn btn-md btn-outline-light border-0" type="submit">
+                                    <img src="{{ asset('icons/lupa.png') }}" alt="lupa de pesquisa" width="20" height="20">
                                     <i class="fa-sharp fa-solid fa-magnifying-glass "></i>
                                 </button>
                             </div>
