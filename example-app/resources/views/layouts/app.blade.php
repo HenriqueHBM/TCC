@@ -46,9 +46,9 @@
                     <div class="navbar-nav ">
                         <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
                         <a href="/eventos" class="nav-link text-light">Eventos</a>
-                        @auth
-                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
-                        @endauth
+                        
+                        <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        
                     </div>
 
                     {{-- Campo de Pesquisa --}}

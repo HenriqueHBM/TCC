@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Criar Distribuição')
+@section('title', 'Criar Distribuição', 'ForLife')
 @section('content')
     
     <main>
