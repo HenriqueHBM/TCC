@@ -46,8 +46,4 @@ Route::middleware(['auth'])->group(function(){
 
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
 
-// Rota de login
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 
-// Rota protegida que requer autenticação
-Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao'])->middleware('auth')->name('criar_distribuicao');

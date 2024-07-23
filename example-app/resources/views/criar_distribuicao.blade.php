@@ -1,10 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Criar Distribuição', 'ForLife')
+@section('title', 'Criar Distribuição')
 @section('content')
-    
+
+
     <main>
-        <div class="container mt-4">
-            Criar Distribuição
-        </div>
+        Criar Distribuição
     </main>
+
+    
+    
 @endsection

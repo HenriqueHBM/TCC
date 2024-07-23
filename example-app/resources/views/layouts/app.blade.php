@@ -47,7 +47,13 @@
                         <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
                         <a href="/eventos" class="nav-link text-light">Eventos</a>
                         
-                        <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        @auth
+                            <a href="criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        @else
+                            <a href="/register" class="nav-link text-light">Anunciar</a>
+                        @endauth
+                        
+                        
                         
                     </div>
 
