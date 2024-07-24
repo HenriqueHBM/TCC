@@ -24,7 +24,7 @@ Route::get('/produto/{id}', [ProdutoController::class, 'produto']);
 
 Route::get('/eventos', [EventosController::class, 'enventos']);
 
-
+Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao']);
 
 // middleware(permissao: caso esteja logado, pode acessar as rotas, senao, fazer o login)
 Route::middleware(['auth'])->group(function(){

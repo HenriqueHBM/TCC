@@ -6,7 +6,4 @@
     <main>
         Criar Distribuição
     </main>
-
-    
-    
 @endsection

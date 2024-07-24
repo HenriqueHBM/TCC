@@ -48,9 +48,9 @@
                         <a href="/eventos" class="nav-link text-light">Eventos</a>
                         
                         @auth
-                            <a href="criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
                         @else
-                            <a href="/register" class="nav-link text-light">Anunciar</a>
+                            <a href="/login" class="nav-link text-light">Anunciar</a>
                         @endauth
                         
                         
