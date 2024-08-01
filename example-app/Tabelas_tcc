@@ -23,31 +23,6 @@ create table ceps(
     sigla varchar(20) not null
 );
 
-create table produtos(
-id_produto int auto_increment primary key ,
-produto varchar(255) not null,
-preco float not null,
-qtde int not null,
-data_vencimento date not null,
-codigo text not null,
-created_at date ,
-updated_at date not null,
-deleted_at date,
-descricao text not null,
-id_categoria int not null,
-id_vendedor int not null,
-foreign key (id_categoria) references produtos_categorias(id_categoria),
-foreign key (id_vendedor) references usuarios(id_usuario)
-);
-
-create table produtos_imagens(
-id_imagem int auto_increment primary key ,
-id_produto int not null,
-imagem varchar(255) not null,
-created_at date ,
-deleted_at date ,
-foreign key (id_produto) references produtos(id_produto)
-);
 
 
 create table enderecos(
@@ -75,6 +50,31 @@ create table usuarios(
     foreign key (id_endereco) references enderecos(id_endereco)
 );
 
+create table produtos(
+id_produto int auto_increment primary key ,
+produto varchar(255) not null,
+preco float not null,
+qtde int not null,
+data_vencimento date not null,
+codigo text not null,
+created_at date ,
+updated_at date not null,
+deleted_at date,
+descricao text not null,
+id_categoria int not null,
+id_vendedor int not null,
+foreign key (id_categoria) references produtos_categorias(id_categoria),
+foreign key (id_vendedor) references usuarios(id_usuario)
+);
+
+create table produtos_imagens(
+id_imagem int auto_increment primary key ,
+id_produto int not null,
+imagem varchar(255) not null,
+created_at date ,
+deleted_at date ,
+foreign key (id_produto) references produtos(id_produto)
+);
 create table compras(
     id_compra int auto_increment primary key,
     id_usuario int,
@@ -172,7 +172,7 @@ insert into produtos_categorias(id_categoria, categoria, created_at, icone)
 values(1, 'Comida', '2023-08-05', 'fa-solid fa-burger'),
 (2, 'Bebida', '2023-08-05', 'fa-solid fa-wine-glass');
 
-insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria, id_vendedor)
+insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria, id_usuario)
 values (1, 'Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', '2023-08-05', 'Vinho de boa qualidade', 2, 1),
 (2, 'MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', '2023-08-05', 'MC Feliz que dura bastante tempo', 1, 2),
 (3, 'Pizza Familia', 70, 1, '2023-10-20', 234627,'2023-08-05', '2023-08-05', 'Pizza de Pepperoni tamanho familia', 1, 1);
