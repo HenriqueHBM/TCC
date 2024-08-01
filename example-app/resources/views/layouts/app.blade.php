@@ -46,9 +46,15 @@
                     <div class="navbar-nav ">
                         <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
                         <a href="/eventos" class="nav-link text-light">Eventos</a>
+                        
                         @auth
                             <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                        @else
+                            <a href="/login" class="nav-link text-light">Anunciar</a>
                         @endauth
+                        
+                        
+                        
                     </div>
 
                     {{-- Campo de Pesquisa --}}

@@ -15,6 +15,8 @@ class HomeController extends Controller
         $produtos = Produto::get();
         $tipos_prod = ProdutosCategoria::limit(7)->get();
         return view('home',compact('produtos','tipos_prod'));
+        
     }
+    
 
 }

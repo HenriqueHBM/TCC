@@ -24,20 +24,26 @@ Route::get('/produto/{id}', [ProdutoController::class, 'produto']);
 
 Route::get('/eventos', [EventosController::class, 'enventos']);
 
+Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao']);
+
 // middleware(permissao: caso esteja logado, pode acessar as rotas, senao, fazer o login)
 Route::middleware(['auth'])->group(function(){
     
     // Rota par as entregas
     Route::get('/minhas_entregas', [MinhasEntregasController::class, 'minhas_entregas']);
-    // Rota para criar as distribuições
-    Route::get('/criar_distribuicao', [CriarDistribuicaoController::class, 'criar_distribuicao']);
+    
     // Rota para cadastrar o endereço
     Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
 
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
+
+    // Rota para criar as distribuições
+    
 });
 
 
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
+
+
