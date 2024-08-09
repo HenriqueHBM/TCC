@@ -7,11 +7,9 @@
         <body>
         <main>
             <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-            </x-slot>
-
+                
+                </x-slot>
+    
             <!-- top, right, bottom, left-->
             <form method="POST" style = "margin-bottom: 10px">
                 
@@ -37,12 +35,37 @@
                         </div>
                     </div>
                         {{-- imagem--}}
-                    <div>
-                        <div class="container">
-                            <br>
+                    <div class="row mt-4">
+                        <div class="container col col-md-6">
+                            
                             <x-label for="imagem" :value="__('IMAGENS DO PRODUTO')" />
-                            <x-input id="imagem" class="block mt-1 w-full" type="file" name="imagem"
-                                :value="old('file')" required />
+                            <style>
+                                /* formatação do botão fake. */
+                                .custom-file-upload {
+                                    border: 1px solid #ccc;
+                                    display: inline-block;
+                                    padding: 6px 12px;
+                                    cursor: pointer;
+                                    background-color: #f0f0f0;
+                                    border-radius: 4px;
+                                    font-size: 16px;
+                                }
+                                
+                                /* Esconde o input file original, nescessário para fazer um botão costumizavel. */
+                                input[type="file"] {
+                                    display: none;
+                                }
+                            </style>
+                                
+                            <label for="imagem" class="custom-file-upload"> {{-- Botão fake. --}}
+                                Escolher Arquivo
+                                <br>
+                            </label>
+                                <br>
+                            <input id="imagem" type="file" name="imagem"
+                            :value="old('file')" required /> {{-- Input real --}}
+                            
+                            {{-- reserva --}}
                             <br>
                             <img id="imagePreview" src="" alt = "">
 
@@ -62,7 +85,7 @@
                         <div class="col col-md-6">
                             <x-label for="quantidade" :value="__('QUANTIDADE (LIMITE)')" />
 
-                            <x-input id="qauntidade" class="block mt-1 w-full" type="number" name="quantidade" :value="old('number')"
+                            <x-input id="quantidade" class="block mt-1 w-full" type="number" name="quantidade" :value="old('number')"
                                 required />
                         </div>
 
@@ -85,15 +108,13 @@
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a>
-
-                        <x-button class="ml-4">
-                            {{ __('ENVIAR') }}
-                        </x-button>
+                    <div class = "row mt-4 justify-content-center">
+                        <div class = "text-center">
+                    
+                            <button id = "register" type = "button" class = "btn bg-success text-white">ENVIAR</button>
+                        </div>
                     </div>
+
                 </div>
             </form>
             <script>
