@@ -111,7 +111,9 @@
                     <div class = "row mt-4 justify-content-center">
                         <div class = "text-center">
                     
-                            <button id = "register" type = "button" class = "btn bg-success text-white">ENVIAR</button>
+                            <button id = "register" type = "button" class = "btn bg-success text-white">{{ __('ENVIAR') }}</button>
+                                
+                            
                         </div>
                     </div>
 
