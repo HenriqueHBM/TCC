@@ -17,9 +17,9 @@
                     <div class="row mt-4">
                         <!-- Produto (nome) -->
                         <div>
-                            <x-label for="nome" :value="__('PRODUTO')" />
+                            <x-label for="produto_nome" :value="__('PRODUTO')" />
 
-                            <x-input id="produto_nome" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
+                            <x-input id="produto_nome" class="block mt-1 w-full" type="text" name="produto_nome" :value="old('produto_nome')"
                                 required autofocus />
 
                         </div>
@@ -30,7 +30,7 @@
                         <div class="col col-md-6">
                             <x-label for="preco" :value="__('PREÇO (POR UNIDADE)')" />
 
-                            <x-input id="preco" class="block mt-1 w-full" type="number" name="preco" :value="old('number')"
+                            <x-input id="preco" class="block mt-1 w-full" type="number" name="preco" :value="old('preco')"
                                 required />
                         </div>
                     </div>
