@@ -65,9 +65,15 @@
                             <input id="imagem" type="file" name="imagem"
                             :value="old('file')" required /> {{-- Input real --}}
                             
-                            {{-- reserva --}}
+                            {{-- exibição da imagem escolhida --}}
                             <br>
                             <img id="imagePreview" src="" alt = "">
+
+                            <div class="row mb-3 justify-content-center ">
+                                <button class="btn btn-sm col-sm-1 add_produto">
+                                    <img src="{{ asset('icons/mais.png') }}" alt="Adicionar" width="330" height="330">
+                                </button>
+                            </div>
 
                             
                         </div>

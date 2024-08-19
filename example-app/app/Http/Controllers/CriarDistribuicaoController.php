@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\ProdutosImagem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Response;
@@ -11,16 +12,15 @@ use Illuminate\Support\Facades\Storage;
 class CriarDistribuicaoController extends Controller
 {
 
-    public function produtos()
+    public function criar_distribuicao()
     {
-        $produtos = null;
 
 
-        return view("eventos", compact('ceps', 'produtos', 'eventos'));
+        return view("criar_distribuicao");
     }
 
 
-    public function criar_distribuicao(Request $r)
+    public function save_distribuicao(Request $r)
     {
         $validator = Validator::make($r->all(), [
             'produto_nome' => 'required',
@@ -51,6 +51,14 @@ class CriarDistribuicaoController extends Controller
                 $produto->imagem = $nomeArquivo;
             }else{
                 $produto->imagem = 'default_banner.jpeg';
+            }
+            if($r->produto_imagem){
+                foreach ($r->produtos as $produto) {
+                    $produto_imagem = new ProdutosImagem();
+                    $produto_imagem->id_produto_imagem = $produto_imagem;
+                    $produto_imagem->id_produto = $produto->id_produto;
+                    $produto_imagem->save();
+                }
             }
             
             $produto->save();
