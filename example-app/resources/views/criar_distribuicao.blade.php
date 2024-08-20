@@ -35,55 +35,42 @@
                         </div>
                     </div>
                         {{-- imagem--}}
-                    <div class="row mt-4">
-                        <div class="container col col-md-6">
-                            
-                            <x-label for="imagem" :value="__('IMAGENS DO PRODUTO')" />
-                            <style>
-                                /* formatação do botão fake. */
-                                .custom-file-upload {
-                                    border: 1px solid #ccc;
-                                    display: inline-block;
-                                    padding: 6px 12px;
-                                    cursor: pointer;
-                                    background-color: #f0f0f0;
-                                    border-radius: 4px;
-                                    font-size: 16px;
-                                }
+                        <style>
+                            #fileInput {
+                                display: none;
+                            }
+                            #image-preview {
+                                display: flex;
+                                gap: 10px;
+                                margin-top: 10px;
+                                display: flex;
+                                flex-direction: column; /* Empilha as imagens verticalmente */
+                            }
+                            .preview-img {
                                 
-                                /* Esconde o input file original, nescessário para fazer um botão costumizavel. */
-                                input[type="file"] {
-                                    display: none;
-                                }
-                            </style>
-                                
-                            <label for="imagem" class="custom-file-upload"> {{-- Botão fake. --}}
-                                Escolher Arquivo
-                                <br>
-                            </label>
-                                <br>
-                            <input id="imagem" type="file" name="imagem"
-                            :value="old('file')" required /> {{-- Input real --}}
-                            
-                            {{-- exibição da imagem escolhida --}}
-                            <br>
-                            <img id="imagePreview" src="" alt = "">
+                                max-width: 100%; /* Ajusta a imagem ao tamanho do contêiner */
+                                height: auto;
+                                margin-bottom: 10px; /* Espaçamento entre as imagens */
+                            }
+                        </style>
+                        <div class="row mt-4">
+                            <!-- Input de arquivo escondido -->
+                            <input type="file" id="fileInput" multiple accept="image/*">
 
-                            <div class="row mb-3 justify-content-center ">
-                                <button class="btn btn-sm col-sm-1 add_produto">
-                                    <img src="{{ asset('icons/mais.png') }}" alt="Adicionar" width="330" height="330">
-                                </button>
+                            
+                            <!-- Label estilizado como um botão -->
+                            <div class = "row mt-4 justify-content-center">
+                                <div class = "text-center">
+                            
+                                    <label id="uploadButton" for="fileInput" class = "btn bg-success text-white">{{ __('SELECIONAR IMAGENS') }}</label>
+                                        
+                                    
+                                </div>
                             </div>
-
                             
+                            
+                            <div class="block mt-1 w-full" id="image-preview"></div>
                         </div>
-
-                        <div class="container">
-                            <x-input id="imagem_" class="block mt-1 w-full" type="file" name="imagem"
-                                :value="old('file')" required />
-                        </div>
-
-                    </div>
                     
 
                     <div class="row mt-4">
@@ -126,21 +113,35 @@
                 </div>
             </form>
             <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                const fileInput = document.getElementById('imagem');
-                const imagePreview = document.getElementById('imagePreview');
+                document.getElementById('fileInput').addEventListener('change', function() {
+                    const fileInput = document.getElementById('fileInput');
+                    const files = fileInput.files;
+                    const maxImages = 5;
+                    const imagePreviewDiv = document.getElementById('image-preview');
+                    
+                    // Limpa as imagens anteriores
+                    imagePreviewDiv.innerHTML = '';
 
-                fileInput.addEventListener('change', function(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        imagePreview.src = e.target.result;
-                        imagePreview.style.display = 'block'; // Exibe a imagem
-                    };
-                    reader.readAsDataURL(file);
-                        }
-                    });
+                    // Verifica se o número de arquivos selecionados excede o máximo permitido
+                    if (files.length > maxImages) {
+                        alert(`Você pode selecionar no máximo ${maxImages} imagens.`);
+                        return;
+                    }
+
+                    // Exibe as imagens selecionadas
+                    for (let i = 0; i < files.length; i++) {
+                        const file = files[i];
+                        const reader = new FileReader();
+                        
+                        reader.onload = function(e) {
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.classList.add('preview-img');
+                            imagePreviewDiv.appendChild(img);
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
                 });
             </script>
         </body>
