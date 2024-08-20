@@ -8740,6 +8740,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/spatie/flare-client-php/zipball/097040ff51e660e0f6fc863684ac4b02c93fa234",
                 "reference": "097040ff51e660e0f6fc863684ac4b02c93fa234",
+
                 "shasum": ""
             },
             "require": {
@@ -8757,7 +8758,9 @@
                 "phpstan/extension-installer": "^1.1",
                 "phpstan/phpstan-deprecation-rules": "^1.0",
                 "phpstan/phpstan-phpunit": "^1.0",
+
                 "spatie/phpunit-snapshot-assertions": "^4.0|^5.0"
+
             },
             "type": "library",
             "extra": {
@@ -8795,7 +8798,9 @@
                     "type": "github"
                 }
             ],
+
             "time": "2024-06-12T14:39:14+00:00"
+
         },
         {
             "name": "spatie/ignition",

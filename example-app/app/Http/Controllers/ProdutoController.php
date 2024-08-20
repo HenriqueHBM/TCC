@@ -9,7 +9,7 @@ class ProdutoController extends Controller
 {
     public function produto($id)
     {
-        $linha = Produto::where('id_produto',$id)->first();
+        $linha = Produto::where('id_produto', $id)->first();
         return view('/produto', compact('linha'));
     }
 }
