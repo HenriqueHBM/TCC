@@ -24,7 +24,7 @@
 </head>
 
 <body style="background-color: #E7D7C1">
-    <header class="p-2 fundo-red">
+    <header class="p-2 fundo-red card_produto">
 
         <nav class="navbar navbar-expand-lg ">
             <div class="container-fluid">

@@ -10837,3 +10837,48 @@ header, body{
   font-style: normal;
   letter-spacing: 1px;
 }
+
+
+.slides {
+  opacity: 0.5;
+}
+
+.slides:hover {
+  box-shadow: 0px 0px 0px 4px rgb(243, 99, 3);
+  opacity: 1;
+  transition: 0.4s
+}
+
+.slide_pressed {
+  box-shadow: 0px 0px 0px 4px rgb(243, 99, 3);
+  opacity: 1;
+  transition: 0.5s
+}
+
+.button_comprar {
+  background-color: #30a017;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.card_produto {
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.118);
+}
+
+.font {
+  font-size: 15px
+}
+.textarea_produto{
+  background: none;
+  border:none;
+  resize: none;
+  outline: 0;
+}

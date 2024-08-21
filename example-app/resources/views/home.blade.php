@@ -15,17 +15,13 @@
                 {{-- deixar 1º banner ativo --}}
                 <div class="carousel-item active">
                     {{-- img-fluid(aplica max-width e max-height) imagens de 1000x300px --}}
-                    <img src="{{ asset('img_folders/banner02.jpeg') }}" class=" img-fluid w-100" alt="Banner ForLife">
+                    <img src="{{ asset('img_folders/forlife01banner.jpg') }}" class=" img-fluid w-100" alt="Banner ForLife">
                 </div>
                 <div class="carousel-item">
-                    <img src="{{ asset('img_folders/banner01.jpeg') }}" class="img-fluid w-100" alt="Banner ForLife">
+                    <img src="{{ asset('img_folders/forlife02banner.jpg') }}" class="img-fluid w-100" alt="Banner ForLife">
                 </div>
                 <div class="carousel-item">
-                    <img src="img/img03.jpeg" class=" img-fluid w-100" alt="Banner ForLife">
-                    <div class="carousel-caption">
-                        <h5>Tudo em um só lugar</h5>
-                        <p>Rapido e fácil</p>
-                    </div>
+                    <img src="{{ asset('img_folders/forlife03banner.jpg') }}" class=" img-fluid w-100" alt="Banner ForLife">
                 </div>
             </div>
 
