@@ -5,7 +5,7 @@
         <div class="container mt-4 d-flex">
             <div class="d-flex">
                 <div class="d-inline">
-                    <img id="principal" src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="rounded"
+                    <img id="principal" src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}" class="rounded card_produto"
                         alt="{{ $linha->produto }}" width="600" height="653">
                 </div>
                 <div class="d-block" style="height:650px">
@@ -33,7 +33,7 @@
                         R$: {{ $linha->preco }}
                     </h4>
                 </div>
-                <textarea class="rounded border-2 p-3 mb-3 card_produto textarea_produto" cols="52" rows="5" readonly>{{ $linha->descricao }}</textarea>
+                <textarea class="rounded border-2 p-3 mb-3 card_produto textarea_produto w-100"  rows="5" readonly>{{ $linha->descricao }}</textarea>
                 <div class="p-2  rounded border-2 card_produto mb-3 d-flex">
                     <div class="d-flex">
                         <img src="https://github.com/HenriqueHBM.png" alt="a" class="rounded-circle d-inline border"
