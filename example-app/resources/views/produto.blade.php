@@ -11,7 +11,7 @@
                 <div class="d-block" style="height:650px">
                     @foreach ($linha->imagens as $img)
                         <button class="d-block btn slides p-0 m-3" data-img='{{ $img->imagem }}'>
-                            <img src="{{ asset('img_folders/' . $img->imagem) }}" class="rounded" width="105"
+                            <img src="{{ asset('img_folders/' . $img->imagem) }}" class="rounded card_produto" width="105"
                                 height="110" alt="{{ $linha->produto }}">
                         </button>
                     @endforeach
@@ -44,7 +44,7 @@
                         Usuário desde: {{ data_format($linha->usuario->created_at) }}
                     </div>
                 </div>
-                <button class="button_comprar p-3  card_produto">
+                <button class="button_comprar p-3  card_shadow">
                     <img src="{{ asset('icons/bolsa-de-compras.png') }}" alt="" width="25" height="25"
                         class="mb-1"> Comprar
                 </button>
