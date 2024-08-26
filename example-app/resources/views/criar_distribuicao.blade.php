@@ -11,7 +11,7 @@
                 </x-slot>
     
             <!-- top, right, bottom, left-->
-            <form method="POST" style = "margin-bottom: 10px">
+            <form id = "save_distribuicao" method="POST" style = "margin-bottom: 10px">
                 
                 <div>
                     <div class="row mt-4">
@@ -104,7 +104,7 @@
                     <div class = "row mt-4 justify-content-center">
                         <div class = "text-center">
                     
-                            <button id = "register" type = "button" class = "btn bg-success text-white">{{ __('ENVIAR') }}</button>
+                            <button id = "create" type = "button" class = "btn bg-success text-white">{{ __('ENVIAR') }}</button>
                                 
                             
                         </div>
@@ -142,6 +142,36 @@
 
                         reader.readAsDataURL(file);
                     }
+                });
+
+                // botão pra salvar
+                $(document).on("click", "#create", function() {
+                var formData = new FormData($("#save_distribuicao")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "criar_distribuicao/save_distribuicao",
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        // Verifica se a resposta do servidor contém um erro
+                        if (data.error) {
+                            // Exibe uma mensagem de erro para o usuário
+                            alert('Erro: ' + data.error);
+                        } else {
+                            // Se não houver erro, exibe uma mensagem de sucesso
+                            alert('Parabéns: ' + data.success);
+                            
+                            
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        // Caso ocorra algum erro durante a requisição AJAX
+                        alert("Ocorreu um erro durante a requisição: " + status + ", " + error);
+                        
+                    }
+                });
                 });
             </script>
         </body>
