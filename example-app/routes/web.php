@@ -39,7 +39,6 @@ Route::middleware(['auth'])->group(function(){
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
 
-    // Rota para criar as distribuições
     
 });
 
