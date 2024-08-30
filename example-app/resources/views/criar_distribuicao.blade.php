@@ -12,7 +12,7 @@
     
             <!-- top, right, bottom, left-->
             <form id = "save_distribuicao" method="POST" style = "margin-bottom: 10px">
-                
+                @csrf
                 <div>
                     <div class="row mt-4">
                         <!-- Produto (nome) -->
@@ -146,10 +146,10 @@
 
                 // botão pra salvar
                 $(document).on("click", "#create", function() {
-                var formData = new FormData($("#enviar_distribuicao")[0]);
+                var formData = new FormData($("#save_distribuicao")[0]);
                 $.ajax({
                     type: "POST",
-                    url: "criar_distribuicao/enviar_distribuicao",
+                    url: "criar_distribuicao/save_distribuicao",
                     data: formData,
                     cache: false,
                     contentType: false,
