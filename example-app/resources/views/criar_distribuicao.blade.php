@@ -12,7 +12,7 @@
     
             <!-- top, right, bottom, left-->
             <form id = "save_distribuicao" method="POST" style = "margin-bottom: 10px">
-                
+                @csrf
                 <div>
                     <div class="row mt-4">
                         <!-- Produto (nome) -->

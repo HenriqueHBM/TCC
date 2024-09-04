@@ -38,8 +38,9 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
-    
-    
+
+    Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);
+    // Rota pra salvar distribuição
 });
 Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);
 
