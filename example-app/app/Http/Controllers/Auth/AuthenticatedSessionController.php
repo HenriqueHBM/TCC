@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $previous_url = $request->session()->pull('previous_url', 'default');
+        $previous_url = $request->session()->pull('previous_url', '/');
 
         $request->authenticate();
 

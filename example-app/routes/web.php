@@ -38,10 +38,10 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
-
+    
     
 });
-
+Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);
 
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
 

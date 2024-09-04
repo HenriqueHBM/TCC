@@ -183,9 +183,9 @@ values (1, 1, 'preto.jpg', '2023-08-02'),
 (3,3, 'pizza.jpg', '2023-10-18');
 
 insert into pagamentos (id_pagamento, tipo_pag, desconto, created_at, updated_at )
-values (1, 'Pix', 4, '2023-10-03', '2023-10-03'),
-(2, 'Cartão', 2, '2023-08-21','2023-08-21'),
-(3, 'Dinheiro', 3, '2023-08-21','2023-08-21');
+values (1, 'Pix', 10, '2023-10-03', '2023-10-03'),
+(2, 'Cartão', 4, '2023-08-21','2023-08-21'),
+(3, 'Boleto', 7, '2023-08-21','2023-08-21');
 
 insert into compras(id_compra, id_usuario, id_produto, id_pagamento, created_at, updated_at, qtde, km, valor_frete, valor_total)
 values(1, 1, 1, 1, '2023-11-29','2023-11-29', 1, 5, 15.50, 85.50),
