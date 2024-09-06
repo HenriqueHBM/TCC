@@ -46,13 +46,13 @@
                 </div>
                 @auth
                     <button class="button_comprar p-3  card_shadow" data-id='{{ $id }}'>
-                        <img src="{{ asset('icons/bolsa-de-compras.png') }}" alt="" width="25" height="25"
+                        <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="30" height="30"
                             class="mb-1"> Comprar
                     </button>
 
                 @else
                     <a href="{{ url('login') }}" class="btn button_comprar p-3  card_shadow">
-                        <img src="{{ asset('icons/bolsa-de-compras.png') }}" alt="" width="25" height="25"
+                        <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="25" height="25"
                             class="mb-1"> Comprar
                     </a>
                 @endauth
@@ -96,6 +96,14 @@
                     e.preventDefault();
                 }
             })
+        });
+
+        $(document).on('click', '.mudar_input_pagamento', function(e){
+            
+            let desconto = $(this).val();
+            $('#desconto_pagamento').text(`(${desconto}% de Desconto)`) ;
+
+            
         });
     </script>
 @endsection

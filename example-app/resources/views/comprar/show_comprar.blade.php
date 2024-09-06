@@ -27,7 +27,7 @@
             bottom: 0;
             left: 0;
 
-            border: 1px solid #007ECC;
+            border: 1px solid #FE9000;
             border-radius: 50px;
             pointer-events: none;
         }
@@ -37,7 +37,7 @@
         display: none;
 
         &:checked+.mudar_label_pagamento {
-            background-color: #007ECC;
+            background-color: #FE9000;
             color: #FFFFFF;
         }
 
@@ -54,8 +54,19 @@
         color: #003f66;
 
         &:hover {
-            color: #007ECC;
+            color: #FE9000;
+            
         }
+    }
+
+
+    .format_valor{
+        background-color: #FE9000;
+        padding: 8px 5px 5px 15px;
+        margin-left: -16px;
+        width: 70%;
+        border-radius: 0 30px  30px 0;
+        color: aliceblue;
     }
 </style>
 <div class="modal-body d-flex">
@@ -65,30 +76,34 @@
         </div>
         <div class="border p-2 card_produto p-3">
             <div class="form-group mb-3">
-                <h4>{{ $produto->produto }} R$: {{ $produto->preco }}</h4>
+                <h4>{{ $produto->produto }} </h4>
             </div>
-            <span class="mt-5">
+            <div class="form-group mb-2 card_produto format_valor ">
+                <h5>R$: {{ $produto->preco }}</h5>
+            </div>
+            <span >
                 Forma de Pagamento
             </span>
             <div class="caixa_pagamento mt-1 card_produto">
-                <input name="tp_pagamento" type="radio" id="coloration-high" class="mudar_input_pagamento">
+                <input name="tp_pagamento" type="radio" id="coloration-high" class="mudar_input_pagamento" value="7">
                 <label for="coloration-high" class="mudar_label_pagamento">Boleto</label>
 
-                <input name="tp_pagamento" type="radio" id="coloration-low" class="mudar_input_pagamento" checked>
+                <input name="tp_pagamento" type="radio" id="coloration-low" class="mudar_input_pagamento" checked value="10">
                 <label for="coloration-low" class="mudar_label_pagamento">Pix</label>
 
-                <input name="tp_pagamento" type="radio" id="coloration-medium" class="mudar_input_pagamento">
+                <input name="tp_pagamento" type="radio" id="coloration-medium" class="mudar_input_pagamento" value="4">
                 <label for="coloration-medium" class="mudar_label_pagamento">Cartão</label>
             </div>
             <span>
-                <h6 class="mt-1 ms-2 text-success">(4% de Desconto)</h6>
+                <h6 class="mt-1 ms-2 text-success" id="desconto_pagamento">(10% de Desconto)</h6>
             </span>
             <div class="form-group mt-4">
                 Quantidade Desejada
                 <input type="number" name="" id="" class="form-control card_produto">
             </div>
             <div class="form-group mt-4">
-                Total:  
+                Total:  <span id="show_total"></span>
+                <input type="text" hidden id="total_pagamento">
             </div>
         </div>
     </div>
@@ -112,6 +127,5 @@
     </div>
 </div>
 <div class="modal-footer justify-content-between">
-    {{-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> --}}
-    <button type="button" class="btn button_comprar p-3 m-2  card_shadow">Confirmar</button>
+    <button type="button" class="btn btn-warning button_comprar p-3 m-2  card_shadow" id="1">Confirmar</button>
 </div>

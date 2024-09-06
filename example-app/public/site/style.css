@@ -10856,7 +10856,7 @@ header, body{
 }
 
 .button_comprar {
-  background-color: #30a017;
+  background-color: #FE9000;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -10884,6 +10884,5 @@ header, body{
 }
 
 .card_shadow{
-  box-shadow: 0 0 15px 0 #32aa16, 0 6px 20px 0 rgba(0, 0, 0, 0.118); 
-  
+  box-shadow: 0 0 20px -2px #61210F, 0 6px 20px 0 rgba(0, 0, 0, 0.118); 
 }
