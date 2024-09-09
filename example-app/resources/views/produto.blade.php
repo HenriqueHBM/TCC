@@ -44,13 +44,28 @@
                         Usuário desde: {{ data_format($linha->usuario->created_at) }}
                     </div>
                 </div>
-                <button class="button_comprar p-3  card_shadow">
-                    <img src="{{ asset('icons/bolsa-de-compras.png') }}" alt="" width="25" height="25"
-                        class="mb-1"> Comprar
-                </button>
+                @auth
+                    <button class="button_comprar p-3  card_shadow" data-id='{{ $id }}'>
+                        <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="30" height="30"
+                            class="mb-1"> Comprar
+                    </button>
+
+                @else
+                    <a href="{{ url('login') }}" class="btn button_comprar p-3  card_shadow">
+                        <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="25" height="25"
+                            class="mb-1"> Comprar
+                    </a>
+                @endauth
             </div>
         </div>
     </main>
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modal-body" >
+
+            </div>
+        </div>
+    </div>
 
     <script>
         let old = '';
@@ -68,6 +83,27 @@
             $(this).addClass('slide_pressed');
 
             old = $(this);
+        });
+
+        $(document).on('click', '.button_comprar', function(e){
+            let id = $(this).data('id');
+            $.ajax({
+                type:'get',
+                url: `${id}/show_comprar`,
+                success:function(data){
+                    $('#modal-body').html(data),
+                    $('#Modal').modal('show');
+                    e.preventDefault();
+                }
+            })
+        });
+
+        $(document).on('click', '.mudar_input_pagamento', function(e){
+            
+            let desconto = $(this).val();
+            $('#desconto_pagamento').text(`(${desconto}% de Desconto)`) ;
+
+            
         });
     </script>
 @endsection
