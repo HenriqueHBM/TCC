@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Storage;
 class CriarDistribuicaoController extends Controller
 {
 
-    public function criar_distribuicao()
+    public function enviar_distribuicao()
     {
 
 
-        return view("criar_distribuicao");
+        return view("enviar_distribuicao");
     }
 
 
@@ -24,7 +24,7 @@ class CriarDistribuicaoController extends Controller
     {
         $validator = Validator::make($r->all(), [
             'produto_nome' => 'required',
-            'preco' => 'required|float',
+            'preco' => 'required|numeric',
             'imagem' => 'required',
             'quantidade' => 'required|numeric',
             'data_vencimento' => 'required',
@@ -46,7 +46,7 @@ class CriarDistribuicaoController extends Controller
             $produto->save();
 
 
-        return view('criar_distribuicao');
+        return view('enviar_distribuicao');
     }
 }
 }
