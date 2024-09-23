@@ -48,7 +48,7 @@
                             {{-- col(coluna), ms = margin(left) --}}
                             <div class="col-12 text-left ms-3 fs-4">
                                 {{-- fs = font-size --}}
-                                <img src="{{ asset('./icons/prato.png') }}" alt="Geral" width="40" height="40">
+                                <img src="{{ asset('./icons/prato.png') }}" alt="Geral" width="40" height="40" class="mb-1">
                                 Geral
                                 <hr class="mt-0 ">
                             </div>
@@ -126,7 +126,7 @@
                         <div class="my-4 p-4 rounded" style="background-color:rgb(255, 246, 246) ">
                             <div class="row">
                                 <div class="col-12 text-left ms-3 fs-4">
-                                    <img src="{{ asset('./icons/'. $separador->icone) }}" alt="{{ $separador->categoria }}" width="40" height="40">
+                                    <img src="{{ asset('./icons/'. $separador->icone) }}" alt="{{ $separador->categoria }}" width="40" height="40" class="mb-1">
                                     {{ $separador->categoria }}
                                     <hr class="mt-0 ">
                                 </div>
