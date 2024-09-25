@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Produto')
 @section('content')
+<div class="text-center align-content-center w-100 text-white card_produto" hidden id="mensg_sucesso" style="height:60px; background-color:rgb(0, 186, 71)">
+    <h3>Compra Efetuada Com Sucesso</h3>
+</div>
     <main style="padding:100px">
         <div class="container mt-4 d-flex">
             <div class="d-flex">
@@ -23,17 +26,18 @@
                         {{ $linha->produto }}
                     </h3>
                     <hr>
-                    <h6 class="font">Publicado em : {{ data_format($linha->created_at) }}</h6>
+                    <h6 class="font">Publicado em: {{ data_format($linha->created_at) }}</h6>
                     <h6 class="font">
                         Cód. {{ $linha->codigo }}
                     </h6>
+                    <h6 class="font pb-3">(Qtde: {{ $linha->qtde }})</h6>
                 </div>
                 <div class=" rounded border-2 p-3 mb-3 card_produto">
                     <h4>
                         R$: {{ $linha->preco }}
                     </h4>
                 </div>
-                <textarea class="rounded border-2 p-3 mb-3 card_produto textarea_produto w-100" rows="5" readonly>{{ $linha->descricao }}</textarea>
+                <textarea class="rounded border-2 p-3 mb-3 card_produto textarea_produto w-100" rows="4" readonly>{{ $linha->descricao }}</textarea>
                 <div class="p-2  rounded border-2 card_produto mb-3 d-flex">
                     <div class="d-flex">
                         <img src="https://github.com/HenriqueHBM.png" alt="a" class="rounded-circle d-inline border"
@@ -91,11 +95,14 @@
                 url: `${id}/show_comprar`,
                 success: function(data) {
                     $('#modal-body').html(
-                    data); // corpo do modal recebendo as informacoes da outra tela;
+                        data); // corpo do modal recebendo as informacoes da outra tela;
 
-                    let total = valor_total($('#preco_produto').val(), 10); // 10% do pix                    
+                    let total = valor_total($('#preco_produto').val(),
+                    10); // 10% do pix                    
 
-                    $('#qtde_estoque').text(`(Qtde. Estoque: ${parseInt($('#qtde_estoque_insere').val()) - parseInt($('#qtde_desejada').val())})`);
+                    $('#qtde_estoque').text(
+                        `(Qtde. Estoque: ${parseInt($('#qtde_estoque_insere').val()) - parseInt($('#qtde_desejada').val())})`
+                        );
                     return_total(total);
 
                     $('#Modal').modal('show');
@@ -120,50 +127,52 @@
             let qtde = $(this).val();
             let total = valor_total($('#preco_produto').val(), desconto, qtde);
 
-            $('#qtde_estoque').text(`(Qtde. Estoque: ${parseInt($('#qtde_estoque_insere').val()) - parseInt(qtde)})`);
+            $('#qtde_estoque').text(
+                `(Qtde. Estoque: ${parseInt($('#qtde_estoque_insere').val()) - parseInt(qtde)})`);
             return_total(total);
 
         })
 
         //Funcoes / procedimentos
-        function valor_total(val_prod, desconto, qtde = 1) {
-            let conta = (val_prod * desconto) / 100;
-            conta = val_prod - conta;
-            total = conta * qtde;
-            return total.toFixed(2);
-        }
-
-        function return_total(total) {
-            $('#show_total').text(total);
-            $('#total_pagamento').val(total);
-        }
-
-        function valor_desconto(id){
-            let valor = 0;
-            switch(true){
-                case id == 1:
-                    valor = 10;
-                    break;
-                case id ==  2: 
-                    valor = 4;
-                    break;
-                case id ==  3: 
-                    valor = 7;
-                break;
-                default: 
-                
-                break;
+            function valor_total(val_prod, desconto, qtde = 1) {
+                let conta = (val_prod * desconto) / 100;
+                conta = val_prod - conta;
+                total = conta * qtde;
+                return total.toFixed(2);
             }
-            return valor;
-        }
+
+            function return_total(total) {
+                $('#show_total').text(total);
+                $('#total_pagamento').val(total);
+            }
+
+            function valor_desconto(id) {
+                let valor = 0;
+                switch (true) {
+                    case id == 1:
+                        valor = 10;
+                        break;
+                    case id == 2:
+                        valor = 4;
+                        break;
+                    case id == 3:
+                        valor = 7;
+                        break;
+                    default:
+
+                        break;
+                }
+                return valor;
+            }
         //Fim Funcoes
 
         //Acoes
-        $(document).on('click', '#confirmar_compra', function() {
+        $(document).on('click', '#confirmar_compra', function(e) {
+            e.preventDefault();
             var formData = new FormData($('#confirmarPagamentoForm')[0]);
             let id = $(this).data('id');
             $.ajax({
-                type: 'post',
+                type: 'POST',
                 url: `confirmar_compra/${id}`,
                 data: formData,
                 cache: false,
@@ -171,7 +180,23 @@
                 contentType: false,
                 processData: false,
                 success: function(data) {
-
+                    if (data.error) {
+                        //e.preventDefault();
+                        setTimeout(function() {
+                            //$('#Modal').modal('show'); //caso erro, puxar a tela 
+                            $.each(data.error, function(index, element) {
+                                $('.error_' + index).prop('hidden', false);
+                                $('.error_' + index).text(element);
+                            });
+                        }, 100);
+                    } else{
+                        $('#Modal').modal('toggle');
+                        $('#mensg_sucesso').prop('hidden', false);
+                        
+                        setTimeout(function() {
+                            window.location.replace('/home');
+                        },10000);
+                    }
                 }
             });
         })

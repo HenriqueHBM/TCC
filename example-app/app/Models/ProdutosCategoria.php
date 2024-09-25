@@ -12,6 +12,6 @@ class ProdutosCategoria extends Model
     public $primaryKey = 'id_categoria';
     public $timestamps = false;
     public function produtos() {
-        return $this->hasMany(Produto::class, 'id_categoria', 'id_categoria');
+        return $this->hasMany(Produto::class, 'id_categoria', 'id_categoria')->where('qtde', '>', 0);
     }
 }

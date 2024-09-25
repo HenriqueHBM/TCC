@@ -3,7 +3,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body d-flex">
-    <form action="" id="confirmarPagamentoForm" method="post" class="w-100 d-flex">
+    <form action="" id="confirmarPagamentoForm" method="POST" class="w-100 d-flex">
         @csrf
         <input type="hidden" name="id_produto" id="id_produto" value={{ $produto->id_produto }}>
         <div class="m-2 w-50">
@@ -22,6 +22,7 @@
                     Forma de Pagamento:
                 </span>
                 <div class="caixa_pagamento mt-1 card_produto">
+                    <!-- Os valores desses inputs sao os id da tabela de pagamentos --> 
                     <input name="tp_pagamento" type="radio" id="val_boleto" class="mudar_input_pagamento val_desconto"
                         value="3">
                     <label for="val_boleto" class="mudar_label_pagamento">Boleto</label>
@@ -43,6 +44,7 @@
                     Quantidade Desejada
                     <input type="number" name="qtde_desejada" id="qtde_desejada" class="form-control card_produto"
                         value="1" min='1' max='{{ $produto->qtde }}'>
+                        <p class=" alert error_qtde_desejada alert-danger font" role="alert" hidden></p>
                 </div>
                 <span>
                     <h6 class="mt-1 ms-2 text-secondary" id="qtde_estoque">(Qtde. Estoque: {{ $produto->qtde }})</h6>
@@ -63,7 +65,7 @@
                 <div class="d-flex">
                     <div class="d-flex mt-2">
                         <img src="https://github.com/HenriqueHBM.png" alt="Foto Perfil"
-                            class="rounded-circle d-inline border" width="85" height="85">
+                            class="rounded-circle d-inline border card_produto" width="85" height="85">
                     </div>
                     <div class="p-3 pt-4">
                         <b>Vendedor:</b><br>

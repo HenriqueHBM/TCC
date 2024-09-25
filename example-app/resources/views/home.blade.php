@@ -121,7 +121,7 @@
                 </div>
 
                 {{-- Separando Por Categorias e as 5 primeiras --}}
-                @foreach ($tipos_prod->where('id_tipos_produtos', '<=', 5) as $separador)
+                @foreach ($tipos_prod->where('id_categoria', '<=', 5) as $separador)
                     <div class="my-2">
                         <div class="my-4 p-4 rounded" style="background-color:rgb(255, 246, 246) ">
                             <div class="row">
