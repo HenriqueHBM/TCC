@@ -1,199 +1,293 @@
---- ( colocar primeiro "ID" para foreign e primary keys);
-
-create table produtos_categorias(
-id_categoria int auto_increment primary key ,
-categoria varchar(200) not null,
-created_at date not null,
-icone varchar(255) not null
-);
-
-create table pagamentos(
-    id_pagamento int auto_increment primary key ,
-    tipo_pag varchar(255) not null,
-    desconto int not null,
-    created_at datetime ,
-    updated_at datetime not null,
-    deleted_at datetime 
-);
-
-create table ceps(
-    id_cep int auto_increment primary key ,
-    cep varchar(10) not null,
-    cidade varchar(255),
-    sigla varchar(20) not null
-);
+-- bd_tcc.area_atuacaos definition
+CREATE TABLE `area_atuacaos` (
+`id_area_atuacao` int AUTO_INCREMENT,
+`area` varchar(255) NOT NULL,
+`descricao` varchar(255) DEFAULT NULL,
+PRIMARY KEY (`id_area_atuacao`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+-- bd_tcc.ceps definition
 
-create table enderecos(
-    id_endereco int auto_increment primary key ,
-    rua varchar(255) not null,
-    numero_residencia int not null,
-    id_cep int not null,
-    bairro varchar(255) not null,
-    complemento varchar (255) null,
-    foreign key (id_cep) references ceps(id_cep)
-);
+CREATE TABLE `ceps` (
+`id_cep` int AUTO_INCREMENT,
+`cep` varchar(10) NOT NULL,
+`cidade` varchar(255) DEFAULT NULL,
+`sigla` varchar(20) NOT NULL,
+PRIMARY KEY (`id_cep`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-create table usuarios(
-    id_usuario int auto_increment primary key ,
-    nome varchar(255) not null,
-    data_nascimento date not null,
-    telefone varchar(20) ,
-    email varchar(255) not null,
-    cpf varchar(14) not null,
-    status_login boolean,
-    id_endereco int,
-    password varchar(255) not null,
-    created_at date,
-    updated_at date not null,
-    foreign key (id_endereco) references enderecos(id_endereco)
-);
 
-create table produtos(
-id_produto int auto_increment primary key ,
-produto varchar(255) not null,
-preco float not null,
-qtde int not null,
-data_vencimento date not null,
-codigo text not null,
-created_at date ,
-updated_at date not null,
-deleted_at date,
-descricao text not null,
-id_categoria int not null,
-id_vendedor int not null,
-foreign key (id_categoria) references produtos_categorias(id_categoria),
-foreign key (id_vendedor) references usuarios(id_usuario)
-);
+-- bd_tcc.pagamentos definition
 
-create table produtos_imagens(
-id_imagem int auto_increment primary key ,
-id_produto int not null,
-imagem varchar(255) not null,
-created_at date ,
-deleted_at date ,
-foreign key (id_produto) references produtos(id_produto)
-);
-create table compras(
-    id_compra int auto_increment primary key,
-    id_usuario int,
-    id_produto int,
-    id_pagamento int,
-    created_at datetime,
-    updated_at datetime not null,
-    deleted_at datetime,
-    qtde int not null,
-    km int not null,
-    valor_frete decimal(10,2) not null,
-    valor_total decimal(10,2) not null,
-    foreign key (id_usuario) references usuarios(id_usuario),
-    foreign key (id_produto) references produtos(id_produto),
-    foreign key (id_pagamento) references pagamentos(id_pagamento)
-);
+CREATE TABLE `pagamentos` (
+`id_pagamento` int AUTO_INCREMENT,
+`tipo_pag` varchar(255) NOT NULL,
+`desconto` int NOT NULL,
+`created_at` datetime DEFAULT NULL,
+`updated_at` datetime NOT NULL,
+`deleted_at` datetime DEFAULT NULL,
+PRIMARY KEY (`id_pagamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- bd_tcc.produtos_categorias definition
+
+CREATE TABLE `produtos_categorias` (
+`id_categoria` int AUTO_INCREMENT,
+`categoria` varchar(200) NOT NULL,
+`created_at` date NOT NULL,
+`icone` varchar(255) NOT NULL,
+PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- bd_tcc.enderecos definition
+
+CREATE TABLE `enderecos` (
+`id_endereco` int AUTO_INCREMENT,
+`rua` varchar(255) NOT NULL,
+`numero_residencia` int NOT NULL,
+`id_cep` int NOT NULL,
+`bairro` varchar(255) NOT NULL,
+`complemento` varchar(255) DEFAULT NULL,
+`updated_at` date DEFAULT NULL,
+`created_at` date DEFAULT NULL,
+PRIMARY KEY (`id_endereco`),
+KEY `id_cep` (`id_cep`),
+CONSTRAINT `enderecos_ibfk_1` FOREIGN KEY (`id_cep`) REFERENCES `ceps` (`id_cep`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- bd_tcc.empresas definition
+
+CREATE TABLE `empresas` (
+`id_empresa` int AUTO_INCREMENT,
+`nome` varchar(255) NOT NULL,
+`cnpj` varchar(255) NOT NULL,
+`id_area_atuacao` int NOT NULL,
+`id_endereco` int DEFAULT NULL,
+`descricao` varchar(255) NOT NULL,
+`created_at` datetime DEFAULT NULL,
+`updated_at` datetime DEFAULT NULL,
+`deleted_at` datetime DEFAULT NULL,
+PRIMARY KEY (`id_empresa`),
+KEY `id_area_atuacao` (`id_area_atuacao`),
+KEY `id_endereco` (`id_endereco`),
+CONSTRAINT `empresas_ibfk_1` FOREIGN KEY (`id_area_atuacao`) REFERENCES `area_atuacaos` (`id_area_atuacao`),
+CONSTRAINT `empresas_ibfk_2` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- bd_tcc.usuarios definition
+
+CREATE TABLE `usuarios` (
+`id_usuario` int AUTO_INCREMENT,
+`nome` varchar(255) NOT NULL,
+`data_nascimento` date NOT NULL,
+`telefone` varchar(20) DEFAULT NULL,
+`email` varchar(255) NOT NULL,
+`cpf` varchar(14) NOT NULL,
+`status_login` tinyint(1) DEFAULT NULL,
+`id_endereco` int DEFAULT NULL,
+`password` varchar(255) NOT NULL,
+`created_at` date DEFAULT NULL,
+`updated_at` date NOT NULL,
+`deleted_at` date DEFAULT NULL,
+`id_empresa` int DEFAULT NULL,
+PRIMARY KEY (`id_usuario`),
+KEY `id_endereco` (`id_endereco`),
+KEY `id_fk_empresa` (`id_empresa`),
+CONSTRAINT `id_fk_empresa` FOREIGN KEY (`id_empresa`) REFERENCES `empresas` (`id_empresa`),
+CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- bd_tcc.eventos definition
 
 CREATE TABLE `eventos` (
-    `id_evento` int AUTO_INCREMENT,
-    `data` date DEFAULT NULL,
-    `horario_inicio` time DEFAULT NULL,
-    `horario_fim` time DEFAULT NULL,
-    `id_usuario` int NOT NULL,
-    `id_endereco` int NOT NULL,
-    `descricao` varchar(255) NOT NULL,
-    `imagem` varchar(255) DEFAULT NULL,
-    `created_at` date DEFAULT NULL,
-    `updated_at` date DEFAULT NULL,
-    `deleted_at` date DEFAULT NULL,
-    `titulo_evento` varchar(100) DEFAULT NULL,
-    PRIMARY KEY (`id_evento`),
-    KEY `id_usuario` (`id_usuario`),
-    KEY `id_endereco` (`id_endereco`),
-    CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-    CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`)
-) 
-
-create table produtos_eventos(
-id_produto_evento int key auto_increment,
-id_evento int not null,
-id_produto int not null,
-foreign key (id_evento) references eventos(id_evento),
-foreign key (id_produto) references produtos(id_produto)
-)
+`id_evento` int AUTO_INCREMENT,
+`data` date DEFAULT NULL,
+`horario_inicio` time DEFAULT NULL,
+`horario_fim` time DEFAULT NULL,
+`id_usuario` int NOT NULL,
+`id_endereco` int NOT NULL,
+`descricao` varchar(255) NOT NULL,
+`imagem` varchar(255) DEFAULT NULL,
+`created_at` date DEFAULT NULL,
+`updated_at` date DEFAULT NULL,
+`deleted_at` date DEFAULT NULL,
+`titulo_evento` varchar(100) DEFAULT NULL,
+PRIMARY KEY (`id_evento`),
+KEY `id_usuario` (`id_usuario`),
+KEY `id_endereco` (`id_endereco`),
+CONSTRAINT `eventos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+CONSTRAINT `eventos_ibfk_2` FOREIGN KEY (`id_endereco`) REFERENCES `enderecos` (`id_endereco`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-create table area_atuacaos(
-id_area_atuacao int primary key not null auto_increment,
-area varchar(255) not null,
-descricao varchar(255)
-);
+-- bd_tcc.produtos definition
 
-create table empresas(
-id_empresa int primary key not null auto_increment,
-nome varchar(255) not null,
-cnpj varchar(255) not null,
-id_area_atuacao int not null,
-id_endereco int,
-descricao varchar(255) not null,
-created_at datetime,
-updated_at datetime,
-deleted_at datetime,
-foreign key (id_area_atuacao) references area_atuacaos(id_area_atuacao),
-foreign key (id_endereco) references enderecos(id_endereco)
-);
-
-alter table usuarios add column deleted_at date;
-
-alter table usuarios add column id_empresa int ;
-
-ALTER TABLE usuarios  ADD CONSTRAINT id_fk_empresa
-FOREIGN KEY(id_empresa) REFERENCES empresas(id_empresa);
-
-alter table produtos change column id_vendedor id_usuario int ;
-
-alter table enderecos add column updated_at date;
-alter table enderecos add column created_at date;
+CREATE TABLE `produtos` (
+`id_produto` int AUTO_INCREMENT,
+`produto` varchar(255) NOT NULL,
+`preco` float NOT NULL,
+`qtde` int NOT NULL,
+`data_vencimento` date NOT NULL,
+`codigo` text NOT NULL,
+`created_at` date DEFAULT NULL,
+`updated_at` date NOT NULL,
+`deleted_at` date DEFAULT NULL,
+`descricao` text NOT NULL,
+`id_categoria` int NOT NULL,
+`id_usuario` int DEFAULT NULL,
+PRIMARY KEY (`id_produto`),
+KEY `id_categoria` (`id_categoria`),
+KEY `id_vendedor` (`id_usuario`),
+CONSTRAINT `produtos_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `produtos_categorias` (`id_categoria`),
+CONSTRAINT `produtos_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-alter table compras drop column km;
-alter table compras drop column valor_frete;
+-- bd_tcc.produtos_eventos definition
 
-<!-- Ex. add index alter table tb_produtores add INDEX tipo_produtor_id_index (tipo_produtor); -->
+CREATE TABLE `produtos_eventos` (
+`id_produto_evento` int AUTO_INCREMENT,
+`id_evento` int NOT NULL,
+`id_produto` int NOT NULL,
+PRIMARY KEY (`id_produto_evento`),
+KEY `id_evento` (`id_evento`),
+KEY `id_produto` (`id_produto`),
+CONSTRAINT `produtos_eventos_ibfk_1` FOREIGN KEY (`id_evento`) REFERENCES `eventos` (`id_evento`),
+CONSTRAINT `produtos_eventos_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id_produto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into ceps(id_cep, cep, cidade, sigla)
-values(1,'85884-000', 'Medianeira', 'PR'),
-(2, '01153-000', 'São Paulo', 'SP'),
-(3,' 85892-000', 'Santa Helena', 'PR');
 
-insert into enderecos(id_endereco, id_cep, rua, numero_residencia, complemento, bairro)
-values (1, 1, 'Josefina','1569', 'Casa', 'Joses' ),
-(2, 2, 'Palmeiras', '7902', 'Predio Apartamento: 22', 'Carvalhos' ),
-(3, 3, 'São Jose', '2357', 'Casa', 'Itaipu');
+-- bd_tcc.produtos_imagens definition
 
-insert into usuarios (nome, data_nascimento, telefone, email, cpf, status_login, id_endereco, password, created_at, updated_at)
-values ('Carlos', '2000-02-17', '(00)00000-0000', 'carlimdomorro@gmail.com', 346236423743,  1, 1, '12345678', '2023-12-21', '2023-12-21'),
-('Maria', '2003-11-21', '(00)00000-0000', 'marialinda@gmail.com', 2374577824653, 1, 2, 'marialinda123', '2023-12-21', '2023-12-21'),
-('Bruno', '1996-03-14', '(00)00000-0000', 'bruno@gmail.com', 423462722346,  0, 3, 'bruno1722', '2023-12-21', '2023-12-21');
+CREATE TABLE `produtos_imagens` (
+`id_imagem` int AUTO_INCREMENT,
+`id_produto` int NOT NULL,
+`imagem` varchar(255) NOT NULL,
+`created_at` date DEFAULT NULL,
+`deleted_at` date DEFAULT NULL,
+PRIMARY KEY (`id_imagem`),
+KEY `id_produto` (`id_produto`),
+CONSTRAINT `produtos_imagens_ibfk_1` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id_produto`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into produtos_categorias(id_categoria, categoria, created_at, icone)
-values(1, 'Comidas', '2023-08-05', 'hamburguer.png'),
-(2, 'Bebidas', '2023-08-05', 'vinho.png');
 
-insert into produtos(id_produto, produto, preco, qtde , data_vencimento, codigo, created_at, updated_at, descricao, id_categoria, id_usuario)
-values (1, 'Vinho', 69.99, 1, '2023-09-10', 2135235, '2023-08-05', '2023-08-05', 'Vinho de boa qualidade', 2, 1),
-(2, 'MC Feliz', 20, 5, '2025-03-17', 3245267, '2023-08-05', '2023-08-05', 'MC Feliz que dura bastante tempo', 1, 2),
-(3, 'Pizza Familia', 70, 1, '2023-10-20', 234627,'2023-08-05', '2023-08-05', 'Pizza de Pepperoni tamanho familia', 1, 1);
+-- bd_tcc.compras definition
 
-insert into produtos_imagens (id_imagem, id_produto, imagem, created_at )
-values (1, 1, 'preto.jpg', '2023-08-02'),
-(2,2, 'McLanche.webp', '2023-08-02'),
-(3,3, 'pizza.jpg', '2023-10-18');
+CREATE TABLE `compras` (
+`id_compra` int AUTO_INCREMENT,
+`id_usuario` int DEFAULT NULL,
+`id_produto` int DEFAULT NULL,
+`id_pagamento` int DEFAULT NULL,
+`created_at` datetime DEFAULT NULL,
+`updated_at` datetime NOT NULL,
+`deleted_at` datetime DEFAULT NULL,
+`qtde` int NOT NULL,
+`valor_total` decimal(10,2) NOT NULL,
+PRIMARY KEY (`id_compra`),
+KEY `id_usuario` (`id_usuario`),
+KEY `id_produto` (`id_produto`),
+KEY `id_pagamento` (`id_pagamento`),
+CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`id_produto`) REFERENCES `produtos` (`id_produto`),
+CONSTRAINT `compras_ibfk_3` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamentos` (`id_pagamento`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-insert into pagamentos (id_pagamento, tipo_pag, desconto, created_at, updated_at )
-values (1, 'Pix', 10, '2023-10-03', '2023-10-03'),
-(2, 'Cartão', 4, '2023-08-21','2023-08-21'),
-(3, 'Boleto', 7, '2023-08-21','2023-08-21');
 
-insert into compras(id_compra, id_usuario, id_produto, id_pagamento, created_at, updated_at, qtde, km, valor_frete, valor_total)
-values(1, 1, 1, 1, '2023-11-29','2023-11-29', 1, 5, 15.50, 85.50),
-(2, 2, 2, 2, '2023-11-29','2023-11-29', 2, 2, 7, 47),
-(3, 3, 3, 3, '2023-11-29','2023-11-29', 1, 1, 3.50, 73.50);
+<!-- Só algumas cidades-->
+INSERT INTO ceps (cep, cidade, sigla) VALUES
+('80010-000', 'Curitiba', 'PR'),
+('84010-000', 'Ponta Grossa', 'PR'),
+('85010-000', 'Guarapuava', 'PR'),
+('86010-000', 'Londrina', 'PR'),
+('87010-000', 'Maringá', 'PR'),
+('85810-000', 'Cascavel', 'PR'),
+('84160-000', 'Arapongas', 'PR'),
+('84170-000', 'Arapoti', 'PR'),
+('84900-000', 'Ibiporã', 'PR'),
+('85884-000','Medianeira','PR'),
+('83210-000', 'Pinhais', 'PR'),
+('85892-000','Santa Helena','PR'),
+
+('01000-000', 'São Paulo', 'SP'),
+('01100-000', 'São Bernardo do Campo', 'SP'),
+('01200-000', 'Santos', 'SP'),
+('01300-000', 'Campinas', 'SP'),
+('01400-000', 'São José dos Campos', 'SP'),
+('01500-000', 'Ribeirão Preto', 'SP'),
+('01600-000', 'Sorocaba', 'SP'),
+('01700-000', 'São José', 'SP'),
+('01800-000', 'Bauru', 'SP'),
+('01900-000', 'Mauá', 'SP'),
+
+('20000-000', 'Rio de Janeiro', 'RJ'),
+('20100-000', 'Niterói', 'RJ'),
+('20200-000', 'São Gonçalo', 'RJ'),
+('20300-000', 'Duque de Caxias', 'RJ'),
+('20400-000', 'Nova Iguaçu', 'RJ'),
+('20500-000', 'Volta Redonda', 'RJ'),
+('20600-000', 'Macaé', 'RJ'),
+('20700-000', 'Cabo Frio', 'RJ'),
+('20800-000', 'Teresópolis', 'RJ'),
+('20900-000', 'Petrópolis', 'RJ'),
+
+('88000-000', 'Florianópolis', 'SC'),
+('88100-000', 'Joinville', 'SC'),
+('88200-000', 'Blumenau', 'SC'),
+('88300-000', 'Itajaí', 'SC'),
+('88400-000', 'São José', 'SC'),
+('88500-000', 'Lages', 'SC'),
+('88600-000', 'Jaraguá do Sul', 'SC'),
+('88700-000', 'Criciúma', 'SC'),
+('88800-000', 'Balneário Camboriú', 'SC'),
+('88900-000', 'Tubarao', 'SC'),
+
+('90000-000', 'Porto Alegre', 'RS'),
+('90100-000', 'Caxias do Sul', 'RS'),
+('90200-000', 'Pelotas', 'RS'),
+('90300-000', 'Santa Maria', 'RS'),
+('90400-000', 'Gravataí', 'RS'),
+('90500-000', 'Novo Hamburgo', 'RS'),
+('90600-000', 'São Leopoldo', 'RS'),
+('90700-000', 'Bagé', 'RS'),
+('90800-000', 'Rio Grande', 'RS'),
+('90900-000', 'Uruguaiana', 'RS');
+
+INSERT INTO bd_tcc.pagamentos (tipo_pag,desconto,created_at,updated_at,deleted_at) VALUES
+('Pix',4,'2023-10-03 00:00:00','2023-10-03 00:00:00',NULL),
+('Cartão',2,'2023-08-21 00:00:00','2023-08-21 00:00:00',NULL),
+('Dinheiro',3,'2023-08-21 00:00:00','2023-08-21 00:00:00',NULL);
+
+INSERT INTO bd_tcc.produtos_categorias (categoria,created_at,icone) VALUES
+('Comidas','2023-08-05','hamburguer.png'),
+('Bebidas','2023-08-05','vinho.png');
+
+INSERT INTO bd_tcc.enderecos (rua,numero_residencia,id_cep,bairro,complemento,updated_at,created_at) VALUES
+('Josefina',1569,1,'Joses','Casa',NULL,NULL),
+('Palmeiras',7902,2,'Carvalhos','Predio Apartamento: 22',NULL,NULL),
+('São Jose',2357,3,'Itaipu','Casa',NULL,NULL);
+
+INSERT INTO bd_tcc.empresas (nome,cnpj,id_area_atuacao,id_endereco,descricao,created_at,updated_at,deleted_at) VALUES
+('Empresa Teste','1315',1,1,'a',NULL,NULL,NULL);
+
+INSERT INTO bd_tcc.usuarios (nome,data_nascimento,telefone,email,cpf,status_login,id_endereco,password,created_at,updated_at,deleted_at,id_empresa) VALUES
+('Carlos','2000-02-17','(00)00000-0000','carlimdomorro@gmail.com','346236423743',1,1,'12345678','2023-12-21','2023-12-21',NULL,1),
+('Maria','2003-11-21','(00)00000-0000','marialinda@gmail.com','2374577824653',1,2,'marialinda123','2023-12-21','2023-12-21',NULL,NULL),
+('Bruno','1996-03-14','(00)00000-0000','bruno@gmail.com','423462722346',0,3,'bruno1722','2023-12-21','2023-12-21',NULL,NULL),
+('Henrique','2005-08-03','45998493946','henriqueteste@gmail.com','12345678900',1,NULL,'$2y$10$PMP57uWN/k1LAg9Q.D3GVOmL1L1kAJw6kZtRVYRjoUnNegbIOvVeW','2024-09-09','2024-09-09',NULL,NULL);
+
+INSERT INTO bd_tcc.produtos (produto,preco,qtde,data_vencimento,codigo,created_at,updated_at,deleted_at,descricao,id_categoria,id_usuario) VALUES
+('Vinho',69.99,3,'2023-09-10','2135235','2023-08-05','2024-09-25',NULL,'Vinho de boa qualidade',2,1),
+('MC Feliz',20.0,5,'2025-03-17','3245267','2023-08-04','2023-08-05',NULL,'MC Feliz que dura bastante tempo',1,2),
+('Pizza Familia',70.0,2,'2023-10-20','234627','2023-08-05','2024-09-24',NULL,'Pizza de Pepperoni tamanho familia',1,1);
+
+INSERT INTO bd_tcc.compras (id_usuario,id_produto,id_pagamento,created_at,updated_at,deleted_at,qtde,valor_total) VALUES
+(1,1,1,'2023-11-29 00:00:00','2023-11-29 00:00:00',NULL,1,85.50),
+(2,2,2,'2023-11-29 00:00:00','2023-11-29 00:00:00',NULL,2,47.00),
+(3,3,3,'2023-11-29 00:00:00','2023-11-29 00:00:00',NULL,1,73.50),
+(4,1,1,'2024-09-24 08:19:07','2024-09-24 08:19:07',NULL,1,62.99);
