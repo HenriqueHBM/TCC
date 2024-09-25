@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
@@ -44,6 +45,18 @@ class RegisteredUserController extends Controller
             'cpf' => ['required', 'unique:usuarios','min:11' ,'max:11'],
         ]);
 
+        $foto = '';
+        if(empty($request->perfil)){
+            $foto = 'default_perfil.png';
+        }else{
+            $uniq = uniqid();
+
+                // criando um nome para o arquivo, pegando o nome do arquivo, adicionando valor unico e a extenxao original do arquivo
+                $nomeArquivo = 'ID'. $request->perfil->getClientOriginalName(). $uniq.'.'.$request->perfil->getClientOriginalExtension();
+                Storage::disk('public')->put('img_perfils/'.$nomeArquivo, file_get_contents($request->perfil));
+                $foto = $nomeArquivo;
+        }
+        
         
         $user = User::create([
             'nome' => $request->name,
@@ -52,6 +65,7 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'cpf' => $request->cpf,
             'status_login' => 1,
+            'foto_perfil' => $foto,
             'password' => Hash::make($request->password),
         ]);
 

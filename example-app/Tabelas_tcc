@@ -199,6 +199,8 @@ CONSTRAINT `compras_ibfk_3` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamentos`
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
+alter table usuarios add column foto_perfil varchar(255); 
+
 <!-- Só algumas cidades-->
 INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('80010-000', 'Curitiba', 'PR'),
