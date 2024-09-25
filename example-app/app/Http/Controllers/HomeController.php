@@ -12,8 +12,11 @@ class HomeController extends Controller
 {
     public function home()
     {
-        $produtos = Produto::get();
-        $tipos_prod = ProdutosCategoria::limit(7)->get();
+        $produtos = Produto::where('qtde', '>', 0)->orderBy('created_at', 'desc')->get();
+        $tipos_prod = ProdutosCategoria::whereHas('produtos', function($q){
+            $q->where('qtde', '>', 0);
+        })
+        ->limit(7)->get();
         return view('home',compact('produtos','tipos_prod'));
         
     }
