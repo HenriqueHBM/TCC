@@ -26,7 +26,8 @@ class User extends Authenticatable
         'email',
         'cpf',
         'data_cadastro',
-        'status_login'
+        'status_login',
+        'foto_perfil'
     ];
 
     /**
