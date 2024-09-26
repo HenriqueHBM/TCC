@@ -64,7 +64,7 @@
             <div class="border p-2 card_produto">
                 <div class="d-flex">
                     <div class="d-flex mt-2">
-                        <img src="https://github.com/HenriqueHBM.png" alt="Foto Perfil"
+                        <img src="{{ url('storage/img_perfils/'.$produto->usuario->foto_perfil) }}" alt="Foto Perfil"
                             class="rounded-circle d-inline border card_produto" width="85" height="85">
                     </div>
                     <div class="p-3 pt-4">

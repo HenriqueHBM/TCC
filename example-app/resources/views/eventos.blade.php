@@ -18,7 +18,7 @@
                     <div class="card mb-3 w-100">
                         <div class="row">
                             <div class="col-md-4">
-                                <img src="{{ asset('img_folders/' . $evento->imagem) }}"
+                                <img src="{{ url('storage/banners_eventos/' . $evento->imagem) }}"
                                     class="img-fluid rounded-start h-100" alt="Banner Evento">
                             </div>
                             <div class="col-md-8">
