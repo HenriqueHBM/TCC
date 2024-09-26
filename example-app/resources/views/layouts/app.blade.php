@@ -46,15 +46,6 @@
                     <div class="navbar-nav ">
                         <a href="/distribuicoes" class="nav-link text-light">Distribuições</a>
                         <a href="/eventos" class="nav-link text-light">Eventos</a>
-                        
-                        @auth
-                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
-                        @else
-                            <a href="/login" class="nav-link text-light">Anunciar</a>
-                        @endauth
-                        
-                        
-                        
                     </div>
 
                     {{-- Campo de Pesquisa --}}
@@ -71,14 +62,14 @@
                             </div>
                         </form>
                     </div>
-
                     <div class="navbar-nav">
                         @auth
-                            <a href="/minhas_entregas" class="nav-link text-light">Minhas Entregas</a>
-                            <form action="/logout" method="post">
-                                @csrf
-                                <a href="/logout" class="nav-link text-light" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
-                            </form>
+                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                            <button class="btn border-0 btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+                                <img src="{{ asset('icons/menu.png') }}" alt="menu" width="20" height="20">
+                            </button>
+                        @else
+                            <a href="/login" class="nav-link text-light">Anunciar</a>
                         @endauth
                         @guest
                             <a href="/login" class="nav-link text-light">Entrar</a>
@@ -93,6 +84,32 @@
         <div id="content-wrap">
             <!-- all other page content -->
             @yield('content')
+            @auth
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header mt-2">
+                        <h5 id="offcanvasRightLabel">Ola {{ Auth::user()->nome }} &#128512;</h5>
+                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="offcanvas-body">
+                    <ul>
+                        <li class="h4 mb-3">
+                            Editar Perfil
+                        </li>
+                        <li class="h4 mb-3">
+                            <a href="/minhas_entregas" class="nav-link ">Minhas Entregas</a>
+                        </li>
+                    </ul>
+                    </div>
+                    <hr>
+                    <div class="p-2 pt-0">
+                        <form action="/logout" method="post">
+                            @csrf
+                            <a href="/logout" class="nav-link p-2 btn bg-danger text-light" onclick="event.preventDefault(); this.closest('form').submit();" >Sair</a>
+                        </form>
+                    </div>
+                </div>
+            @endauth
         </div>
         {{-- style="bottom: 0; width: 100%;"> --}}
         {{-- position-absolute top-100 w-100 --}}
