@@ -52,7 +52,7 @@ class RegisteredUserController extends Controller
             $uniq = uniqid();
 
                 // criando um nome para o arquivo, pegando o nome do arquivo, adicionando valor unico e a extenxao original do arquivo
-                $nomeArquivo = 'ID'. $request->perfil->getClientOriginalName(). $uniq.'.'.$request->perfil->getClientOriginalExtension();
+                $nomeArquivo = 'ID'. $uniq.'.'.$request->perfil->getClientOriginalExtension();
                 Storage::disk('public')->put('img_perfils/'.$nomeArquivo, file_get_contents($request->perfil));
                 $foto = $nomeArquivo;
         }

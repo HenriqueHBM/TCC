@@ -40,7 +40,7 @@
                 <textarea class="rounded border-2 p-3 mb-3 card_produto textarea_produto w-100" rows="4" readonly>{{ $linha->descricao }}</textarea>
                 <div class="p-2  rounded border-2 card_produto mb-3 d-flex">
                     <div class="d-flex">
-                        <img src="https://github.com/HenriqueHBM.png" alt="a" class="rounded-circle d-inline border"
+                        <img src="{{ url('storage/img_perfils/'.$linha->usuario->foto_perfil) }}" alt="a" class="rounded-circle d-inline border border border-3 card_produto"
                             width="100" height="100">
                     </div>
                     <div class="p-3 pt-4">
