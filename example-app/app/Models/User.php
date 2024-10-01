@@ -46,4 +46,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function termos(){
+        return $this->hasMany(TermosAssinado::class, 'id_usuario', 'id');
+    }
 }

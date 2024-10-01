@@ -193,9 +193,14 @@
                         $('#Modal').modal('toggle');
                         $('#mensg_sucesso').prop('hidden', false);
                         
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+
                         setTimeout(function() {
-                            window.location.replace('/home');
-                        },10000);
+                            window.location.reload(true);
+                        }, 1000);
                     }
                 }
             });
