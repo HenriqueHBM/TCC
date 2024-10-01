@@ -94,7 +94,7 @@
                     <div class="offcanvas-body">
                     <ul>
                         <li class="h4 mb-3">
-                            Editar Perfil
+                            <a href="/perfil" class="nav-link ">Perfil</a>
                         </li>
                         <li class="h4 mb-3">
                             <a href="/minhas_entregas" class="nav-link ">Minhas Entregas</a>

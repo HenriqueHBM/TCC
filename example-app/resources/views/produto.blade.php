@@ -4,7 +4,7 @@
 <div class="text-center align-content-center w-100 text-white card_produto" hidden id="mensg_sucesso" style="height:60px; background-color:rgb(0, 186, 71)">
     <h3>Compra Efetuada Com Sucesso</h3>
 </div>
-    <main style="padding:100px">
+    <main class="main">
         <div class="container mt-4 d-flex">
             <div class="d-flex">
                 <div class="d-inline">

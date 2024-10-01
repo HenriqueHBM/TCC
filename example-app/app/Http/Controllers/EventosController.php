@@ -22,8 +22,8 @@ class EventosController extends Controller
         $ceps = Cep::get();
         $eventos = Evento::get();
         
-        if(isset(Auth::user()->id_usuario)) {
-            $produtos = Produto::where("id_usuario", Auth::user()->id_usuario)->get();
+        if(isset(Auth::user()->id)) {
+            $produtos = Produto::where("id_usuario", Auth::user()->id)->get();
         }
 
 
@@ -59,7 +59,7 @@ class EventosController extends Controller
             $evento->data = $r->data;
             $evento->horario_inicio = $r->hora_ini;
             $evento->horario_fim = $r->horario_fim;
-            $evento->id_usuario = Auth::user()->id_usuario;
+            $evento->id_usuario = Auth::user()->id;
             $evento->id_endereco = $endereco->id_endereco;
             $evento->descricao = $r->descricao;
             if(isset($r->imagem)){
