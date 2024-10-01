@@ -10,6 +10,7 @@ use App\Http\Controllers\MinhasEntregasController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CadastrarEnderecoController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\PerfilController;
 
 //Rota Controller (faz aparecer a pag. inicial), Ex: [Rota::get == pegando(/rotaURL, [Controller::class, funcao])]
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -45,6 +46,9 @@ Route::middleware(['auth'])->group(function(){
     //Rota para confirmar compra
     Route::post('produto/confirmar_compra/{id}', [ProdutoController::class, 'confirmar_compra']);
 
+    //Rotas para do perfil
+    Route::get('/perfil', [PerfilController::class, 'perfil']); 
+    Route::post('/perfil/save_perfil', [PerfilController::class, 'save_perfil']); 
     
 });
 Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);

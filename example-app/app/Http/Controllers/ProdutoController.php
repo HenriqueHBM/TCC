@@ -40,7 +40,7 @@ class ProdutoController extends Controller
         else {
 
             $compra = new Compra();
-            $compra->id_usuario = Auth::user()->id_usuario;
+            $compra->id_usuario = Auth::user()->id;
             $compra->id_produto = $id;
             $compra->id_pagamento = $r->tp_pagamento;
             $compra->qtde = $r->qtde_desejada;
