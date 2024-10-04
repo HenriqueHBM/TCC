@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
 
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
+    Route::get('/eventos/termo_evento', [EventosController::class, 'termo_evento']);
+    Route::post('/eventos/confirmarcao_termo', [EventosController::class, 'confirmarcao_termo']);
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
 

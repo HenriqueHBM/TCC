@@ -315,3 +315,6 @@ data_assinatura datetime not null,
 foreign key (id_usuario) references usuarios(id),
 foreign key (id_termo) references termos(id_termo)
 );
+
+alter table termos add column descricao text not null ;
+alter table termos_assinados change column assinatura  assinatura text;

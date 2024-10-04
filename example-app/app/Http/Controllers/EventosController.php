@@ -7,6 +7,9 @@ use App\Models\Endereco;
 use App\Models\Evento;
 use App\Models\Produto;
 use App\Models\ProdutosEvento;
+use App\Models\Termo;
+use App\Models\TermosAssinado;
+use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,13 +24,14 @@ class EventosController extends Controller
         $produtos = null;
         $ceps = Cep::get();
         $eventos = Evento::get();
-        
+        $termo = Termo::where('termo', 'Termo de Responsabilidade para Cadastro de Evento')->first();
+
         if(isset(Auth::user()->id)) {
             $produtos = Produto::where("id_usuario", Auth::user()->id)->get();
         }
 
 
-        return view("eventos", compact('ceps', 'produtos', 'eventos'));
+        return view("eventos", compact('ceps', 'produtos', 'eventos', 'termo'));
     }
 
     public function save_cadastro(Request $r)
@@ -89,5 +93,45 @@ class EventosController extends Controller
     public function visualizar_evento(Request $request, $id){
         $evento = Evento::findOrFail($id);
         return view('visualizar_evento', compact("evento"));
+    }
+
+    public function termo_evento(){
+        $termo = Termo::where('termo', 'Termo de Responsabilidade para Cadastro de Evento')->first();
+
+        $search = ['[Nome Completo]', '[número do CPF]'];
+        $replace = [Auth::user()->nome, Auth::user()->cpf];
+        $teste = str_replace($search, $replace, $termo->descricao);
+
+        $termo_ass = str_replace(['@@'], ["<br>"], $teste);
+
+        return $termo_ass;
+    }
+
+    public function confirmarcao_termo(Request $r){
+        $validator = Validator::make($r->all(), [
+            'assinatura' => 'required|string'
+        ]);
+
+        if ($validator->fails()) {
+            return Response::json(array('error' => $validator->getMessageBag()->toArray()));
+        } else {
+
+            $data = $r->assinatura;
+            $data = str_replace('data:image/png;base64', '', $data);
+            $data = str_replace(' ', '+', $data);
+            $decodeData = base64_decode($data);
+
+            $uniqid = uniqid();
+            $assinaturaFile = 'assinatura_termo_'.$uniqid.'.png';
+            Storage::disk('public')->put('assinatura_termos/'.$assinaturaFile, $decodeData);
+            
+
+            $termo = new TermosAssinado();
+            $termo->id_usuario = Auth::user()->id;
+            $termo->id_termo = $r->id_termo;
+            $termo->assinatura = $assinaturaFile;
+            $termo->data_assinatura = Carbon::now();
+            $termo->save();
+        }        
     }
 }
