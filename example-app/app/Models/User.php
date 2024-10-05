@@ -54,4 +54,7 @@ class User extends Authenticatable
     public function termos_evento(){
         return $this->hasMany(TermosAssinado::class,'id_usuario','id')->where('id_termo', 2);
     }
+    public function termos_compra(){
+        return $this->hasMany(TermosAssinado::class,'id_usuario','id')->where('id_termo', 3);
+    }
 }
