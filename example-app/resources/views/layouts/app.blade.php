@@ -21,6 +21,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+    {{-- Assinatura JsPdf --}}
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body style="background-color: #E7D7C1">
@@ -99,6 +103,9 @@
                         <li class="h4 mb-3">
                             <a href="/minhas_entregas" class="nav-link ">Minhas Entregas</a>
                         </li>
+                        <li class="h4 mb-3">
+                            <a href="/meus_eventos" class="nav-link ">Meus Eventos</a>
+                        </li>
                     </ul>
                     </div>
                     <hr>
@@ -116,17 +123,17 @@
         <footer class="footer fundo-brown text-center text-white" id="footer">
             <div class="container p-4">
                 <section class="mb-4 ">
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <a class="btn btn-light btn-floating m-1" href="mailto:forLife@gmail.com" role="button">
                         <img src="{{ asset('./icons/google.png' )}}" alt="Goggle" width="20" height="20">
                     </a>
 
                     <!-- Instagram -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <a class="btn btn-light btn-floating m-1" href="#!" role="button">
                         <img src="{{ asset('./icons/instagram.png' )}}" alt="Goggle" width="20" height="20">
                     </a>
 
                     <!-- Linkedin -->
-                    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <a class="btn btn-light btn-floating m-1" href="#!" role="button">
                         <img src="{{ asset('./icons/linkedin.png' )}}" alt="Goggle" width="20" height="20">
                     </a>
 
@@ -134,22 +141,16 @@
                 </section>
                 <section class="mb-4">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pretium purus nec sapien rhoncus
-                        laoreet.
-                        Etiam sed nulla a nisl varius elementum id sit amet est. Nullam aliquet felis nec libero porta
-                        accumsan laoreet et metus.
-                        In nec arcu eu nunc tristique dictum. Fusce sit amet quam quis tellus semper commodo. Quisque
-                        dictum
-                        ut quam tincidunt rutrum.
-                        Phasellus vulputate pellentesque arcu quis semper. Fusce vitae sagittis erat, placerat
-                        consectetur
-                        purus.
+                        A ForLife é um web site de venda e doação de produtos alimentícios que seriam descartados e desperdiçados, utilizando preços acessíveis em compensação. 
+                        <br>
+                        O site emprega, para a praticidade, o modelo “marketplace”, onde os próprios estabelecimentos divulgam seus produtos através da nossa plataforma.
+                        <br>
+                        Para sua realização, foram utilizados ferramentas que se destacam por suas funcionalidades e facilidade.
                     </p>
                 </section>
             </div>
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                &copy;Bom Dia Footer
-                <a class="text-white" href="/">www.forlife.com.br</a>
+                &copy;ForLife
             </div>
         </footer>
 

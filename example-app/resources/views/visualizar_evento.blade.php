@@ -12,7 +12,7 @@
             </div>
             <div class="d-flex" style="border: 2px solid #000000; border-radius: 10px;">
                 <div class="d-inline col-md-6" >   
-                    <img src="{{ asset('img_folders/' . $evento->imagem) }}" class="img-fluid rounded-start h-100"
+                    <img src="{{ url('storage/banners_eventos/' . $evento->imagem) }}" class="img-fluid rounded-start h-100"
                         alt="Banner Evento">
                 </div>
                 <div class="d-inline col-md-6 ms-3">
