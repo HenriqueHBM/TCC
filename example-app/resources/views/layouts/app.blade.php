@@ -101,7 +101,7 @@
                             <a href="/perfil" class="nav-link ">Perfil</a>
                         </li>
                         <li class="h4 mb-3">
-                            <a href="/minhas_entregas" class="nav-link ">Minhas Entregas</a>
+                            <a href="/minhas_entregas" class="nav-link ">Meus Produtos</a>
                         </li>
                         <li class="h4 mb-3">
                             <a href="/meus_eventos" class="nav-link ">Meus Eventos</a>
