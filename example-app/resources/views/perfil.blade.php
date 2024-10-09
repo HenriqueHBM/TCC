@@ -86,14 +86,17 @@
                 </div>
                 <hr>
                 <div class="row px-3 py-1 justify-content-between">
-                    <a href="/home" class="btn btn-success col-md-4">Votlar</a>
-                    <button class="btn btn-primary col-md-4 save_perfil" id="save_perfil" onclick="return false">Salvar Alteração</button>
+                    <a href="/home" class="btn btn-warning col-md-4">Voltar</a>
+                    <button class="btn btn-primary col-md-4 save_perfil" id="save_perfil">Salvar Alteração</button>
                 </div>
             </form>
         </div>
     </main>
     <script>
         document.getElementById('perfil_add').addEventListener('change', function(event) {
+            console.log(event.target.files[0]);
+            
+            
             var file = event.target.files[0];
             if (file) {
                 var reader = new FileReader();
@@ -108,6 +111,7 @@
 
         $(document).on('click', '.save_perfil', function(e) {
             var formData = new FormData($('#editForm')[0]);
+            e.preventDefault();
             $.ajax({
                 type: 'post',
                 url: 'perfil/save_perfil',
