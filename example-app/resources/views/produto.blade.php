@@ -47,17 +47,26 @@
                         Usuário desde: {{ data_format($linha->usuario->created_at) }}
                     </div>
                 </div>
+                {{-- Verifica se usuario esta logado --}}
                 @auth
-                    @if (count(Auth::user()->termos_compra) > 0 )
-                        <button class="button_comprar p-3 card_shadow" data-id='{{ $id }}' id="button_comprar">
-                            <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="30" height="30"
-                                class="mb-1"> Comprar
-                        </button>
+                {{-- Verifica se o usuario tem o termo de compra assinado --}}
+                    @if (empty(Auth::user()->id_endereco))
+                    <a href="{{ url('/cadastrar_endereco') }}" class=" button_comprar p-3 text-white card_shadow ">
+                        <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="25" height="25"
+                            class="mb-1"> Comprar
+                    </a>
                     @else
-                        <button class=" p-3 text-white card_shadow button_comprar" data-id='{{ $id }}' id="confirmar_termos">
-                            <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="25" height="25"
-                                class="mb-1"> Comprar
-                        </button>
+                        @if (count(Auth::user()->termos_compra) > 0 )
+                            <button class="button_comprar p-3 card_shadow" data-id='{{ $id }}' id="button_comprar">
+                                <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="30" height="30"
+                                    class="mb-1"> Comprar
+                            </button>
+                        @else
+                            <button class=" p-3 text-white card_shadow button_comprar" data-id='{{ $id }}' id="confirmar_termos">
+                                <img src="{{ asset('icons/cesta-de-compras.png') }}" alt="" width="25" height="25"
+                                    class="mb-1"> Comprar
+                            </button>
+                        @endif
                     @endif
                 @else
                     <a href="{{ url('login') }}" class=" button_comprar p-3 text-white card_shadow ">
