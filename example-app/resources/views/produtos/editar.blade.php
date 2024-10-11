@@ -16,9 +16,17 @@
                         <div class="from-group">
                             <div class="block mt-1 w-full" id="image-preview">
                                 @foreach ($produto->imagens as $img)
-                                    <img src="{{ asset('img_folders/' . $img->imagem) }}" class="rounded card_produto"
-                                        width="105" height="110" alt="{{ $produto->produto }}">
+                                    <img src="{{ url('storage/img_produtos_users/' . $img->imagem) }}"
+                                        class="rounded card_produto" width="105" height="110"
+                                        alt="{{ $produto->produto }}">
                                 @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="row mt-3 text-center justify-content-center">
+                        <div class="from-group">
+                            <div class="block mt-1 w-full" id="image-preview">
                             </div>
                         </div>
                     </div>
@@ -28,7 +36,9 @@
                 <div class="row mt-3">
                     <div class="form-group text-center">
                         @if (count($produto->imagens) < 5)
-                            <label class="btn btn-success" for='show_img' title='(Precisa selecionar todas as imagens que deseja em uma unica vez)'>Adicionar Imagen(s)</label>
+                            <label class="btn btn-success" for='show_img'
+                                title='(Precisa selecionar todas as imagens que deseja em uma unica vez)'>Adicionar
+                                Imagen(s)</label>
                         @endif
                     </div>
                 </div>
@@ -87,9 +97,10 @@
                 for (let i = 0; i < files.length; i++) {
                     let file = files[i];
                     let reader = new FileReader();
-                    
+
                     reader.onload = function(e) {
-                        let img = $("<img src='"+e.target.result+"' width='105' height='110' class='card_produto rounded mx-1' />");
+                        let img = $("<img src='" + e.target.result +
+                            "' width='105' height='110' class='card_produto rounded mx-1' />");
                         $('#image-preview').append(img);
                     };
 
@@ -97,9 +108,40 @@
                 }
             }
         });
-        $(document).on('click', '#save_edit', function(e){
+        $(document).on('click', '#save_edit', function(e) {
             e.preventDefault();
-            
+            var formData = new FormData($('#editForm')[0]);
+            $.ajax({
+                type: 'post',
+                url: `editar/save_editar`,
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    if(data.error){
+                        setTimeout(function() {
+                            //$('#Modal').modal('show'); //caso erro, puxar a tela 
+                            $.each(data.error, function(index, element) {
+                                $('.error_' + index).prop('hidden', false);
+                                $('.error_' + index).text(element);
+                            });
+                        }, 100);
+                    }else{
+                        $('#mensg_sucesso').text('Editado Com Sucesso');
+                        $('#mensg_sucesso').prop('hidden', false);
+                        //Funcao para voltar ao topo da pagina;
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+    
+                        setTimeout(function() {
+                            window.location.reload(true);
+                        }, 1000);
+                    }
+                }
+            })
         })
     </script>
 @endsection
