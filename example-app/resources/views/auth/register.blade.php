@@ -9,10 +9,21 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}"  enctype="multipart/form-data">
             @csrf
+            <div class="row justify-content-center ">
+                <div>
+                    <x-label for="perfil" :value="__('Foto de Perfil')" />
+                    <input type="file" name="perfil" id="perfil" class="form-control p-2 ">
+                </div>
+                
+            </div>
+            <div class="row justify-content-center">
 
-            <div class="row">
+                <img id="imagePreview" src="#" alt="Pré-visualização" style="display: none; width: 100px;height:100px; margin-top: 20px; border-radius:50%;" class="p-0 bg-light border border-3 card_produto" />
+            </div>
+        </body>
+            <div class="row mt-2">
                 <!-- Name -->
                 <div>
                     <x-label for="nome" :value="__('Nome')" />
@@ -22,7 +33,6 @@
 
                 </div>
             </div>
-
             <div class="row mt-4">
                 <!-- Email Address -->
                 <div>
@@ -91,3 +101,17 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
+<script>
+    document.getElementById('perfil').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.getElementById('imagePreview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

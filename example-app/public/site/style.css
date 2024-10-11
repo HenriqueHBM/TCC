@@ -10856,7 +10856,7 @@ header, body{
 }
 
 .button_comprar {
-  background-color: #30a017;
+  background-color: #FE9000;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -10884,6 +10884,74 @@ header, body{
 }
 
 .card_shadow{
-  box-shadow: 0 0 15px 0 #32aa16, 0 6px 20px 0 rgba(0, 0, 0, 0.118); 
-  
+  box-shadow: 0 0 20px -2px #61210F, 0 6px 20px 0 rgba(0, 0, 0, 0.118); 
+}
+
+.caixa_pagamento {
+  position: relative;
+  border-radius: 50px;
+  overflow: hidden;
+
+  height: 30px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row-reverse;
+
+  >* {
+    flex: 0 0 33.33%;
+  }
+
+  &:after {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    border: 1px solid #FE9000;
+    border-radius: 50px;
+    pointer-events: none;
+  }
+}
+
+.mudar_input_pagamento {
+  display: none;
+
+  &:checked+.mudar_label_pagamento {
+    background-color: #FE9000;
+    color: #FFFFFF;
+  }
+
+}
+
+.mudar_label_pagamento {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  color: #003f66;
+
+  &:hover {
+    color: #FE9000;
+  }
+}
+
+
+.format_valor {
+  background-color: #FE9000;
+  padding: 8px 5px 5px 15px;
+  margin-left: -16px;
+  width: 70%;
+  border-radius: 0 30px 30px 0;
+  color: aliceblue;
+}
+
+.main{
+  padding:100px;
 }

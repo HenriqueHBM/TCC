@@ -10,6 +10,7 @@ use App\Http\Controllers\MinhasEntregasController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CadastrarEnderecoController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\PerfilController;
 
 //Rota Controller (faz aparecer a pag. inicial), Ex: [Rota::get == pegando(/rotaURL, [Controller::class, funcao])]
 Route::get('/', [HomeController::class, 'home'])->name('home');
@@ -39,10 +40,18 @@ Route::middleware(['auth'])->group(function(){
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
 
-    Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);
     // Rota pra salvar distribuição
-});
+    Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);
 
+    //Rota para confirmar compra
+    Route::post('produto/confirmar_compra/{id}', [ProdutoController::class, 'confirmar_compra']);
+
+    //Rotas para do perfil
+    Route::get('/perfil', [PerfilController::class, 'perfil']); 
+    Route::post('/perfil/save_perfil', [PerfilController::class, 'save_perfil']); 
+    
+});
+Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);
 
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
 

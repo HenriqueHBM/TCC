@@ -12,7 +12,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'usuarios';
-    public $primaryKey = "id_usuario";
     /**
      * The attributes that are mass assignable.
      *
@@ -26,7 +25,8 @@ class User extends Authenticatable
         'email',
         'cpf',
         'data_cadastro',
-        'status_login'
+        'status_login',
+        'foto_perfil'
     ];
 
     /**
@@ -46,4 +46,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function termos(){
+        return $this->hasMany(TermosAssinado::class, 'id_usuario', 'id');
+    }
 }

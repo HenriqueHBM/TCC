@@ -25,7 +25,6 @@ class CriarDistribuicaoController extends Controller
         $validator = Validator::make($r->all(), [
             'produto_nome' => 'required',
             'preco' => 'required|numeric',
-            'imagem' => 'required',
             'quantidade' => 'required|numeric',
             'data_vencimento' => 'required',
             'descricao' => 'required',
