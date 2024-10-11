@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('title', 'Eventos')
 @section('content')
+<div class="text-center align-content-center w-100 text-white card_produto" hidden id="mensg_sucesso" style="height:60px; background-color:rgb(0, 186, 71)">
+    <h3>Termos Assinado Com Sucesso</h3>
+</div>
     <main>
         <div class="container mt-5">
             <div class="row justify-content-between">
@@ -9,7 +12,13 @@
                 </div>
                 @auth
                     <div class="col-sm-1 me-2">
-                        <butotn class="btn btn-sm btn-success add-modal">Cadastrar</butotn>
+                        @auth
+                            @if (count(Auth::user()->termos_evento) > 0)
+                                <butotn class="btn btn-sm btn-success add-modal" >Cadastrar</butotn>
+                            @else
+                                <button class="btn btn-sm btn-success" id="confirmar_termos">Cadastrar</button>
+                            @endif
+                        @endauth
                     </div>
                 @endauth
             </div>
@@ -159,7 +168,43 @@
 
     {{-- Fim Modal de Cadastro --}}
 
-
+    {{-- Modal Para o Termos --}}/
+    <div class="modal fade modal-lg" id="eventoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Termos de Responsabilidade para Cadastro de Evento</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="salvarTermoForm">
+                        @csrf
+                        <input type="hidden" name="id_termo" value="{{ $termo->id_termo }}">
+                        <div id="termos_body"></div>
+                        <div class="mt-4">
+                            <div class="form-row text-center ">
+                                <h5>Assinatura do Responsável</h5>
+                            </div>
+                            <div class="form-row text-center ">
+                                <canvas id="canvas" class="border border-2" width="700" height="200" name='a'></canvas>
+                            </div>
+                            <div class="form-row text-center">
+                                <button id="clear"class="btn btn-warning card_produto">Limpar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Recusar</button>
+                    <button type="button" class="btn btn-success" id="save_termo">Enviar Assinatura</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Fim Modal Termo --}}
+    
+    
     <script>
         // add-modal
 
@@ -173,8 +218,8 @@
             $.ajax({
                 type: 'POST',
                 url: 'eventos/save_cadastro',
-                cache: false,
                 data: formData,
+                cache: false,
                 contentType: false,
                 processData: false,
                 success: function(data) {
@@ -224,6 +269,62 @@
 
         $(document).on('click', '.remover', function() {
             $(this).parent().parent().remove();
+        });
+
+        $(document).on('click', '#confirmar_termos', function(){
+            $.ajax({
+                type:'get',
+                url: 'eventos/termo_evento',
+                success:function(data){
+                    $('#termos_body').html(data);
+                    $('#eventoModal').modal('show');
+                }
+            })
+        });
+
+
+        const { jsPDF } = window.jspdf;
+        const canvas = document.getElementById('canvas');
+        const signaturePad = new SignaturePad(canvas);
+        const doc = new jsPDF();
+
+        // Limpar assinatura
+        $(document).on('click', '#clear', function(e){
+            e.preventDefault();
+            signaturePad.clear();
+        })
+
+
+        $(document).on('click', '#save_termo', function(){
+            if (signaturePad.isEmpty()) {
+                alert("Por favor, faça sua assinatura primeiro.");
+            } else {
+                var formData = new FormData($('#salvarTermoForm')[0]);
+                const dataURL = signaturePad.toDataURL();
+                formData.append('assinatura', dataURL);
+
+                $.ajax({
+                    type:'post',
+                    url: 'eventos/confirmarcao_termo',
+                    data:formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success:function(data){
+                        $('#mensg_sucesso').prop('hidden', false);
+                        $('#eventoModal').modal('toggle')
+
+                        window.scrollTo({
+                            top: 0,
+                            behavior: 'smooth'
+                        });
+                        
+                        setTimeout(function() {
+                            window.location.reload(true);
+                        }, 1000);
+                    }
+                })
+            }
         });
     </script>
 @endsection

@@ -217,7 +217,6 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('85884-000','Medianeira','PR'),
 ('83210-000', 'Pinhais', 'PR'),
 ('85892-000','Santa Helena','PR'),
-
 ('01000-000', 'São Paulo', 'SP'),
 ('01100-000', 'São Bernardo do Campo', 'SP'),
 ('01200-000', 'Santos', 'SP'),
@@ -228,7 +227,6 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('01700-000', 'São José', 'SP'),
 ('01800-000', 'Bauru', 'SP'),
 ('01900-000', 'Mauá', 'SP'),
-
 ('20000-000', 'Rio de Janeiro', 'RJ'),
 ('20100-000', 'Niterói', 'RJ'),
 ('20200-000', 'São Gonçalo', 'RJ'),
@@ -239,7 +237,6 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('20700-000', 'Cabo Frio', 'RJ'),
 ('20800-000', 'Teresópolis', 'RJ'),
 ('20900-000', 'Petrópolis', 'RJ'),
-
 ('88000-000', 'Florianópolis', 'SC'),
 ('88100-000', 'Joinville', 'SC'),
 ('88200-000', 'Blumenau', 'SC'),
@@ -250,7 +247,6 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('88700-000', 'Criciúma', 'SC'),
 ('88800-000', 'Balneário Camboriú', 'SC'),
 ('88900-000', 'Tubarao', 'SC'),
-
 ('90000-000', 'Porto Alegre', 'RS'),
 ('90100-000', 'Caxias do Sul', 'RS'),
 ('90200-000', 'Pelotas', 'RS'),
@@ -315,3 +311,9 @@ data_assinatura datetime not null,
 foreign key (id_usuario) references usuarios(id),
 foreign key (id_termo) references termos(id_termo)
 );
+<<<<<<< HEAD
+
+alter table termos add column descricao text not null ;
+alter table termos_assinados change column assinatura  assinatura text;
+=======
+>>>>>>> f95f7f8d336d5b881c85cafd2b272afc482414e5

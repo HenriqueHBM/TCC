@@ -82,7 +82,7 @@
         $(document).on("click", "#register", function() {
         var formData = new FormData($("#save_register")[0]);
         $.ajax({
-            type: "POST",
+            type: "GET",
             url: "cadastrar_endereco/save_register",
             data: formData,
             cache: false,
