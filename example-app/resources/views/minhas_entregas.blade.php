@@ -67,7 +67,10 @@
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-danger" id="save_excluir"  data-id='{{ $produto->id_produto }}'>Confirmar</button>
+                    {{-- Evitando Mensagem de Erro --}}
+                    @if (count($produtos) > 0)
+                        <button class="btn btn-danger" id="save_excluir"  data-id='{{ $produto->id_produto }}'>Confirmar</button>
+                    @endif
                 </div>
             </div>
         </div>
