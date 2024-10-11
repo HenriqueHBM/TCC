@@ -121,7 +121,6 @@
                 success: function(data) {
                     if(data.error){
                         setTimeout(function() {
-                            //$('#Modal').modal('show'); //caso erro, puxar a tela 
                             $.each(data.error, function(index, element) {
                                 $('.error_' + index).prop('hidden', false);
                                 $('.error_' + index).text(element);
