@@ -6,13 +6,13 @@
         <div class="container mt-4 d-flex">
             <div class="d-flex">
                 <div class="d-inline">
-                    <img id="principal" src="{{ asset('img_folders/' . $linha->imagens->first()->imagem) }}"
+                    <img id="principal" src="{{  url('storage/img_produtos_users/' . $linha->imagens->first()->imagem) }}"
                         class="rounded card_produto" alt="{{ $linha->produto }}" width="600" height="653">
                 </div>
                 <div class="d-block" style="height:650px">
                     @foreach ($linha->imagens as $img)
                         <button class="d-block btn slides p-0 m-3" data-img='{{ $img->imagem }}'>
-                            <img src="{{ asset('img_folders/' . $img->imagem) }}" class="rounded card_produto"
+                            <img src="{{  url('storage/img_produtos_users/' . $img->imagem) }}" class="rounded card_produto"
                                 width="105" height="110" alt="{{ $linha->produto }}">
                         </button>
                     @endforeach

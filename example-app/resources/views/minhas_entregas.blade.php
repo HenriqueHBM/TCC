@@ -19,7 +19,7 @@
                         <div class="card mb-3 w-100 card_produto col-md-10">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="{{ asset('img_produtos_users/' . $produto->imagens->first()->imagem) }}"
+                                    <img src="{{ url('storage/img_produtos_users/' . $produto->imagens->first()->imagem) }}"
                                         class=" rounded-start " alt="Banner Evento" width="300" height="200">
                                 </div>
                                 <div class="col-md-7">

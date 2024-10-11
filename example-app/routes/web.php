@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/minhas_entregas', [MinhasEntregasController::class, 'minhas_entregas']);
     Route::post('/minhas_entregas/{id}/excluir', [MinhasEntregasController::class, 'excluir']);
     Route::get('/minhas_entregas/{id}/editar', [MinhasEntregasController::class, 'editar']);
+    Route::post('/minhas_entregas/{id}/editar/save_editar', [MinhasEntregasController::class, 'save_editar']);
     
     // Rota para cadastrar o endereço
     Route::get('/cadastrar_endereco', [CadastrarEnderecoController::class, 'cadastrar_endereco']);
