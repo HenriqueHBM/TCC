@@ -1,106 +1,96 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
+@extends('layouts.app')
+@section('title', 'ForLife')
+@section('content')
+{{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> --}}
+<x-mensagem />
+    <main class="main">
+        
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}"  enctype="multipart/form-data">
-            @csrf
-            <div class="row justify-content-center ">
-                <div>
-                    <x-label for="perfil" :value="__('Foto de Perfil')" />
-                    <input type="file" name="perfil" id="perfil" class="form-control p-2 ">
+        <div class="container bg-light card-produto rounded-2 p-3" style="width: 600px">
+            <form method="POST" action="{{ route('register') }}"  enctype="multipart/form-data">
+                @csrf
+                <div class="row pt-3 text-center">
+                    <h4>Registrar-se</h4>
                 </div>
+
+                <hr>
                 
-            </div>
-            <div class="row justify-content-center">
-
-                <img id="imagePreview" src="#" alt="Pré-visualização" style="display: none; width: 100px;height:100px; margin-top: 20px; border-radius:50%;" class="p-0 bg-light border border-3 card_produto" />
-            </div>
-        </body>
-            <div class="row mt-2">
-                <!-- Name -->
-                <div>
-                    <x-label for="nome" :value="__('Nome')" />
-
-                    <x-input id="nome" class="block mt-1 w-full" type="text" name="name" :value="old('name')"
-                        required autofocus />
-
+                <div class="row justify-content-center ">
+                    <div>
+                        <label class="form-label" for="perfil">Foto de Perfil</label>
+                        <input type="file" name="perfil" id="perfil" class="form-control p-2 ">
+                    </div>
+                    
                 </div>
-            </div>
-            <div class="row mt-4">
-                <!-- Email Address -->
-                <div>
-                    <x-label for="email" :value="__('Email')" />
+                <div class="row justify-content-center">
 
-                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
-                        required />
-                </div>
-            </div>
-
-            <div class="row mt-4">
-                {{-- Numero de Telefone --}}
-                <div class="col col-md-6">
-                    <x-label for="telefone" :value="__('Telefone')" />
-
-                    <x-input id="telefone" class="block mt-1 w-full" type="tel" name="telefone" :value="old('telefone')"
-                        required
-                        placeholder='(DD) 00000-0000' />
+                    <img id="imagePreview" src="#" alt="Pré-visualização" style="display: none; width: 100px;height:100px; margin-top: 20px; border-radius:50%;" class="p-0 bg-light border border-3 card_produto" />
                 </div>
 
-                {{-- Data Nascimento --}}
-                <div class="col col-md-6">
-                    <x-label for="data_nascimento" :value="__('Data Nascimento')" />
-
-                    <x-input id="data_nascimento" class="block mt-1 w-full" type="date" name="data_nascimento"
-                        :value="old('data_nascimento')" required />
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="nome">Nome</label>
+                        <input id="nome" class="form-control" type="text" name="name" :value="old('name')"
+                            required autofocus />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="email">Email</label>
+                        <input id="email" class="form-control" type="email" name="email" :value="old('email')"
+                            required />
+                    </div>
                 </div>
-            </div>
 
-            <div class="row mt-4">
-                {{-- CPF --}}
-                <div>
-                    <x-label for="cpf" :value="__('CPF')" />
-
-                    <x-input id="cpf" class="block mt-1 w-full" type="text" name="cpf" :value="old('cpf')"
-                        required />
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="telefone">Telefone</label>
+                        <input id="telefone" class="form-control" type="tel" name="telefone" :value="old('telefone')"
+                            required
+                            placeholder='(DD) 00000-0000' />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="data_nascimento">Data Nascimento</label>
+                        <input id="data_nascimento" class="form-control" type="date" name="data_nascimento"
+                            :value="old('data_nascimento')" required />
+                    </div>
                 </div>
-            </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="cpf">CPF</label>
+                        <input id="cpf" class="form-control" type="text" name="cpf" :value="old('cpf')"
+                            required />
+                    </div>
+                </div>
 
 
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Senha')" />
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                    <label class="form-label" for="password">Senha</label>
+                    <input id="password" class="form-control" type="password" name="password" required
+                        autocomplete="new-password" />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label class="form-label" for="password_confirmation">Confirmar Senha</label>
+                        <input id="password_confirmation" class="form-control" type="password"
+                        name="password_confirmation" required />
+                    </div>
+                </div>
 
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                    autocomplete="new-password" />
-            </div>
+                <hr>
+                <div class="row px-3 py-1 justify-content-between">
+                    <a class="col-md-4 text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                        {{ __('Already registered?') }}
+                    </a>
+                    <button class="btn btn-primary col-md-4 save_edit">
+                        {{ __('Register') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
 
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirmar Senha')" />
 
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                    name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
 <script>
     document.getElementById('perfil').addEventListener('change', function(event) {
         var file = event.target.files[0];
@@ -115,3 +105,4 @@
         }
     });
 </script>
+@endsection
