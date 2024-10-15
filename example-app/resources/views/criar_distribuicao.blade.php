@@ -55,7 +55,7 @@
                         </style>
                         <div class="row mt-4">
                             <!-- Input de arquivo escondido -->
-                            <input type="file" id="fileInput" multiple accept="image/*">
+                            <input type="file" id="fileInput" name='imagem[]' multiple accept="image/*">
 
                             
                             <!-- Label estilizado como um botão -->
@@ -162,7 +162,7 @@
                         } else {
                             // Se não houver erro, exibe uma mensagem de sucesso
                             alert('Parabéns: ' + data.success);
-                            
+                            window.location.href = '/';
                             
                         }
                     },

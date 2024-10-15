@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\Cep;
 use App\Models\Endereco;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -46,6 +47,10 @@ class CadastrarEnderecoController extends Controller
             $dados->bairro = $request->bairro;
             $dados->complemento = $request->complemento;
             $dados->save();
+
+            $usu = Usuario::findOrFail(Auth::user()->id);
+            $usu->id_endereco = $dados->id_endereco;
+            $usu->update();
 
             return redirect()->back();
     }

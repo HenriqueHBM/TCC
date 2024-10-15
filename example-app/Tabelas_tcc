@@ -217,6 +217,7 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('85884-000','Medianeira','PR'),
 ('83210-000', 'Pinhais', 'PR'),
 ('85892-000','Santa Helena','PR'),
+
 ('01000-000', 'São Paulo', 'SP'),
 ('01100-000', 'São Bernardo do Campo', 'SP'),
 ('01200-000', 'Santos', 'SP'),
@@ -227,6 +228,7 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('01700-000', 'São José', 'SP'),
 ('01800-000', 'Bauru', 'SP'),
 ('01900-000', 'Mauá', 'SP'),
+
 ('20000-000', 'Rio de Janeiro', 'RJ'),
 ('20100-000', 'Niterói', 'RJ'),
 ('20200-000', 'São Gonçalo', 'RJ'),
@@ -237,6 +239,7 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('20700-000', 'Cabo Frio', 'RJ'),
 ('20800-000', 'Teresópolis', 'RJ'),
 ('20900-000', 'Petrópolis', 'RJ'),
+
 ('88000-000', 'Florianópolis', 'SC'),
 ('88100-000', 'Joinville', 'SC'),
 ('88200-000', 'Blumenau', 'SC'),
@@ -247,6 +250,7 @@ INSERT INTO ceps (cep, cidade, sigla) VALUES
 ('88700-000', 'Criciúma', 'SC'),
 ('88800-000', 'Balneário Camboriú', 'SC'),
 ('88900-000', 'Tubarao', 'SC'),
+
 ('90000-000', 'Porto Alegre', 'RS'),
 ('90100-000', 'Caxias do Sul', 'RS'),
 ('90200-000', 'Pelotas', 'RS'),
@@ -320,3 +324,4 @@ INSERT INTO bd_tcc.termos (termo,created_at,updated_at,deleted_at,descricao) VAL
 '),
 ('Termo de Responsabilidade para Cadastro de Evento',NULL,NULL,NULL,'Eu, [Nome Completo],  portador do CPF [número do CPF], declaro para os devidos fins que estou ciente e concordo com os seguintes termos ao cadastrar um evento: @@ @@ 1. Veracidade do Evento: Confirmo que o evento cadastrado é real e não fictício, sendo um evento de doação de alimentos, sem qualquer outra finalidade. @@  @@ 2. Responsabilidade pelo Evento: Isento de qualquer responsabilidade por atentados, agressões ou quaisquer problemas que possam ocorrer durante a realização do evento, reconhecendo que a segurança dos participantes é de minha responsabilidade. @@ @@ 3. Compromisso com a Legalidade: Comprometo-me a cumprir todas as normas e legislações aplicáveis à realização do evento, garantindo que todas as atividades estejam de acordo com as leis vigentes.'),
 ('Termo de Responsabilidade na Compra',NULL,NULL,NULL,'Eu, [Nome Completo], portador do CPF [número do CPF], declaro para os devidos fins que estou ciente e concordo com os seguintes termos ao realizar a compra de produtos: @@ @@1. Responsabilidade pela Imagem: Reconheço que as imagens dos produtos podem não refletir exatamente suas características. A ForLife não se responsabiliza por divergências entre a aparência do produto nas fotos e o produto efetivamente recebido. @@ @@ 2. Condições do Produto: Declaro que compreendo que a ForLife não se responsabiliza por produtos que estejam estragados, danificados, ou infectados. É minha responsabilidade verificar a integridade e as condições do produto no ato do recebimento @@ @@ 3. Sintomas Pós-Consumo: Estou ciente de que a ForLife não se responsabiliza por quaisquer sintomas ou reações adversas que possam surgir após o consumo do produto, isentando-a de qualquer responsabilidade em casos de problemas de saúde.');
+
