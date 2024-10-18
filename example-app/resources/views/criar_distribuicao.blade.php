@@ -86,7 +86,7 @@
                         <hr>
 
 
-                        <div class="row px-3 py-1 justify-content-end">
+                        <div class="row px-3 py-1 justify-content-end">     
                                 <button id = "create" class="btn btn-primary col-md-4 save_edit">
                                     {{ __('Anunciar') }}
                                 </button>
