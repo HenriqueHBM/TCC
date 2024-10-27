@@ -7,6 +7,7 @@ use App\Models\Pagamento;
 use App\Models\Produto;
 use App\Models\Termo;
 use App\Models\TermosAssinado;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,6 +22,11 @@ class ProdutoController extends Controller
     {
         $linha = Produto::where('id_produto', $id)->first();
         $termo = Termo::where('termo', 'Termo de Responsabilidade na Compra')->first();
+
+        $pdf = Pdf::loadView('pdf.recibo_compra');
+        $uniq = uniqid();
+
+        return $pdf->download('recibo'.$uniq.'.pdf');
         return view('/produto', compact('linha', 'id', 'termo'));
     }
 
@@ -54,6 +60,11 @@ class ProdutoController extends Controller
 
             $produto->qtde -= $r->qtde_desejada;
             $produto->update();
+            
+            $pdf = Pdf::loadView('pdf.recibo_compra');
+            $uniq = uniqid();
+
+            return $pdf->download('recibo'.$uniq.'.pdf');
         }
     }
 
