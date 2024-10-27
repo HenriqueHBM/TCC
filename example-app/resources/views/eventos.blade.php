@@ -24,11 +24,11 @@
             </div>
             <div class="my-4">
                 @foreach ($eventos as $evento)
-                    <div class="card mb-3 w-100">
+                    <div class="card mb-3 w-100" style="height: 200px">
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4" >
                                 <img src="{{ url('storage/banners_eventos/' . $evento->imagem) }}"
-                                    class="img-fluid rounded-start h-100" alt="Banner Evento">
+                                    class="img-fluid rounded-start w-100" alt="Banner Evento" style="height:198px">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">

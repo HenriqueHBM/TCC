@@ -240,6 +240,7 @@
                         }, 100);
                     } else {
                         $('#Modal').modal('toggle');
+                        $('#mensg_sucesso').text('Compra Efetuada com Sucesso');
                         $('#mensg_sucesso').prop('hidden', false);
 
                         window.scrollTo({
@@ -248,8 +249,8 @@
                         });
 
                         setTimeout(function() {
-                            window.location.reload(true);
-                        }, 1000);
+                            window.location.href = '/';
+                        }, 1500);
                     }
                 }
             });
