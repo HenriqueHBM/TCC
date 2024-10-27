@@ -6,8 +6,7 @@
         <div class="container mt-4 d-flex">
             <div class="d-flex">
                 <div class="d-inline">
-                    <img id="principal" src="{{  url('storage/img_produtos_users/' . $linha->imagens->first()->imagem) }}"
-                        class="rounded card_produto" alt="{{ $linha->produto }}" width="600" height="653">
+                    <x-verifica-img class="rounded card_produto" :img="$linha->imagens->first()" storage='img_produtos_users' id="principal" alt='{{ $linha->produto }}'  width="600" height="653" />
                 </div>
                 <div class="d-block" style="height:650px">
                     @foreach ($linha->imagens as $img)
@@ -95,7 +94,7 @@
                 <div class="modal-body">
                     <form action="" method="post" id="salvarTermoForm">
                         @csrf
-                        <input type="hidden" name="id_termo" value="{{ $termo->id_termo }}">
+                        <input type="hidden" name="id_termo" value="{{ $termo->id_termo ?? '' }}">
                         <div id="termos_body"></div>
                         <div class="mt-4">
                             <div class="form-row text-center ">
@@ -248,8 +247,14 @@
                             behavior: 'smooth'
                         });
 
+                        
+                        let id_compra = data;
+                        
                         setTimeout(function() {
-                            window.location.href = '/';
+                            window.location.href = `${id}/recibo_compra/${id_compra}`;
+                            setTimeout(function() {
+                                window.location.href = '/';
+                            },1000);
                         }, 1500);
                     }
                 }

@@ -10,4 +10,10 @@ class Compra extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+    public $primaryKey = 'id_compra';
+
+    public function pagamento(){
+        return $this->belongsTo(Pagamento::class, 'id_pagamento', 'id_pagamento');
+    }
 }

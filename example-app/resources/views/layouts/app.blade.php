@@ -68,7 +68,11 @@
                     </div>
                     <div class="navbar-nav">
                         @auth
-                            <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                            @if (Auth::user()->id_endereco)
+                                <a href="/criar_distribuicao" class="nav-link text-light">Anunciar</a>
+                            @else
+                                <a href="/cadastrar_endereco" class="nav-link text-light">Anunciar</a>
+                            @endif
                             <button class="btn border-0 btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                                 <img src="{{ asset('icons/menu.png') }}" alt="menu" width="20" height="20">
                             </button>

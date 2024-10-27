@@ -19,8 +19,8 @@
                         <div class="card mb-3 w-100 card_produto col-md-10">
                             <div class="row">
                                 <div class="col-md-3">
-                                    <img src="{{ url('storage/img_produtos_users/' . $produto->imagens->first()->imagem) }}"
-                                        class=" rounded-start " alt="Banner Evento" width="300" height="200">
+                                    <x-verifica-img href="produto/{{ $produto->id_produto }}" class="rounded-start " :img="$produto->imagens->first()" storage='img_produtos_users' width="300" height="200" alt="Banner Evento" />
+
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body">

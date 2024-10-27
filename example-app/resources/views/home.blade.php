@@ -77,7 +77,7 @@
                                                 {{-- cabecalho do card --}}
                                                 <div class="card-head">
                                                     <div class="card_img">
-                                                        <img src="{{  url('storage/img_produtos_users/' . $produto->imagens->first()->imagem) }}" href="produto/{{ $produto->id_produto }}" class="card-img-top h-100 card_zoom">
+                                                        <x-verifica-img href="produto/{{ $produto->id_produto }}" class="card-img-top h-100 card_zoom" :img="$produto->imagens->first()" storage='img_produtos_users' />
                                                     </div>
                                                     {{-- corpo do card --}}
                                                     <div class="card-body">
@@ -147,7 +147,7 @@
                                                 <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
                                                     <div class="card-head">
                                                         <div class="card_img">
-                                                            <img src="{{  url('storage/img_produtos_users/' . $produto->imagens->first()->imagem) }}" class="card-img-top h-100 card_zoom">
+                                                            <x-verifica-img class="card-img-top h-100 card_zoom" :img="$produto->imagens->first()" storage='img_produtos_users' />
                                                         </div>
                                                         <div class="card-body">
                                                             <h5 class="card-title text-dark">{{ $produto->produto }}</h5>

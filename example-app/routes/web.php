@@ -21,7 +21,7 @@ Route::permanentRedirect('/home', '/');
 Route::get('/distribuicoes', [DistribuicoesController::class ,'distribuicoes']);
 
 // Rota para ver o produto em especifico
-Route::get('/produto/{id}', [ProdutoController::class, 'produto']);
+Route::get('/produto/{id}', [ProdutoController::class, 'produto']); //produto
 
 Route::get('/eventos', [EventosController::class, 'enventos']);
 
@@ -51,6 +51,7 @@ Route::middleware(['auth'])->group(function(){
     //Rota para confirmar compra
     Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);
     Route::post('produto/confirmar_compra/{id}', [ProdutoController::class, 'confirmar_compra']);
+    Route::get('produto/{id}/recibo_compra/{id_compra}', [ProdutoController::class, 'recibo_compra']); 
     Route::get('produto/{id}/termo_compra', [ProdutoController::class, 'termo_compra']); 
     Route::post('produto/{id}/confirmarcao_termo', [ProdutoController::class, 'confirmarcao_termo']);
 
