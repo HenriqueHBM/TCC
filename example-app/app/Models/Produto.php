@@ -25,7 +25,7 @@ class Produto extends Model
     }
 
     public function vendedor(){
-        return $this->belongsTo(Usuario::class, 'id_usuario', 'id');
+        return $this->belongsTo(Usuario::class, 'id_usuario', 'id')->withDefault();
     }
     public function usuario(){
         return $this->belongsTo(Usuario::class, 'id_usuario', 'id');

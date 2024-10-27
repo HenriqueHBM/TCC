@@ -26,7 +26,7 @@ class Usuario extends Model
 
 
     public function endereco(){
-        return $this->belongsTo(Endereco::class, 'id_endereco', 'id_endereco');
+        return $this->belongsTo(Endereco::class, 'id_endereco', 'id_endereco')->withDefault();
     }
 
     public function empresa(){

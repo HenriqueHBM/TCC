@@ -32,7 +32,7 @@ class CadastrarEnderecoController extends Controller
 
         $validator = Validator::make($request->all(), [
             'cep' => 'required',
-            'num_residencia' => 'requred',
+            'num_residencia' => 'required',
             'rua' => 'required',
             'bairro' => 'required'
         ]);

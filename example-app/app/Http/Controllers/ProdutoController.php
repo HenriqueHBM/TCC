@@ -23,10 +23,6 @@ class ProdutoController extends Controller
         $linha = Produto::where('id_produto', $id)->first();
         $termo = Termo::where('termo', 'Termo de Responsabilidade na Compra')->first();
 
-        $pdf = Pdf::loadView('pdf.recibo_compra');
-        $uniq = uniqid();
-
-        return $pdf->download('recibo'.$uniq.'.pdf');
         return view('/produto', compact('linha', 'id', 'termo'));
     }
 
@@ -61,11 +57,20 @@ class ProdutoController extends Controller
             $produto->qtde -= $r->qtde_desejada;
             $produto->update();
             
-            $pdf = Pdf::loadView('pdf.recibo_compra');
-            $uniq = uniqid();
-
-            return $pdf->download('recibo'.$uniq.'.pdf');
+            return $compra->id_compra;
         }
+    }
+
+    public function recibo_compra(Request $r,$id, $id_compra){
+        
+        $produto = Produto::findOrFail($r->id);
+        $compra = Compra::findOrFail($id_compra);
+        $pdf = Pdf::loadView('pdf.recibo_compra', compact('produto', 'compra'));
+        
+        $uniq = uniqid();
+
+        return $pdf->download('recibo_de_compra'.$uniq.'.pdf');
+
     }
 
     public function termo_compra(){
