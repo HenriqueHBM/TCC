@@ -3,20 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Produto;
+use App\Models\ProdutosCategoria;
 use Illuminate\Http\Request;
 
 class DistribuicoesController extends Controller
 {
     public function distribuicoes()
     {
-        $search = request('search');
-        if($search){
-            $distribuicoes = Produto::where('produto', 'LIKE', '%'.$search.'%')->get();
-        }else{
-            $distribuicoes = Produto::get();
-        }
+        $tipos_prod = ProdutosCategoria::whereHas('produtos', function($q){
+            $q->where('qtde', '>', 0);
+        })
+        ->get();
         
-        return view('distribuicoes', compact('distribuicoes'));
+        return view('distribuicoes', compact( 'tipos_prod'));
     }
 
 }
