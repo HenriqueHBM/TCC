@@ -1,117 +1,98 @@
 @extends('layouts.app')
 @section('title', 'Criar Distribuição')
 @section('content')
-
-<x-guest-layout>
-    <x-auth-card>
-        <body>
-        <main>
-            <x-slot name="logo">
-                
-                </x-slot>
-    
-            <!-- top, right, bottom, left-->
-            <form id = "save_distribuicao" method="POST" style = "margin-bottom: 10px">
-                @csrf
-                <div>
-                    <div class="row mt-4">
-                        <!-- Produto (nome) -->
-                        <div>
-                            <x-label for="produto_nome" :value="__('PRODUTO')" />
-
-                            <x-input id="produto_nome" class="block mt-1 w-full" type="text" name="produto_nome" :value="old('produto_nome')"
-                                required autofocus />
-
-                        </div>
+{{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> --}}
+<x-mensagem />
+    <main class="main">
+        <div class="container bg-light card-produto rounded-2 p-3" style="width: 600px">
+            <form method="POST">
+                    @csrf
+                    <div class="row pt-3 text-center">
+                        <h4>Anunciar Produto</h4>
                     </div>
+                        <hr>
 
-                    <div class="row mt-4">
-                        <!-- Preço -->
-                        <div class="col col-md-6">
-                            <x-label for="preco" :value="__('PREÇO (POR UNIDADE)')" />
-
-                            <x-input id="preco" class="block mt-1 w-full" type="number" name="preco" :value="old('preco')"
-                                required />
-                        </div>
-                    </div>
-                        {{-- imagem--}}
-                        <style>
-                            #fileInput {
-                                display: none;
-                            }
-                            #image-preview {
-                                display: flex;
-                                gap: 10px;
-                                margin-top: 10px;
-                                display: flex;
-                                flex-direction: column; /* Empilha as imagens verticalmente */
-                            }
-                            .preview-img {
-                                
-                                max-width: 100%; /* Ajusta a imagem ao tamanho do contêiner */
-                                height: auto;
-                                margin-bottom: 10px; /* Espaçamento entre as imagens */
-                            }
-                        </style>
-                        <div class="row mt-4">
-                            <!-- Input de arquivo escondido -->
-                            <input type="file" id="fileInput" name='imagem[]' multiple accept="image/*">
-
-                            
-                            <!-- Label estilizado como um botão -->
-                            <div class = "row mt-4 justify-content-center">
-                                <div class = "text-center">
-                            
-                                    <label id="uploadButton" for="fileInput" class = "btn bg-success text-white">{{ __('SELECIONAR IMAGENS') }}</label>
-                                        
-                                    
-                                </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6 form-group">
+                                <label for="produto_nome">PRODUTO</label>
+                                <input id="produto_nome" class="form-control" type="text" name="produto_nome" :value="old('produto_nome')"
+                                    required autofocus />
                             </div>
+                        
+                            <div class="col-md-6 form-group">
+                                <label for="preco">PREÇO POR UNIDADE</label>
+                                <input id="preco" class="form-control" type="number" name="preco" :value="old('preco')"
+                                    required />
+                            </div>
+                        </div>
+                        
+                            {{-- imagem--}}
+                            <style>
+                                #fileInput {
+                                    display: none;
+                                }
+                                #image-preview {
+                                    display: flex;
+                                    gap: 10px;
+                                    margin-top: 10px;
+                                    display: flex;
+                                    flex-direction: column; /* Empilha as imagens verticalmente */
+                                }
+                                .preview-img {
+                                    
+                                    max-width: 100%; /* Ajusta a imagem ao tamanho do contêiner */
+                                    height: auto;
+                                    margin-bottom: 10px; /* Espaçamento entre as imagens */
+                                }
+                            </style>
                             
-                            
-                            <div class="block mt-1 w-full" id="image-preview"></div>
-                        </div>
-                    
+                            <div class="row mt-3">
+                                <!-- Input de arquivo escondido -->
+                                <input type="file" id="fileInput" name='imagem[]' multiple accept="image/*">
 
-                    <div class="row mt-4">
-                        {{-- Quantidade (limite) --}}
-                        <div class="col col-md-6">
-                            <x-label for="quantidade" :value="__('QUANTIDADE (LIMITE)')" />
-
-                            <x-input id="quantidade" class="block mt-1 w-full" type="number" name="quantidade" :value="old('number')"
-                                required />
-                        </div>
-
-                        {{-- Data de vencimento--}}
-                        <div class="col col-md-6">
-                            <x-label for="data_vencimento" :value="__('DATA DE VENCIMENTO')" />
-
-                            <x-input id="data_vencimento" class="block mt-1 w-full" type="date" name="data_vencimento"
-                                :value="old('data_vencimento')" required />
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        {{-- Descrição --}}
-                        <div>
-                            <x-label for="descricao" :value="__('DESCRIÇÃO')" />
-
-                            <x-input id="descricao" class="block mt-1 w-full" type="text" name="descricao" :value="old('descricao')"
-                                required />
-                        </div>
-                    </div>
-
-                    <div class = "row mt-4 justify-content-center">
-                        <div class = "text-center">
-                    
-                            <button id = "create" type = "button" class = "btn bg-success text-white">{{ __('ENVIAR') }}</button>
                                 
-                            
-                        </div>
-                    </div>
+                                <!-- Label estilizado como um botão -->
+                                <div class="col-md-6 form-group">
+                                <label id="uploadButton" for="fileInput" class = "btn bg-success text-white">{{ __('SELECIONAR IMAGENS') }}</label>
+                                </div>
+                                
+                                
+                                <div id="image-preview"></div>
+                            </div>
+                        
 
-                </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6 form-group">
+                                <label for="quantidade">QUANTIDADE - LIMITE</label>
+                                <input id="quantidade" class="form-control" type="number" name="quantidade" :value="old('number')"
+                                    required />
+                            </div>
+
+                            
+                                <div class="col-md-6 form-group">
+                                <label for="data_vencimento">DATA DE VENCIMENTO</label>
+                                <input id="data_vencimento" class="form-control" type="date" name="data_vencimento"
+                                    :value="old('data_vencimento')" required />
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6 form-group">
+                                <label for="descricao">DESCRIÇÃO</label>
+                                <input id="descricao" class="form-control" type="text" name="descricao" :value="old('descricao')"
+                                    required />
+                            </div>
+                        </div>
+                        <hr>
+
+
+                        <div class="row px-3 py-1 justify-content-end">     
+                                <button id = "create" class="btn btn-primary col-md-4 save_edit">
+                                    {{ __('Anunciar') }}
+                                </button>
+                        </div>
             </form>
+        </div>
             <script>
                 document.getElementById('fileInput').addEventListener('change', function() {
                     const fileInput = document.getElementById('fileInput');
@@ -176,8 +157,6 @@
             </script>
         </body>
         </main>
-    </x-auth-card>
-</x-guest-layout>
 
     
 @endsection

@@ -3,80 +3,73 @@
 @section('content')
 {{-- <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script> --}}
 
-<x-guest-layout>
-    <x-auth-card>
-        
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-        
+<x-mensagem />
+    <main class="main">
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
         
+        <div class="container bg-light card-produto rounded-2 p-3" style="width: 600px">
+            <form id ="save_register" method="POST">
+                @csrf
+                <div class="row pt-3 text-center">
+                    <h4>Cadastrar Endereço</h4>
+                </div>
+                <hr>
 
-        <form id ="save_register" method="POST">
-            @csrf
-            <!-- Número Residência -->
-            <div class = "row ">
-                <!-- Cep -->
-                <div class ="col col-md-6">
-                    <label for="cep" >CEP</label> <!-- Exemplo de como é para fazer --> 
-                    <x-input class="block w-full" list="browsers" id="browser" type="text"/>
-                    <datalist id="browsers">
-                        <option value="">Nenhum</option>
-                        @foreach ($ceps->sortBy('cidade') as $cep)
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label for="cep" >CEP</label> <!-- Exemplo de como é para fazer -->
+                        <input class="form-control" list="browsers" id="browser" type="text"/>
+                        
+                        <datalist id="browsers">
+                            <option value="">Nenhum</option>
+                                @foreach ($ceps->sortBy('cidade') as $cep)
                             <option value="{{ $cep->cep }}"> {{ $cep->cidade }} - {{ $cep->sigla }}</option>
-                        @endforeach
-                    </datalist>
+                            @endforeach
+                        </datalist>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="num_residencia">NÚMERO DA RESIDÊNCIA</label>
+                        <input id="num_residencia" name='num_residencia' class="form-control" type="text"
+                            name="num_residencia" :value="old('num_residencia')" required />
+                    </div>
                 </div>
-                <div class ="col col-md-6">
-                    <x-label for="num_residencia" :value="__('NÚMERO DA RESIDÊNCIA')" />
 
-                    <x-input id="num_residencia" name='num_residencia' class="block mt-1 w-full" type="text"
-                        name="num_residencia" :value="old('num_residencia')" required />
+                <div class="row mt-3">
+                    <div class="col-md-6 form-group">
+                        <label for="rua">RUA</label>
+                        <input id="rua" name='rua' class="form-control" type="text" name="rua"
+                            :value="old('rua')" required autofocus />
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="bairro">BAIRRO</label>
+                        <input id="bairro" name='rua' class="form-control" type="text" name="bairro"
+                            :value="old('bairro')" required autofocus />
+                    </div>
                 </div>
-            </div>
 
-            <!-- Rua -->
-            <div class = "mt-4">
-                <x-label for="rua" :value="__('RUA')" />
-
-                <x-input id="rua" name='rua' class="block mt-1 w-full" type="text" name="rua"
-                    :value="old('rua')" required autofocus />
-            </div>
-
-            <!-- Bairro -->
-            <div class = "mt-4">
-                <x-label for="bairro" :value="__('BAIRRO')" />
-
-                <x-input id="bairro" name='rua' class="block mt-1 w-full" type="text" name="bairro"
-                    :value="old('bairro')" required autofocus />
-            </div>
-
-            <!-- Complemento -->
-            <div class = "mt-4">
-                <x-label for="complemento" :value="__('COMPLEMENTO')" />
-
-                <textarea id="complemento" rows="1" cols="1" name='complemento' class= "block mt-1 w-full" type="text" name="complemento" :value="old('complemento')" autofocus> </textarea>
-            </div>
-
-            <div class = "row mt-4 justify-content-center">
-                <div class = "text-center">
-                    <a href = "{{ route('register') }}"> <button id = "home" type = "button" class = "btn bg-success text-white"> ⏎ VOLTAR</button></a>
-
-                    <button id = "register" type = "button" class = "btn bg-success text-white">REGISTRAR</button>
+                <div class="row mt-3">
+                    <div class="form-group">
+                        <label for="complemento">COMPLEMENTO</label>
+                        <textarea id="complemento" rows="1" cols="1" name='complemento' class="form-control" type="text" name="complemento" :value="old('complemento')" autofocus> </textarea>
+                    </div>
                 </div>
-            </div>
-
-            
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+                
+                <hr>
+                
+                <div class="row px-3 py-1 justify-content-between">
+                    <a href = "{{ route('register') }}" class="btn btn-warning col-md-4"> ⏎ VOLTAR</a>
+                    <button id = "register" class="btn btn-primary col-md-4 save_edit">
+                        {{ __('Registrar') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
 <script>
         
         $(document).on("click", "#register", function() {

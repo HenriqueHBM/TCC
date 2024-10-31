@@ -10,6 +10,7 @@ use App\Http\Controllers\MinhasEntregasController;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\CadastrarEnderecoController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\MeusEventosController;
 use App\Http\Controllers\PerfilController;
 
 //Rota Controller (faz aparecer a pag. inicial), Ex: [Rota::get == pegando(/rotaURL, [Controller::class, funcao])]
@@ -42,8 +43,10 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
     Route::get('/eventos/termo_evento', [EventosController::class, 'termo_evento']);
     Route::post('/eventos/confirmarcao_termo', [EventosController::class, 'confirmarcao_termo']);
+    
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
+    Route::get('/meus_eventos', [MeusEventosController::class, 'meus_eventos']);
 
     // Rota pra salvar distribuição
     Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);
