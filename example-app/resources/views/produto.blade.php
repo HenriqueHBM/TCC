@@ -130,7 +130,7 @@
                 old.removeClass('slide_pressed');
             }
             let src = $(this).data('img');
-            $('#principal').prop('src', "{{ asset('img_folders') }}/" + src);
+            $('#principal').prop('src', "{{ url('storage/img_produtos_users/') }}/" + src);
             $(this).addClass('slide_pressed');
 
             old = $(this);

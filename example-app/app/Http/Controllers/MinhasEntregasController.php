@@ -36,7 +36,7 @@ class MinhasEntregasController extends Controller
             'preco' => 'required', 
             'qtde' => 'required',
             'dt_vencimento' => 'required',
-            'show_img.*' => 'required|mimes:png,jpg,jpeg|max:2048'
+            'show_img.*' => 'required|mimes:png,jpg,jpeg,avif,webp|max:2048'
         ]);
 
         if($validator->fails()){
