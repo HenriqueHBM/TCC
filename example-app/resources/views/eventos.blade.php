@@ -13,10 +13,14 @@
                 @auth
                     <div class="col-sm-1 me-2">
                         @auth
-                            @if (count(Auth::user()->termos_evento) > 0)
-                                <butotn class="btn btn-sm btn-success add-modal" >Cadastrar</butotn>
+                            @if(Auth::user()->id_empresa)
+                                @if (count(Auth::user()->termos_evento) > 0)
+                                    <button class="btn btn-sm btn-success add-modal" >Cadastrar</button>
+                                @else
+                                    <button class="btn btn-sm btn-success" id="confirmar_termos">Cadastrar</button>
+                                @endif
                             @else
-                                <button class="btn btn-sm btn-success" id="confirmar_termos">Cadastrar</button>
+                            <button class="btn btn-sm btn-success" id="empresa_modal">Cadastrar</button>
                             @endif
                         @endauth
                     </div>
@@ -41,7 +45,7 @@
                                     </p>
                                     <p class="card-text">
                                         <small class="text-body-secondary">
-                                            Última Atualização: {{ ($evento->updated_at) }}
+                                            Última Atualização: {{ data_format($evento->updated_at) }}
                                         </small>
                                     </p>
                                     <a href="eventos/visualizar_evento/{{ $evento->id_evento }}" class="stretched-link"></a>
@@ -168,7 +172,7 @@
 
     {{-- Fim Modal de Cadastro --}}
 
-    {{-- Modal Para o Termos --}}/
+    {{-- Modal Para o Termos --}}
     <div class="modal fade modal-lg" id="eventoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -203,6 +207,32 @@
         </div>
     </div>
     {{-- Fim Modal Termo --}}
+
+    
+    {{-- Modal Para o Empresa --}}
+    <div class="modal fade modal-lg" id="empresaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Cadastro de Empresa(Obrigatório)</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" id="empresaForm">
+                        @csrf
+                        <input type="text" name="" id="">
+                        
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="save_empresa">Salvar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Modal Para o Empresa --}}
     
     
     <script>
@@ -325,6 +355,11 @@
                     }
                 })
             }
+        });
+
+        $(document).on('click', '#empresa_modal', function(e){
+            e.preventDefault();
+            $('#empresaModal').modal('show');
         });
     </script>
 @endsection

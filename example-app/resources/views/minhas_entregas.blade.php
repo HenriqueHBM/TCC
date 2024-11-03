@@ -47,7 +47,7 @@
                             </a>
                             <button class="btn btn-sm editar border border-0 ">
                             </button>
-                            <button class="btn btn-sm excluir border border-0 " data-produto='{{ $produto->produto }}'>
+                            <button class="btn btn-sm excluir border border-0 " data-produto='{{ $produto->produto }}' data-id='{{ $produto->id_produto }}'>
                                 <img src="{{ asset('icons/excluir.png') }}" title="Excluir Produto" width="60"
                                     height="60">
                             </button>
@@ -74,7 +74,7 @@
                     {{-- Evitando Mensagem de Erro --}}
                     @if (count($produtos) > 0)
                         <button class="btn btn-danger" id="save_excluir"
-                            data-id='{{ $produto->id_produto }}'>Confirmar</button>
+                            >Confirmar</button>
                     @endif
                 </div>
             </div>
@@ -84,10 +84,11 @@
         $(document).on('click', '.excluir', function(e) {
             e.preventDefault();
             $('#produto_excluir').text($(this).data('produto'));
+            $('#save_excluir').val($(this).data('id'));
             $('#excluirModal').modal('show');
         })
         $(document).on('click', '#save_excluir', function() {
-            let id = $(this).data('id');
+            let id = $(this).val();
             $.ajax({
                 type: 'POST',
                 url: `/minhas_entregas/${id}/excluir`,

@@ -44,7 +44,7 @@ class CriarDistribuicaoController extends Controller
             $produto->qtde = $r->quantidade;
             $produto->data_vencimento = $r->data_vencimento;
             $produto->descricao = $r->descricao;
-            $produto->id_categoria = 3;
+            $produto->id_categoria = 2;
 
             $produto->id_usuario = Auth::user()->id;
 

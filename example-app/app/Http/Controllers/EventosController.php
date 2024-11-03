@@ -27,7 +27,7 @@ class EventosController extends Controller
         $termo = Termo::where('termo', 'Termo de Responsabilidade para Cadastro de Evento')->first();
 
         if(isset(Auth::user()->id)) {
-            $produtos = Produto::where("id_usuario", Auth::user()->id)->get();
+            $produtos = Produto::where("id_usuario", Auth::user()->id)->where('qtde', '>', 0 )->get();
         }
 
 

@@ -33,7 +33,7 @@
                                                             <x-verifica-img class="card-img-top h-100 card_zoom" :img="$produto->imagens->first()" storage='img_produtos_users' />
                                                         </div>
                                                         <div class="card-body">
-                                                            <h5 class="card-title text-dark">{{ $produto->produto }}</h5>
+                                                            <h5 class="card-title text-dark font">{{ $produto->produto }}</h5>
                                                             <p class="card-text text-dark">R$: {{ $produto->preco }}</p>
                                                         </div>
                                                         <div class="card-footer text-secondary font_sm ">

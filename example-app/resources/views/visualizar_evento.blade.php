@@ -18,7 +18,7 @@
                 <div class="d-inline col-md-6 ms-3">
                     <br><h4> 📌 {{ $evento->endereco->ceps->cidade }}, {{ $evento->endereco->ceps->sigla }}</h4>
                     <br><h4> 📪 Rua {{ $evento->endereco->rua }}. Bairro {{ $evento->endereco->bairro }}. {{ $evento->endereco->numero_residencia }}. {{$evento->endereco->complemento }}.</h4>
-                    <br><h4> 📅 {{ $evento->data }}. 🕗 Início ás {{ $evento->horario_inicio}}h, término ás {{$evento->horario_fim}}h.</h4>
+                    <br><h4> 📅 {{ ($evento->data) }}. 🕗 Início ás {{ $evento->horario_inicio}}h, término ás {{$evento->horario_fim}}h.</h4>
                 </div>
                     
             </div>

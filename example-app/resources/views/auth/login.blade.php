@@ -22,7 +22,7 @@
 
                 <!-- Email Address -->
                 <div class="row mt-3">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="email">Email</label>
                         <input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus>
                     </div>
@@ -30,7 +30,7 @@
 
                 <!-- Password -->
                 <div class="row mt-3">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label for="password">Senha</label>
                         <input id="password" class="form-control"
                                     type="password"
