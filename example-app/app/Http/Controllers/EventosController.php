@@ -132,6 +132,6 @@ class EventosController extends Controller
             $termo->assinatura = $assinaturaFile;
             $termo->data_assinatura = Carbon::now();
             $termo->save();
-        }        
+        }
     }
 }

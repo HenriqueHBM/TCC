@@ -168,7 +168,7 @@
 
     {{-- Fim Modal de Cadastro --}}
 
-    {{-- Modal Para o Termos --}}/
+    {{-- Modal Para o Termos --}}
     <div class="modal fade modal-lg" id="eventoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
