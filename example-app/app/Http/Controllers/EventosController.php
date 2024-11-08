@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AreaAtuacao;
 use App\Models\Cep;
+use App\Models\Empresa;
 use App\Models\Endereco;
 use App\Models\Evento;
 use App\Models\Produto;
 use App\Models\ProdutosEvento;
 use App\Models\Termo;
 use App\Models\TermosAssinado;
+use App\Models\Usuario;
 use Carbon\Carbon;
 use Illuminate\Console\Scheduling\Event;
 use Illuminate\Http\Request;
@@ -26,12 +29,14 @@ class EventosController extends Controller
         $eventos = Evento::get();
         $termo = Termo::where('termo', 'Termo de Responsabilidade para Cadastro de Evento')->first();
 
+        $areaAtuacao = AreaAtuacao::orderBy('area')->get();
+
         if(isset(Auth::user()->id)) {
             $produtos = Produto::where("id_usuario", Auth::user()->id)->where('qtde', '>', 0 )->get();
         }
 
 
-        return view("eventos", compact('ceps', 'produtos', 'eventos', 'termo'));
+        return view("eventos", compact('ceps', 'produtos', 'eventos', 'termo', 'areaAtuacao'));
     }
 
     public function save_cadastro(Request $r)
@@ -133,5 +138,42 @@ class EventosController extends Controller
             $termo->data_assinatura = Carbon::now();
             $termo->save();
         }        
+    }
+    public function cadastrar_evento(Request $r){
+        $validator = Validator::make($r->all(), [
+            'nome' => 'required',
+            'cnpj' => 'required|unique:empresas,cnpj',
+            'area_atuacao' => 'required',
+            'num_local' => 'required',
+            'rua' => 'required',
+            'bairro' => 'required',
+            'cep' => 'required',
+            'descricao' => 'required'
+        ]);
+
+        if($validator->fails()){
+            return Response::json(array($validator->getMessageBag()->toArray()));
+        }else{
+            
+            $ende = new Endereco();
+            $ende->rua = $r->rua;
+            $ende->numero_residencia = $r->num_local;
+            $ende->id_cep = $r->cep;
+            $ende->bairro = $r->bairro;
+            $ende->save();
+
+            $emp = new Empresa();
+            $emp->nome = $r->nome;
+            $emp->cnpj = $r->cnpj;
+            $emp->id_area_atuacao = $r->area_atuacao;
+            $emp->id_endereco = $ende->id_endereco;
+            $emp->descricao = $r->descricao;
+            $emp->save();
+
+            $usu = Usuario::findOrFail(Auth::user()->id);
+            $usu->id_empresa = $emp->id_empresa;
+            $usu->update();
+
+        }
     }
 }

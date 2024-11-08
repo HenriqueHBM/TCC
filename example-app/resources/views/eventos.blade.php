@@ -1,9 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Eventos')
 @section('content')
-<div class="text-center align-content-center w-100 text-white card_produto" hidden id="mensg_sucesso" style="height:60px; background-color:rgb(0, 186, 71)">
-    <h3>Termos Assinado Com Sucesso</h3>
-</div>
+    <x-mensagem />
     <main>
         <div class="container mt-5">
             <div class="row justify-content-between">
@@ -13,14 +11,15 @@
                 @auth
                     <div class="col-sm-1 me-2">
                         @auth
-                            @if(Auth::user()->id_empresa)
-                                @if (count(Auth::user()->termos_evento) > 0)
-                                    <button class="btn btn-sm btn-success add-modal" >Cadastrar</button>
+                            @if (count(Auth::user()->termos_evento) >  0)
+                                @if (Auth::user()->id_empresa)
+                                    <button class="btn btn-sm btn-success add-modal">Cadastrar</button>
                                 @else
-                                    <button class="btn btn-sm btn-success" id="confirmar_termos">Cadastrar</button>
+                                    
+                                    <button class="btn btn-sm btn-success" id="empresa_modal">Cadastrar</button>
                                 @endif
                             @else
-                            <button class="btn btn-sm btn-success" id="empresa_modal">Cadastrar</button>
+                                <button class="btn btn-sm btn-success" id="confirmar_termos">Cadastrar</button>
                             @endif
                         @endauth
                     </div>
@@ -30,7 +29,7 @@
                 @foreach ($eventos as $evento)
                     <div class="card mb-3 w-100" style="height: 200px">
                         <div class="row">
-                            <div class="col-md-4" >
+                            <div class="col-md-4">
                                 <img src="{{ url('storage/banners_eventos/' . $evento->imagem) }}"
                                     class="img-fluid rounded-start w-100" alt="Banner Evento" style="height:198px">
                             </div>
@@ -41,7 +40,7 @@
                                         {{ $evento->descricao }}
                                     </p>
                                     <p>
-                                    <h6> Nome da Empresa Aqui</h6>
+                                    <h6>  {{ $evento->usuario->empresa->nome ?? 'Nome da Empresa Aqui' }} </h6>
                                     </p>
                                     <p class="card-text">
                                         <small class="text-body-secondary">
@@ -120,7 +119,7 @@
                                     <select name="cep" id="cep_add" class="form-control">
                                         <option selected>...</option>
                                         @foreach ($ceps->sortBy('sigla') as $cep)
-                                            <option value="{{ $cep->id_cep }}">{{ $cep->sigla }} {{ $cep->cidade }} -
+                                            <option value="{{ $cep->id_cep }}">{{ $cep->cidade }}/{{ $cep->sigla }} -
                                                 {{ $cep->cep }}
                                             </option>
                                         @endforeach
@@ -191,7 +190,8 @@
                                 <h5>Assinatura do Responsável</h5>
                             </div>
                             <div class="form-row text-center ">
-                                <canvas id="canvas" class="border border-2" width="700" height="200" name='a'></canvas>
+                                <canvas id="canvas" class="border border-2" width="700" height="200"
+                                    name='a'></canvas>
                             </div>
                             <div class="form-row text-center">
                                 <button id="clear"class="btn btn-warning card_produto">Limpar</button>
@@ -208,7 +208,7 @@
     </div>
     {{-- Fim Modal Termo --}}
 
-    
+
     {{-- Modal Para o Empresa --}}
     <div class="modal fade modal-lg" id="empresaModal" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -221,8 +221,75 @@
                 <div class="modal-body">
                     <form action="" method="post" id="empresaForm">
                         @csrf
-                        <input type="text" name="" id="">
-                        
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nome" class="form-label">Nome da sua Empresa</label>
+                                    <input type="text" name="nome" id="nome" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cnpj" class="form-label">CNPJ</label>
+                                    <input type="text" name="cnpj" id="cnpj" class="form-control cnpj">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="area_atuacao" class="form-label">Área de Atuação</label>
+                                    <select name="area_atuacao" id="area_atuacao" class="form-control">
+                                        <option selected>...</option>
+                                        @foreach ($areaAtuacao as $area)
+                                            <option value="{{ $area->id_area_atuacao }}"> {{ $area->area }} (
+                                                {{ $area->descricao }} )
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <p class="alert error_cep alert-danger" role="alert" hidden></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6 form-group">
+                                <label for="cep">CEP</label> <!-- Exemplo de como é para fazer -->
+                                <select name="cep" id="cep" class="form-control">
+                                    <option value="">Nenhum</option>
+                                    @foreach ($ceps->sortBy('cidade') as $cep)
+                                        <option value="{{ $cep->id_cep }}"> {{ $cep->cidade }}/{{ $cep->sigla }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 form-group">
+                                <label for="num_local">NÚMERO DO LOCAL</label>
+                                <input id="num_local" name='num_local' class="form-control" type="text"
+                                    name="num_local" >
+                            </div>
+                        </div>
+
+                        <div class="row mt-3">
+                            <div class="col-md-6 form-group">
+                                <label for="rua">RUA</label>
+                                <input id="rua" name='rua' class="form-control" type="text" name="rua"
+                                />
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label for="bairro">BAIRRO</label>
+                                <input id="bairro" class="form-control" type="text" name="bairro"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="descricao" class="form-label">Descrição da sua Empresa</label>
+                                <textarea name="descricao" id="descricao" cols="30" rows="5" class="form-control"></textarea>
+                            </div>
+                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -233,8 +300,8 @@
         </div>
     </div>
     {{-- Modal Para o Empresa --}}
-    
-    
+
+
     <script>
         // add-modal
 
@@ -301,11 +368,11 @@
             $(this).parent().parent().remove();
         });
 
-        $(document).on('click', '#confirmar_termos', function(){
+        $(document).on('click', '#confirmar_termos', function() {
             $.ajax({
-                type:'get',
+                type: 'get',
                 url: 'eventos/termo_evento',
-                success:function(data){
+                success: function(data) {
                     $('#termos_body').html(data);
                     $('#eventoModal').modal('show');
                 }
@@ -313,19 +380,21 @@
         });
 
 
-        const { jsPDF } = window.jspdf;
+        const {
+            jsPDF
+        } = window.jspdf;
         const canvas = document.getElementById('canvas');
         const signaturePad = new SignaturePad(canvas);
         const doc = new jsPDF();
 
         // Limpar assinatura
-        $(document).on('click', '#clear', function(e){
+        $(document).on('click', '#clear', function(e) {
             e.preventDefault();
             signaturePad.clear();
-        })
+        });
 
 
-        $(document).on('click', '#save_termo', function(){
+        $(document).on('click', '#save_termo', function() {
             if (signaturePad.isEmpty()) {
                 alert("Por favor, faça sua assinatura primeiro.");
             } else {
@@ -334,13 +403,14 @@
                 formData.append('assinatura', dataURL);
 
                 $.ajax({
-                    type:'post',
+                    type: 'post',
                     url: 'eventos/confirmarcao_termo',
-                    data:formData,
+                    data: formData,
                     cache: false,
                     contentType: false,
                     processData: false,
-                    success:function(data){
+                    success: function(data) {
+                        $('#mensg_sucesso').text('Termo Assinado Com Sucesso');
                         $('#mensg_sucesso').prop('hidden', false);
                         $('#eventoModal').modal('toggle')
 
@@ -348,7 +418,7 @@
                             top: 0,
                             behavior: 'smooth'
                         });
-                        
+
                         setTimeout(function() {
                             window.location.reload(true);
                         }, 1000);
@@ -357,9 +427,35 @@
             }
         });
 
-        $(document).on('click', '#empresa_modal', function(e){
+        $(document).on('click', '#empresa_modal', function(e) {
             e.preventDefault();
             $('#empresaModal').modal('show');
+        });
+
+        $(document).on('click', '#save_empresa', function() {
+            var formData = new FormData($('#empresaForm')[0]);
+            $.ajax({
+                type: 'post',
+                url: 'eventos/cadastrar_evento',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    $('#mensg_sucesso').text('Cadastrado Com Sucesso');
+                    $('#mensg_sucesso').prop('hidden', false);
+                    $('#empresaModal').modal('toggle');
+
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+
+                    setTimeout(function() {
+                        window.location.reload(true);
+                    }, 1000);
+                }
+            });
         });
     </script>
 @endsection

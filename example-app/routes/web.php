@@ -42,7 +42,8 @@ Route::middleware(['auth'])->group(function(){
 
     Route::post('/eventos/save_cadastro', [EventosController::class, 'save_cadastro']);
     Route::get('/eventos/termo_evento', [EventosController::class, 'termo_evento']);
-    Route::post('/eventos/confirmarcao_termo', [EventosController::class, 'confirmarcao_termo']);
+    Route::post('/eventos/confirmarcao_termo', [EventosController::class, 'confirmarcao_termo']); 
+    Route::post('/eventos/cadastrar_evento', [EventosController::class, 'cadastrar_evento']); 
     
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
