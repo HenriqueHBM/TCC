@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function(){
     // Rotas para visualizar eventos
     Route::get('/eventos/visualizar_evento/{id}', [EventosController::class, 'visualizar_evento']);
     Route::get('/meus_eventos', [MeusEventosController::class, 'meus_eventos']);
+    Route::get('/meus_eventos/{id}/editar_evento', [MeusEventosController::class, 'editar_evento']);
 
     // Rota pra salvar distribuição
     Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);
@@ -55,17 +56,16 @@ Route::middleware(['auth'])->group(function(){
     //Rota para confirmar compra
     Route::get('produto/{id}/show_comprar', [ProdutoController::class, 'show_comprar']);
     Route::post('produto/confirmar_compra/{id}', [ProdutoController::class, 'confirmar_compra']);
-    Route::get('produto/{id}/recibo_compra/{id_compra}', [ProdutoController::class, 'recibo_compra']); 
-    Route::get('produto/{id}/termo_compra', [ProdutoController::class, 'termo_compra']); 
+    Route::get('produto/{id}/recibo_compra/{id_compra}', [ProdutoController::class, 'recibo_compra']);
+    Route::get('produto/{id}/termo_compra', [ProdutoController::class, 'termo_compra']);
     Route::post('produto/{id}/confirmarcao_termo', [ProdutoController::class, 'confirmarcao_termo']);
 
     //Rotas para do perfil
-    Route::get('/perfil', [PerfilController::class, 'perfil']); 
-    Route::post('/perfil/save_perfil', [PerfilController::class, 'save_perfil']); 
+    Route::get('/perfil', [PerfilController::class, 'perfil']);
+    Route::post('/perfil/save_perfil', [PerfilController::class, 'save_perfil']);
     
 });
 
 
 Route::post('/cadastrar_endereco/save_register', [CadastrarEnderecoController::class, 'save_register']);
-
 
