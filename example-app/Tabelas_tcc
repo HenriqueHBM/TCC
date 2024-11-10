@@ -296,6 +296,20 @@ INSERT INTO bd_tcc.compras (id_usuario,id_produto,id_pagamento,created_at,update
 (3,3,3,'2023-11-29 00:00:00','2023-11-29 00:00:00',NULL,1,73.50),
 (4,1,1,'2024-09-24 08:19:07','2024-09-24 08:19:07',NULL,1,62.99);
 
+INSERT INTO area_atuacaos (area, descricao)
+VALUES
+    ('Produção de Alimentos', 'Fabricacão e distribuição de alimentos consumíveis'),
+    ('Doação de Alimentos', 'Distribuição gratuita de alimentos a quem necessita'),
+    ('Logística de Alimentos', 'Transporte e armazenamento de alimentos'),
+    ('Restaurantes e Alimentação', 'Estabelecimentos que servem refeições'),
+    ('E-commerce de Alimentos', 'Venda de alimentos online'),
+    ('Segurança Alimentar', 'Garantia de qualidade e segurança dos alimentos'),
+    ('Distribuição de Alimentos', 'Rede de distribuição de produtos alimentícios'),
+    ('Consultoria em Alimentos', 'Consultoria para empresas de alimentos'),
+    ('Farmacêutica e Nutrição', 'Desenvolvimento de produtos alimentícios e suplementos'),
+    ('Organizações de Caridade', 'Organizações que arrecadam e distribuem alimentos'),
+    ('Desperdício de Alimentos', 'Iniciativas para reduzir desperdício alimentar');
+
 alter table usuarios rename column id_usuario to id
 
 create table termos(

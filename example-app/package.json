@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.2.3",
-        "jquery": "^3.7.0"
+        "jquery": "^3.7.0",
+        "jquery-mask-plugin": "^1.14.16"
     }
 }
