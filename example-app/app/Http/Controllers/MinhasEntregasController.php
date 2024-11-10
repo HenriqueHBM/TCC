@@ -33,7 +33,7 @@ class MinhasEntregasController extends Controller
     public function save_editar(Request $r, $id){
         $validator = Validator::make($r->all(), [
             'produto' => 'required',
-            'preco' => 'required', 
+            'preco' => 'required',
             'qtde' => 'required',
             'dt_vencimento' => 'required',
             'show_img.*' => 'required|mimes:png,jpg,jpeg,avif,webp|max:2048'

@@ -17,8 +17,17 @@ class MeusEventosController extends Controller
 {
     public function meus_eventos()
     {
-        $eventos = Evento::where('id_usuario', Auth::user()->id)->get();
-        return view('meus_eventos', compact('eventos'));
+        $meus_eventos = Evento::where('id_usuario', Auth::user()->id)->get();
+        return view('meus_eventos', compact('meus_eventos'));
         
+    }
+    public function excluir(Request $r){
+        $meus_eventos = Evento::findOrFail($r->id);
+        $meus_eventos->delete();
+    }
+
+    public function editar_evento($id){
+        $meus_eventos = Evento::findOrFail($id);
+        return view('editar_evento', compact('meus_eventos'));
     }
 }

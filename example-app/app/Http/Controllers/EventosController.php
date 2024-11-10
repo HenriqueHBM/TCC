@@ -137,7 +137,7 @@ class EventosController extends Controller
             $termo->assinatura = $assinaturaFile;
             $termo->data_assinatura = Carbon::now();
             $termo->save();
-        }        
+        }
     }
     public function cadastrar_evento(Request $r){
         $validator = Validator::make($r->all(), [

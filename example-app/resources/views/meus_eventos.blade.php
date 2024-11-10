@@ -5,17 +5,17 @@
     <main style="padding:100px">
         <div class="container mt-4 ">
             <div class="row">
-                <h3>Meus Produtos</h3>
+                <h3>Meus Eventos</h3>
             </div>
             <br>
             <div class="row">
                 <div class="d-flex">
-                    @if (count($eventos) <= 0)
+                    @if (count($meus_eventos) <= 0)
                         <div>
-                            Você Não Possui Nenhum Produto Anunciado.
+                            Você não possui nenhum evento anunciado.
                         </div>
                     @endif
-                    @foreach ($eventos as $meus_eventos)
+                    @foreach ($meus_eventos as $meus_eventos)
                         <div class="card mb-3 w-100 card_produto col-md-10">
                             <div class="row">
                                 <div class="col-md-3">
@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <div class="card-body">
-                                        <h5 class="card-title">{{ $meus_eventos->meus_eventos }}</h5>
+                                        <h5 class="card-title">{{ $meus_eventos->titulo_evento }}</h5>
                                         <p class="card-text">
                                             {{ $meus_eventos->descricao }}
                                         </p>
@@ -35,27 +35,27 @@
                                             </small>
                                         </p>
                                         <!-- Onde deveria ficar o título-->
+                                        <a href="evento/{{ $meus_eventos->id_evento }}" class="stretched-link"
+                                            title="{{ $meus_eventos->titulo_evento }}"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-1 align-content-center  ">
-                            <a href="/minhas_entregas/{{ $meus_eventos->id_evento }}/editar" alt='editar' class="btn btn-sm border border-0">
-                                <img src="{{ asset('icons/lapis.png') }}" title="Editar Evento"
-                                    width="60" height="60">
+                            <a href="/meus_eventos/{{ $meus_eventos->id_evento }}/editar_evento" alt='editar' class="btn btn-sm border border-0">
+                                <img src="{{ asset('icons/lapis.png') }}" title="Editar Evento" width="60" height="60">
                             </a>
                             <button class="btn btn-sm editar border border-0 ">
                             </button>
                             <button class="btn btn-sm excluir border border-0 ">
-                                <img src="{{ asset('icons/excluir.png') }}" title="Excluir Evento"
-                                    width="60" height="60">
+                                <img src="{{ asset('icons/excluir.png') }}" title="Excluir Evento" width="60" height="60">
                             </button>
                         </div>
                     @endforeach
             </div>
         </div>
     </main>
-
+    
 
 
 
