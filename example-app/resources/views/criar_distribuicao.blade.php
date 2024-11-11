@@ -52,7 +52,7 @@
 
                                 
                                 <!-- Label estilizado como um botão -->
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-12 form-group text-center">
                                 <label id="uploadButton" for="fileInput" class = "btn bg-success text-white">{{ __('SELECIONAR IMAGENS') }}</label>
                                 </div>
                                 
