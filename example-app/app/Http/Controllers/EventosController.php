@@ -67,7 +67,7 @@ class EventosController extends Controller
             $evento = new Evento();
             $evento->data = $r->data;
             $evento->horario_inicio = $r->hora_ini;
-            $evento->horario_fim = $r->horario_fim;
+            $evento->horario_fim = $r->hora_fim;
             $evento->id_usuario = Auth::user()->id;
             $evento->id_endereco = $endereco->id_endereco;
             $evento->descricao = $r->descricao;
@@ -137,7 +137,7 @@ class EventosController extends Controller
             $termo->assinatura = $assinaturaFile;
             $termo->data_assinatura = Carbon::now();
             $termo->save();
-        }
+        }        
     }
     public function cadastrar_evento(Request $r){
         $validator = Validator::make($r->all(), [

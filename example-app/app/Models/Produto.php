@@ -16,6 +16,10 @@ class Produto extends Model
     // atributos alterado para formato de data
     protected $dates = ['data_vencimento'];
 
+    protected $fillable = [
+        'id_produto'
+    ];
+
     public function imagens() {
         return $this->hasMany(ProdutosImagem::class, 'id_produto', 'id_produto');
     }
