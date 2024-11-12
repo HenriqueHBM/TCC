@@ -79,7 +79,7 @@ class CriarDistribuicaoController extends Controller
                     $x++;
                 }
 
-                return redirect()->route('home');
+                //return redirect()->route('home');
     }
 }
 }

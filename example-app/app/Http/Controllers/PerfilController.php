@@ -28,7 +28,7 @@ class PerfilController extends Controller
             'email' => 'required|email|unique:usuarios,email,' . $usuario->id,
             'telefone' => 'required',
             'dt_nascimento' => 'required|date',
-            'cpf' => 'required|size:11|unique:usuarios,cpf,' . $usuario->id,
+            'cpf' => 'required|unique:usuarios,cpf,' . $usuario->id,
             'senha' => 'required',
             'nova_senha' => ['nullable', 'confirmed', Rules\Password::defaults()],
             'nova_senha_confirmation' => 'required_with:nova_senha'

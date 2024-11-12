@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Editar Produto')
+@section('title', 'Editar Evento')
 @section('content')
     <x-mensagem />
     <main class="main">
@@ -10,7 +10,7 @@
                     <h4>Editar Evento</h4>
                 </div>
                 <hr>
-                
+                <div id="hidden_img"></div>
                 <div class="row justify-content-center">
                     <div>
                         <label for="show_img" class="form-label font">Imagem do Evento</label>
@@ -67,11 +67,13 @@
                         <div class="row ">
                             <div class="row mb-3">
                                 <div class=" form-group col-md-11">
-                                    <input type="text" name=""  class="form-control" value="{{ $produto->produto->produto}}">
+                                    <select name="old_prod[]" id="old_prod" class="form-control" >
+                                        <option value="{{ $produto->id_produto}}" > {{ $produto->produto->produto}} - Quantidade: {{ $produto->produto->qtde}}</option>
+                                    </select>
                                 </div>
                                 <div class='form-group col-sm-1 text-center'>
-                                    <button class='btn btn-sm remover'>
-                                        <img src='{{ asset('icons/excluir.png') }}' alt='Remover' width='33' height='33'>
+                                    <button class='btn btn-sm remover_old remover' data-id='{{ $produto->id_produto_evento }}'>
+                                        <img src='{{ asset('icons/excluir.png') }}' alt='Remover' width='33' height='33' >
                                     </button>
                                 </div>
                             </div>
@@ -142,6 +144,8 @@
     </main>
     <script>
         document.getElementById('show_img').addEventListener('change', function(event) {
+            edit = $("<input name='img_editado' id='img_editado' value='1' style='display:none' />")
+            $('#hidden_img').append(edit);
             var file = event.target.files[0];
             if (file) {
                 var reader = new FileReader();
@@ -159,13 +163,15 @@
             var formData = new FormData($('#editForm')[0]);
             $.ajax({
                 type: 'post',
-                url: `editar/save_editar`,
+                url: `editar_evento/save_editar`,
                 data: formData,
                 cache: false,
                 contentType: false,
                 processData: false,
                 success: function(data) {
                     if(data.error){
+                        console.log(data.error);
+                        
                         setTimeout(function() {
                             $.each(data.error, function(index, element) {
                                 $('.error_' + index).prop('hidden', false);
@@ -217,5 +223,18 @@
         $(document).on('click', '.remover', function() {
             $(this).parent().parent().remove();
         });
+
+        $(document).on('click', '.remover_old', function(e){
+            e.preventDefault();
+            let id = $(this).data('id');
+            $.ajax({
+                type: 'post',
+                url:'editar_evento/remover_prod_evento',
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    id:id
+                }
+            })
+        })
     </script>
 @endsection
