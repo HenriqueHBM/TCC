@@ -64,23 +64,19 @@
                                     @foreach ($produtos as $produto)
                                     {{-- caso $x/5 e o resto for 0, esses 5 cards serao os ativos, e o resto itens --}}
                                         @if ($x % 5 == 0)
-                                            @if ($x == 0)
-                                                <div class="carousel-item active">
-                                            @else
-                                                <div class="carousel-item">
-                                            @endif
+                                            <div class="carousel-item {{ $x == 0 ? 'active' : '' }}">
                                         @endif
                                         {{-- definindo como um card, margin-left-right, colunas small e  botando em horizontal--}}
-                                        <a href="produto/{{ $produto->id_produto }}" >
+                                        <a href="produto/{{ $produto->id_produto }}">
                                             {{-- cards-shadow: css para adc sombra --}}
-                                            <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
+                                            <div class="card mx-1 col-sm-2 d-inline-block cards-shadow font" >
                                                 {{-- cabecalho do card --}}
                                                 <div class="card-head">
                                                     <div class="card_img">
                                                         <x-verifica-img href="produto/{{ $produto->id_produto }}" class="card-img-top h-100 card_zoom" :img="$produto->imagens->first()" storage='img_produtos_users' />
                                                     </div>
                                                     {{-- corpo do card --}}
-                                                    <div class="card-body">
+                                                    <div class="card-body font" >
                                                         {{-- titulo do card --}}
                                                         <h5 class="card-title text-dark font">{{ $produto->produto }}</h5>
                                                         {{-- texto/descricao no card --}}
@@ -88,10 +84,9 @@
                                                         {{-- transformando o card inteiro como um link para o produto --}}
                                                     </div>
                                                     {{-- Card footer, secondary(cinza) font_sm(css pro tamanho da fonte) --}}
-                                                    <div class="card-footer text-secondary font_sm ">
+                                                    <div class="card-footer text-secondary font">
                                                         <i class="fa-solid fa-location-dot"></i>
-                                                        {{ $produto->vendedor->endereco->ceps->cidade}}
-                                                        -
+                                                        {{ $produto->vendedor->endereco->ceps->cidade}}/
                                                         {{ $produto->vendedor->endereco->ceps->sigla }}
                                                     </div>
                                                 </div>
@@ -137,26 +132,21 @@
                                         <span hidden>{{$x = 0}}</span>
                                         @foreach ($separador->produtos as $produto)
                                             @if ($x % 5 == 0)
-                                                @if ($x == 0)
-                                                    <div class="carousel-item active">
-                                                @else
-                                                    <div class="carousel-item">
-                                                @endif
+                                                <div class="carousel-item {{ $x == 0 ? 'active' : '' }}">
                                             @endif
                                             <a href="produto/{{ $produto->id_produto }}">
-                                                <div class="card mx-1 col-sm-2 d-inline-block cards-shadow">
+                                                <div class="card mx-1 col-sm-2 d-inline-block cards-shadow font">
                                                     <div class="card-head">
                                                         <div class="card_img">
                                                             <x-verifica-img class="card-img-top h-100 card_zoom" :img="$produto->imagens->first()" storage='img_produtos_users' />
                                                         </div>
-                                                        <div class="card-body">
+                                                        <div class="card-body font">
                                                             <h5 class="card-title text-dark font">{{ $produto->produto }}</h5>
                                                             <p class="card-text text-dark">R$: {{ $produto->preco }}</p>
                                                         </div>
-                                                        <div class="card-footer text-secondary font_sm ">
+                                                        <div class="card-footer text-secondary font ">
                                                         <i class="fa-solid fa-location-dot"></i>
-                                                        {{ $produto->vendedor->endereco->ceps->cidade}}
-                                                        -
+                                                        {{ $produto->vendedor->endereco->ceps->cidade}}/
                                                         {{ $produto->vendedor->endereco->ceps->sigla }}
                                                     </div>
                                                     </div>

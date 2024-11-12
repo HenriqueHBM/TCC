@@ -4,9 +4,9 @@
 <x-mensagem />
     <main class="main">
         <div class="container mt-4 d-flex">
-            <div class="d-flex">
+            <div class="d-flex col-7">
                 <div class="d-inline">
-                    <x-verifica-img class="rounded card_produto" :img="$linha->imagens->first()" storage='img_produtos_users' id="principal" alt='{{ $linha->produto }}'  width="600" height="653" />
+                    <x-verifica-img class="rounded card_produto w-100" :img="$linha->imagens->first()" storage='img_produtos_users' id="principal" alt='{{ $linha->produto }}'   height="653" />
                 </div>
                 <div class="d-block" style="height:650px">
                     @foreach ($linha->imagens as $img)
@@ -17,7 +17,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="container p-4">
+            <div class="container p-4 col-5">
                 <div class=" rounded border-2 p-3 mb-3 h-25 card_produto">
                     <h3>
                         {{ $linha->produto }}
@@ -41,7 +41,7 @@
                             class="rounded-circle d-inline border border border-3 card_produto" width="100"
                             height="100">
                     </div>
-                    <div class="p-3 pt-4">
+                    <div class="p-3 pt-4 font">
                         Vendedor: {{ $linha->usuario->nome }} <br>
                         Usuário desde: {{ data_format($linha->usuario->created_at) }}
                     </div>

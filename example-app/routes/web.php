@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/meus_eventos', [MeusEventosController::class, 'meus_eventos']);
     Route::get('/meus_eventos/{id}/editar_evento', [MeusEventosController::class, 'editar_evento']);
     Route::post('/meus_eventos/{id}/excluir', [MeusEventosController::class, 'excluir']);
+    Route::post('/meus_eventos/{id}/editar_evento/save_editar', [MeusEventosController::class, 'save_editar']);
+    Route::post('/meus_eventos/{id}/editar_evento/remover_prod_evento', [MeusEventosController::class, 'remover_prod_evento']); 
 
     // Rota pra salvar distribuição
     Route::post('/criar_distribuicao/save_distribuicao', [CriarDistribuicaoController::class, 'save_distribuicao']);

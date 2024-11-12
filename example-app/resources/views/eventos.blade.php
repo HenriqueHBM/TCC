@@ -3,17 +3,17 @@
 @section('content')
     <x-mensagem />
     <main>
-        <div class="container mt-5">
-            <div class="row justify-content-between">
-                <div class="col-md-3 mb-2">
+        <div class="container mt-5 " >
+            <div class="row justify-content-between flex-nowrap">
+                <div class="col-md-2 mb-2">
                     <h3>Eventos</h3>
                 </div>
                 @auth
-                    <div class="col-sm-1 me-2">
+                    <div class="col-sm-2 text-end">
                         @auth
                             @if (count(Auth::user()->termos_evento) >  0)
                                 @if (Auth::user()->id_empresa)
-                                    <button class="btn btn-sm btn-success add-modal">Cadastrar</button>
+                                    <button class="btn btn-sm btn-success add-modal ">Cadastrar</button>
                                 @else
                                     
                                     <button class="btn btn-sm btn-success" id="empresa_modal">Cadastrar</button>

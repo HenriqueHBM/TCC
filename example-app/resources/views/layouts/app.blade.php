@@ -42,7 +42,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span><i class="fa-solid fa-bars text-light"></i></span>
+                    <span><img src="{{ asset('icons/menu.png') }}" alt="menu" width="20" height="20"></span>
                 </button>
                 {{-- Navbar-collapse para agrupar e ocultar conteudo de barras de navegacao, jsutify-content( para deixar itens alinhados a direita) --}}
                 <div class="collapse navbar-collapse justify-content-between " id="navbarSupportedContent">
@@ -124,8 +124,8 @@
         </div>
         {{-- style="bottom: 0; width: 100%;"> --}}
         {{-- position-absolute top-100 w-100 --}}
-        <footer class="footer fundo-brown text-center text-white" id="footer">
-            <div class="container p-4">
+        <footer class="footer fundo-brown text-center text-white m-0 " id="footer">
+            <div class="container p-4 font">
                 <section class="mb-4 ">
                     <a class="btn btn-light btn-floating m-1" href="mailto:forLife@gmail.com" role="button">
                         <img src="{{ asset('./icons/google.png' )}}" alt="Goggle" width="20" height="20">
@@ -140,8 +140,6 @@
                     <a class="btn btn-light btn-floating m-1" href="#!" role="button">
                         <img src="{{ asset('./icons/linkedin.png' )}}" alt="Goggle" width="20" height="20">
                     </a>
-
-                    
                 </section>
                 <section class="mb-4">
                     <p>
@@ -153,9 +151,9 @@
                     </p>
                 </section>
             </div>
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            <section class="text-center p-3 mt-3 " style="background-color: rgba(0, 0, 0, 0.2);">
                 &copy;ForLife
-            </div>
+            </section>
         </footer>
 
     </div>

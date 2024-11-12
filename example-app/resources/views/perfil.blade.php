@@ -94,9 +94,8 @@
     </main>
     <script>
         document.getElementById('perfil_add').addEventListener('change', function(event) {
-            console.log(event.target.files[0]);
-            
-            
+        //console.log(event.target.files[0]);
+        
             var file = event.target.files[0];
             if (file) {
                 var reader = new FileReader();

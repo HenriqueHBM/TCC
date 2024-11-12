@@ -15,7 +15,8 @@ class DistribuicoesController extends Controller
         $tipos_prod = ProdutosCategoria::whereHas('produtos', function($q) use($search){
             $q->where('qtde', '>', 0);
             if($search){
-                $q->where('produto', 'LIKE', '%'.$search.'%');
+                $q->where('produto', 'LIKE', '%'.$search.'%')
+                ->orWhere('categoria', 'LIKE', '%'.$search.'%');
             };
         })
         ->get();

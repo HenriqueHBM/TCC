@@ -10,50 +10,50 @@
             <br>
             <div class="row">
                 @if (count($produtos) <= 0)
-                    <div>
-                        Você Não Possui Nenhum Produto Anunciado.
-                    </div>
+                <div>
+                    Você Não Possui Nenhum Produto Anunciado.
+                </div>
                 @endif
                 @foreach ($produtos as $produto)
-                    <div class="d-flex">
-                        <div class="card mb-3 w-100 card_produto col-md-10">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <x-verifica-img href="produto/{{ $produto->id_produto }}" class="rounded-start " :img="$produto->imagens->first()" storage='img_produtos_users' width="300" height="200" alt="Banner Evento" />
+                <div class="d-flex">
+                            <div class="card mb-3 w-100 card_produto " style="height: 200px">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <x-verifica-img href="produto/{{ $produto->id_produto }}" class="rounded-start w-100" :img="$produto->imagens->first()" storage='img_produtos_users'  height='197' alt="Banner Evento" />
 
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $produto->produto }}</h5>
-                                        <p class="card-text">
-                                            {{ $produto->descricao }}
-                                        </p>
-                                        <p class="card-text">
-                                            <small class="text-body-secondary">
-                                                Última Atualização: {{ data_format($produto->updated_at) }}
-                                            </small>
-                                        </p>
-                                        <a href="produto/{{ $produto->id_produto }}" class="stretched-link"
-                                            title="{{ $produto->produto }}"></a>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ $produto->produto }}</h5>
+                                            <p class="card-text">
+                                                {{ $produto->descricao }}
+                                            </p>
+                                            <p class="card-text">
+                                                <small class="text-body-secondary">
+                                                    Última Atualização: {{ data_format($produto->updated_at) }}
+                                                </small>
+                                            </p>
+                                            <a href="produto/{{ $produto->id_produto }}" class="stretched-link"
+                                                title="{{ $produto->produto }}"></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-1 align-content-center  ">
+                                <a href="/minhas_entregas/{{ $produto->id_produto }}/editar" alt='editar'
+                                    class="btn btn-sm border border-0">
+                                    <img src="{{ asset('icons/lapis.png') }}" title="Editar Produto" width="60"
+                                        height="60">
+                                </a>
+                                <button class="btn btn-sm editar border border-0 ">
+                                </button>
+                                <button class="btn btn-sm excluir border border-0 " data-produto='{{ $produto->produto }}' data-id='{{ $produto->id_produto }}'>
+                                    <img src="{{ asset('icons/excluir.png') }}" title="Excluir Produto" width="60"
+                                        height="60">
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-1 align-content-center  ">
-                            <a href="/minhas_entregas/{{ $produto->id_produto }}/editar" alt='editar'
-                                class="btn btn-sm border border-0">
-                                <img src="{{ asset('icons/lapis.png') }}" title="Editar Produto" width="60"
-                                    height="60">
-                            </a>
-                            <button class="btn btn-sm editar border border-0 ">
-                            </button>
-                            <button class="btn btn-sm excluir border border-0 " data-produto='{{ $produto->produto }}' data-id='{{ $produto->id_produto }}'>
-                                <img src="{{ asset('icons/excluir.png') }}" title="Excluir Produto" width="60"
-                                    height="60">
-                            </button>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
             </div>
         </div>
     </main>
